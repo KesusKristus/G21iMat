@@ -14,6 +14,8 @@ public class iMatMain extends Application {
         primaryStage.setTitle("iMat");
         primaryStage.setScene(new Scene(root, 960, 540));
         primaryStage.show();
+
+        //blablablabla
     }
 
 
