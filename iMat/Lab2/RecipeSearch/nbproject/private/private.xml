@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/addressbook/AddressBookController.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>55</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/borjessp/NetBeans/Projects/RecipeSearch/src/recipesearch/recipe_search_about.fxml</file>
+            <file>file:/Users/borjessp/NetBeans/Projects/RecipeSearch/src/recipesearch/recipe_search.fxml</file>
+            <file>file:/Users/borjessp/NetBeans/Projects/RecipeSearch/src/recipesearch/RecipeSearchController.java</file>
+            <file>file:/Users/borjessp/NetBeans/Projects/RecipeSearch/src/recipesearch/RecipeSearch.java</file>
+            <file>file:/Users/borjessp/NetBeans/Projects/RecipeSearch/src/recipesearch/RecipeSearchAboutController.java</file>
+            <file>file:/Users/borjessp/NetBeans/Projects/RecipeSearch/src/recipesearch/resources/RecipeSearch.properties</file>
+        </group>
+    </open-files>
+</project-private>
