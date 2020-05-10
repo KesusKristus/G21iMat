@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="lab2-backend1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Lab2/RecipeSearch/lib/lab2-backend.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

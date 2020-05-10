@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="resources">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/resources/producteditor.zip!/" />
+      <root url="jar://$PROJECT_DIR$/resources/imat.zip!/" />
+      <root url="jar://$PROJECT_DIR$/resources/projectbackend.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
