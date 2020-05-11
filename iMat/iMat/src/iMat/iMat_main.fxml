@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -12,14 +11,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="7.0" layoutY="148.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane layoutX="7.0" layoutY="148.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: C5C5C5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <Label alignment="CENTER" layoutX="29.0" layoutY="14.0" prefHeight="60.0" prefWidth="182.0" text="Kategorier">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Pane layoutX="20.0" layoutY="90.0" prefHeight="89.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
+            <Pane layoutX="20.0" layoutY="74.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
+            <Pane layoutX="20.0" layoutY="144.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
+            <Pane layoutX="20.0" layoutY="214.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
+            <Pane layoutX="20.0" layoutY="284.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
+            <Pane layoutX="20.0" layoutY="354.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
          </children></AnchorPane>
       <AnchorPane layoutX="200.0" layoutY="60.0" prefHeight="646.0" prefWidth="880.0" style="-fx-background-color: EAF5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="60.0">
          <children>
@@ -27,10 +30,9 @@
                <children>
                   <ScrollPane prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="765.0" prefWidth="785.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="765.0" prefWidth="785.0" style="-fx-background-color: #EAF5F5;">
                            <children>
                               <Pane layoutX="50.0" layoutY="31.0" prefHeight="200.0" style="-fx-background-color: #375656;" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="31.0" />
-                              <Accordion layoutX="111.0" layoutY="345.0" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -63,6 +65,6 @@
             <TextField layoutX="358.0" layoutY="14.0" prefHeight="33.0" prefWidth="565.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="358.0" AnchorPane.rightAnchor="357.0" AnchorPane.topAnchor="13.0" />
          </children>
       </AnchorPane>
-      <Pane layoutX="1040.0" layoutY="610.0" prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #A9E5BA;" />
+      <Pane layoutX="1040.0" layoutY="610.0" prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #A9E5BA;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>
