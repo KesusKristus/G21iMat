@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lab2-backend" level="project" />
     <orderEntry type="library" name="lab2-backend1" level="project" />
+    <orderEntry type="library" name="Java FX 11" level="application" />
   </component>
 </module>
