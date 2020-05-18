@@ -1,0 +1,20 @@
+.categories {
+    -fx-background-color: #FFFFFF;
+}
+
+.categories:hover {
+    -fx-background-color: #EAF5F5;
+}
+
+
+.buyButton {
+    -fx-background-color: #A9E5BA;
+}
+
+.buyButton:hover {
+    -fx-background-color: #99FBB4;
+}
+
+.scrollPane {
+    -fx-background-color: transparent;
+}
