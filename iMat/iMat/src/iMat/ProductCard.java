@@ -19,23 +19,35 @@ public class ProductCard extends AnchorPane {
     @FXML Label cardPrice;
 
 
+    private enum cardType{
+        category,
+        cart
+    }
 
 
 
 
-    public ProductCard(Product product, MainController parentController){ //kanske ändra från mainController. Samma klass för productCard och cartCard
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_card.fxml"));
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
 
-        try{
-            fxmlLoader.load();
-        } catch (IOException exception){
-            throw new RuntimeException(exception);
+
+    public ProductCard(Product product, MainController parentController, cardType type){ //kanske ändra från mainController. Samma klass för productCard och cartCard
+
+        FXMLLoader fxmlLoader;
+        if(type == cardType.category) {
+            fxmlLoader = new FXMLLoader(getClass().getResource("product_card.fxml"));
+        } else {
+            fxmlLoader = new FXMLLoader(getClass().getResource("product_card_cart.fxml"));
         }
+            fxmlLoader.setRoot(this);
+            fxmlLoader.setController(this);
 
-        this.product = product;
-        this.parentController = parentController;
+            try{
+                fxmlLoader.load();
+            } catch (IOException exception){
+                throw new RuntimeException(exception);
+            }
+
+            this.product = product;
+            this.parentController = parentController;
 
     }
 

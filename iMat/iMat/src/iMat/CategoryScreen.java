@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class CategoryScreen extends AnchorPane { //Dynamiskt fylla på alla kategorier i initialize?
+public class CategoryScreen extends AnchorPane {
 
     private MainController parentController;
     private List<ProductCategory> subCategories;
