@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class ProductCard extends AnchorPane {
 
 
 
-    public ProductCard(Product product, MainController parentController, cardType type){ //kanske ändra från mainController. Samma klass för productCard och cartCard
+    public ProductCard(Product product, cardType type){ //kanske ändra från mainController. Samma klass för productCard och cartCard
 
         FXMLLoader fxmlLoader;
         if(type == cardType.category) {
@@ -50,11 +51,12 @@ public class ProductCard extends AnchorPane {
 
             cardName.setText(product.getName());
             cardPrice.setText("" + product.getPrice());
-            cardImage.setImage(parentController.getDataHandler().getFXImage(product, 130, 130));
+
+            cardImage.setImage(IMatDataHandler.getInstance().getFXImage(product));
+
+            //cardImage.setImage(parentController.getDataHandler().getFXImage(product, 130, 130));
 
             this.product = product;
-            this.parentController = parentController;
-
     }
 
 

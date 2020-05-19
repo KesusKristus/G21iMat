@@ -43,25 +43,6 @@ public class MainController implements Initializable {
     @FXML
     Pane dryckPane;
 
-    java.util.List<Product> dryckList = Stream.concat(idh.getProducts(ProductCategory.COLD_DRINKS).stream(), idh.getProducts(ProductCategory.HOT_DRINKS).stream()).collect(Collectors.toList());
-
-    java.util.List<Product> fruktBärList = Stream.of(idh.getProducts(ProductCategory.MELONS), idh.getProducts(ProductCategory.EXOTIC_FRUIT),
-            idh.getProducts(ProductCategory.CITRUS_FRUIT), idh.getProducts(ProductCategory.BERRY)).flatMap(Collection::stream).collect(Collectors.toList());
-
-    java.util.List<Product> grönsakerList = Stream.of(idh.getProducts(ProductCategory.VEGETABLE_FRUIT), idh.getProducts(ProductCategory.ROOT_VEGETABLE),
-            idh.getProducts(ProductCategory.POD), idh.getProducts(ProductCategory.CABBAGE)).flatMap(Collection::stream).collect(Collectors.toList());
-
-    java.util.List<Product> köttFiskList = Stream.concat(idh.getProducts(ProductCategory.MEAT).stream(), idh.getProducts(ProductCategory.FISH).stream()).collect(Collectors.toList());
-
-    java.util.List<Product> mejeriList = idh.getProducts(ProductCategory.DAIRIES);
-
-    java.util.List<Product> potatisRisList = idh.getProducts(ProductCategory.POTATO_RICE);
-
-    java.util.List<Product> skafferiList = Stream.of(idh.getProducts(ProductCategory.FLOUR_SUGAR_SALT), idh.getProducts(ProductCategory.HERB),
-            idh.getProducts(ProductCategory.PASTA), idh.getProducts(ProductCategory.BREAD)).flatMap(Collection::stream).collect(Collectors.toList());
-
-    java.util.List<Product> sötsakerSnacksList = Stream.concat(idh.getProducts(ProductCategory.SWEET).stream(), idh.getProducts(ProductCategory.NUTS_AND_SEEDS).stream()).collect(Collectors.toList());
-
 
     @FXML
     void onClickDRYCK(){
@@ -69,7 +50,7 @@ public class MainController implements Initializable {
 
         System.out.println("CLICK");
 
-        cController.populateCategoryScreen(dryckList, "Dryck");
+        cController.populateCategoryScreen(cController.dryckList, "Dryck");
     }
 
     @FXML
