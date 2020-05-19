@@ -8,11 +8,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 
 public class ProductCard extends AnchorPane {
-    private Product product;
+    private ShoppingItem item;
     private MainController parentController;
     private int amount = 0;
 
@@ -27,12 +28,16 @@ public class ProductCard extends AnchorPane {
         cart
     }
 
+    public void plusButtonPressed(){
+        item.setAmount(item.getAmount() + 1);
+        parentController.productAdded(this.item);
+
+    }
 
 
 
 
-
-    public ProductCard(Product product, cardType type){ //kanske ändra från mainController. Samma klass för productCard och cartCard
+    public ProductCard(Product product, cardType type, MainController parentController) { //kanske ändra från mainController. Samma klass för productCard och cartCard
 
         FXMLLoader fxmlLoader;
         if(type == cardType.category) {
@@ -56,7 +61,26 @@ public class ProductCard extends AnchorPane {
 
             //cardImage.setImage(parentController.getDataHandler().getFXImage(product, 130, 130));
 
-            this.product = product;
+            this.item.setProduct(product);
+            this.parentController = parentController;
+    }
+
+    public ProductCard(ShoppingItem item, MainController parentController){
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_card_cart.fxml"));
+
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try{
+            fxmlLoader.load();
+        } catch (IOException exception){
+            throw new RuntimeException(exception);
+        }
+
+        this.item = item;
+        this.parentController = parentController;
     }
 
 

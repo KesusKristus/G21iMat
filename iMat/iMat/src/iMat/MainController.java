@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.net.URL;
 import java.util.Collection;
@@ -34,10 +35,12 @@ public class MainController implements Initializable {
     @FXML Pane productPane;
     @FXML Pane middlePane;
     @FXML Label categoryTitle;
+    @FXML FlowPane shoppingCartFlowPane;
+
 
     private MainController parentController;
     private java.util.List<ProductCategory> subCategories;
-    private java.util.List<Product> products;
+    private java.util.List<ShoppingItem> shoppingCartList;
 
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -122,9 +125,30 @@ public class MainController implements Initializable {
         productFlowPane.getChildren().clear();
 
         for(Product p : products){
-            productFlowPane.getChildren().add(new ProductCard(p, ProductCard.cardType.category));
+            productFlowPane.getChildren().add(new ProductCard(p, ProductCard.cardType.category, this));
         }
     }
+
+    public void productAdded(ShoppingItem item){
+        boolean exists = false;
+        for(ShoppingItem i : shoppingCartList){
+            if(item.getProduct().equals(i.getProduct())){
+                exists = true;
+            }
+        }
+        if(!exists) {
+            shoppingCartList.add(item);
+        }
+    }
+
+    public void updateShoppingCart(){
+        shoppingCartFlowPane.getChildren().clear();
+        for( ShoppingItem item : shoppingCartList){
+            shoppingCartFlowPane.getChildren().add(new ProductCard(item, this));
+        }
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
