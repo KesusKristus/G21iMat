@@ -13,13 +13,15 @@ import java.io.IOException;
 public class ProductCard extends AnchorPane {
     private Product product;
     private MainController parentController;
+    private int amount = 0;
 
     @FXML ImageView cardImage;
     @FXML Label cardName;
     @FXML Label cardPrice;
 
 
-    private enum cardType{
+
+    public enum cardType{
         category,
         cart
     }
@@ -45,6 +47,10 @@ public class ProductCard extends AnchorPane {
             } catch (IOException exception){
                 throw new RuntimeException(exception);
             }
+
+            cardName.setText(product.getName());
+            cardPrice.setText("" + product.getPrice());
+            cardImage.setImage(parentController.getDataHandler().getFXImage(product, 130, 130));
 
             this.product = product;
             this.parentController = parentController;
