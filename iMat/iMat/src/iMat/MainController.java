@@ -29,6 +29,7 @@ public class MainController implements Initializable {
 
     private CategoriesController cController = new CategoriesController();
 
+    @FXML ScrollPane productScrollPane;
     @FXML FlowPane productFlowPane;
     @FXML Pane productPane;
     @FXML Pane middlePane;
@@ -111,6 +112,10 @@ public class MainController implements Initializable {
     public void populateCategoryScreen(List<Product> products, String title){
 
         productPane.toFront();
+        productFlowPane.setHgap(10);
+        productFlowPane.setVgap(10);
+
+        productScrollPane.setVvalue(0);
 
         categoryTitle.setText(title);
         //this.products = products;

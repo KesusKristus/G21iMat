@@ -98,8 +98,8 @@
                   <AnchorPane prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: EAF5F5;">
                      <children>
                         <ScrollPane layoutX="-3.0" prefHeight="660.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <content>
-                            <AnchorPane fx:id="startScreen" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="785.0" style="-fx-background-color: #EAF5F5;">
+                           <content>
+                              <AnchorPane fx:id="startScreen" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="785.0" style="-fx-background-color: #EAF5F5;">
                                  <children>
                                     <Pane layoutX="50.0" layoutY="31.0" prefHeight="200.0" style="-fx-background-color: #375656;" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="31.0">
                                        <children>
@@ -118,7 +118,7 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                          </content>
+                           </content>
                         </ScrollPane>
                      </children>
                   </AnchorPane>
@@ -129,7 +129,7 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <ScrollPane hbarPolicy="NEVER" layoutX="30.0" layoutY="70.0" prefHeight="589.0" prefWidth="735.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="70.0">
+                        <ScrollPane fx:id="productScrollPane" hbarPolicy="NEVER" layoutX="30.0" layoutY="70.0" prefHeight="589.0" prefWidth="735.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="70.0">
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="scrollBackground">
                                  <children>
