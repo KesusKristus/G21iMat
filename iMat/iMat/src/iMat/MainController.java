@@ -14,6 +14,7 @@ import se.chalmers.cse.dat216.project.ProductCategory;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,7 +41,7 @@ public class MainController implements Initializable {
 
     private MainController parentController;
     private java.util.List<ProductCategory> subCategories;
-    private java.util.List<ShoppingItem> shoppingCartList;
+    private java.util.List<ShoppingItem> shoppingCartList = new ArrayList<ShoppingItem>();
 
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -113,7 +114,6 @@ public class MainController implements Initializable {
     }
 
     public void populateCategoryScreen(List<Product> products, String title){
-
         productPane.toFront();
         productFlowPane.setHgap(10);
         productFlowPane.setVgap(10);
@@ -131,13 +131,17 @@ public class MainController implements Initializable {
 
     public void productAdded(ShoppingItem item){
         boolean exists = false;
-        for(ShoppingItem i : shoppingCartList){
-            if(item.getProduct().equals(i.getProduct())){
-                exists = true;
-            }
-        }
-        if(!exists) {
+        if(shoppingCartList == null){
             shoppingCartList.add(item);
+        } else {
+            for (ShoppingItem i : shoppingCartList) {
+                if (item.getProduct().equals(i.getProduct())) {
+                    exists = true;
+                }
+            }
+            if (!exists) {
+                shoppingCartList.add(item);
+            }
         }
     }
 

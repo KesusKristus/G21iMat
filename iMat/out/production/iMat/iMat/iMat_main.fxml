@@ -154,7 +154,10 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="shoppingCartPane" layoutX="24.0" layoutY="74.0" prefHeight="461.0" prefWidth="190.0" />
+                        <ScrollPane fx:id="shoppingCartPane" layoutX="6.0" layoutY="74.0" prefHeight="461.0" prefWidth="231.0">
+                           <content>
+                              <FlowPane fx:id="shoppingCartFlowPane" prefHeight="200.0" prefWidth="200.0" />
+                           </content></ScrollPane>
                      </children>
                   </AnchorPane>
                </content>

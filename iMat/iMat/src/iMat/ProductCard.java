@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
@@ -13,13 +14,14 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 import java.io.IOException;
 
 public class ProductCard extends AnchorPane {
-    private ShoppingItem item;
+    private ShoppingItem item = new ShoppingItem(null, 0);
     private MainController parentController;
     private int amount = 0;
 
     @FXML ImageView cardImage;
     @FXML Label cardName;
     @FXML Label cardPrice;
+    @FXML Pane plusButton;
 
 
 
@@ -28,9 +30,10 @@ public class ProductCard extends AnchorPane {
         cart
     }
 
-    public void plusButtonPressed(){
+    @FXML public void plusButtonPressed(){
         item.setAmount(item.getAmount() + 1);
         parentController.productAdded(this.item);
+        parentController.updateShoppingCart();
 
     }
 
@@ -63,6 +66,7 @@ public class ProductCard extends AnchorPane {
 
             this.item.setProduct(product);
             this.parentController = parentController;
+
     }
 
     public ProductCard(ShoppingItem item, MainController parentController){
