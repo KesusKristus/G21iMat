@@ -10,7 +10,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iMat.MainController">
+=======
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> parent of f0628c7... tog bort categoryscreen och fixade så att kategoriknapparna går att klicka på
    <children>
       <AnchorPane layoutX="7.0" layoutY="148.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
@@ -19,7 +23,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Pane fx:id="dryckPane" layoutX="20.0" layoutY="70.0" onMouseClicked="#onClickDRYCK" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="20.0" layoutY="70.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Dryck">
                      <font>
