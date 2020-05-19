@@ -82,6 +82,10 @@ public class ProductCard extends AnchorPane {
 
         this.item = item;
         this.parentController = parentController;
+
+        cardName.setText(item.getProduct().getName());
+        cardPrice.setText( "" + item.getProduct().getPrice() + ":-" );
+        cardImage.setImage(IMatDataHandler.getInstance().getFXImage(item.getProduct(), 90, 70));
     }
 
 
