@@ -10,24 +10,90 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iMat.MainController">
    <children>
-      <AnchorPane layoutX="7.0" layoutY="148.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: C5C5C5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane layoutX="7.0" layoutY="148.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label alignment="CENTER" layoutX="29.0" layoutY="14.0" prefHeight="60.0" prefWidth="182.0" text="Kategorier">
+            <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kategorier">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Pane layoutX="20.0" layoutY="74.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
-            <Pane layoutX="20.0" layoutY="144.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
-            <Pane layoutX="20.0" layoutY="214.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
-            <Pane layoutX="20.0" layoutY="284.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
-            <Pane layoutX="20.0" layoutY="354.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" />
+            <Pane fx:id="dryckPane" layoutX="20.0" layoutY="70.0" onMouseClicked="#onClickDRYCK" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Dryck">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Pane layoutX="20.0" layoutY="140.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Frukt &amp; bär">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="210.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Grönsaker">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="280.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Kött &amp; fisk">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="350.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Mejeri">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="420.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Potatis &amp; ris">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="490.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Skafferi">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="560.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Sötsaker &amp; snacks">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children></AnchorPane>
       <AnchorPane layoutX="200.0" layoutY="60.0" prefHeight="646.0" prefWidth="880.0" style="-fx-background-color: EAF5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="60.0">
          <children>
-            <StackPane layoutX="300.0" layoutY="255.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <StackPane fx:id="middlePane" layoutX="300.0" layoutY="255.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane prefHeight="660.0" prefWidth="800.0">
                      <children>
@@ -56,6 +122,24 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="productPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;">
+                     <children>
+                        <Label fx:id="categoryTitle" alignment="CENTER" layoutX="258.0" layoutY="34.0" prefHeight="60.0" prefWidth="309.0" text="Label" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane hbarPolicy="NEVER" layoutX="30.0" layoutY="70.0" prefHeight="589.0" prefWidth="735.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="70.0">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <FlowPane fx:id="productFlowPane" prefHeight="917.0" prefWidth="720.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
                </children>
             </StackPane>
          </children></AnchorPane>
@@ -65,7 +149,7 @@
                <content>
                   <AnchorPane prefHeight="548.0" prefWidth="238.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="60.0" prefWidth="182.0" text="Kundvagn">
+                        <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kundvagn">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -88,7 +172,7 @@
                   <Font size="40.0" />
                </font>
             </Label>
-            <Pane layoutX="1107.0" layoutY="18.0" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: C5C5C5;">
+            <Pane layoutX="1107.0" layoutY="18.0" onMouseClicked="#onClickKONTO" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: C5C5C5;">
                <children>
                   <Label layoutX="21.0" layoutY="-1.0" text="Konto">
                      <font>
