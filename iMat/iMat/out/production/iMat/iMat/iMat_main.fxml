@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
@@ -28,15 +29,33 @@
          <children>
             <StackPane layoutX="300.0" layoutY="255.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="765.0" prefWidth="785.0" style="-fx-background-color: #EAF5F5;">
-                           <children>
-                              <Pane layoutX="50.0" layoutY="31.0" prefHeight="200.0" style="-fx-background-color: #375656;" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="31.0" />
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
+                  <AnchorPane prefHeight="660.0" prefWidth="800.0">
+                     <children>
+                        <ScrollPane layoutX="-3.0" prefHeight="660.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <content>
+                            <AnchorPane fx:id="startScreen" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="785.0" style="-fx-background-color: #EAF5F5;">
+                                 <children>
+                                    <Pane layoutX="50.0" layoutY="31.0" prefHeight="200.0" style="-fx-background-color: #375656;" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="31.0">
+                                       <children>
+                                          <Label layoutX="148.0" layoutY="71.0" text="Så handlar du på iMat" textFill="WHITE">
+                                             <font>
+                                                <Font size="40.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <FlowPane layoutX="273.0" layoutY="271.0" prefHeight="479.0" prefWidth="785.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="271.0" />
+                                    <Label layoutX="224.0" layoutY="218.0" prefHeight="50.0" prefWidth="337.0" text="Tidigare köpta varor?">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
                </children>
             </StackPane>
          </children></AnchorPane>
@@ -51,6 +70,7 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
+                        <ScrollPane fx:id="shoppingCartPane" layoutX="24.0" layoutY="74.0" prefHeight="461.0" prefWidth="190.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -63,6 +83,20 @@
          </effect>
          <children>
             <TextField layoutX="358.0" layoutY="14.0" prefHeight="33.0" prefWidth="565.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="358.0" AnchorPane.rightAnchor="357.0" AnchorPane.topAnchor="13.0" />
+            <Label layoutX="82.0" layoutY="6.0" text="iMat">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Pane layoutX="1107.0" layoutY="18.0" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: C5C5C5;">
+               <children>
+                  <Label layoutX="21.0" layoutY="-1.0" text="Konto">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
       <Pane layoutX="1040.0" layoutY="610.0" prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #A9E5BA;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
