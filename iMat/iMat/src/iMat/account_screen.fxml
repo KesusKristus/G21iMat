@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iMat.AccountScreen">
+<fx:root prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iMat.AccountScreen">
    <children>
       <SplitPane dividerPositions="0.5" layoutY="71.0" prefHeight="529.0" prefWidth="800.0">
         <items>
@@ -64,4 +64,4 @@
          </font>
       </Label>
    </children>
-</AnchorPane>
+</fx:root>

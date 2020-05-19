@@ -3,11 +3,12 @@ package iMat.Categories;
 import iMat.MainController;
 import iMat.ProductCard;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import se.chalmers.cse.dat216.project.*;
 
-import java.awt.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,19 +40,14 @@ public class CategoriesController {
     @FXML
     FlowPane productPane;
     @FXML
+    FlowPane homepagePane;
+    @FXML
     Label categoryTitle;
+    @FXML
+    AnchorPane categoryProductPane;
     private List<ProductCategory> subCategories;
     private List<Product> products;
 
     //CategoryScreen cs = new CategoryScreen(Arrays.asList(ProductCategory.values()), new MainController());
 
-
-    public void populateCategoryScreen(List<Product> products, String title){
-        /*categoryTitle.setText(title);
-        this.products = products;
-        productPane.getChildren().clear();
-        for(Product p : products){
-            productPane.getChildren().add(new ProductCard(p, ProductCard.cardType.category));
-        }*/
-    }
 }

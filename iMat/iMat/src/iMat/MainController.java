@@ -3,6 +3,7 @@ package iMat;
 import iMat.Categories.CategoriesController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -11,7 +12,6 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
@@ -50,7 +50,7 @@ public class MainController implements Initializable {
 
         System.out.println("CLICK");
 
-        cController.populateCategoryScreen(cController.dryckList, "Dryck");
+        populateCategoryScreen(cController.dryckList, "Dryck");
     }
 
     @FXML
@@ -88,6 +88,17 @@ public class MainController implements Initializable {
         /*POPULATECATEGORYSCREEN(sötsakerSnacksList, "Sötsaker & snacks");*/
     }
 
+    public void populateCategoryScreen(List<Product> products, String title){
+
+        //categoryProductPane.toFront();
+
+        categoryTitle.setText(title);
+        //this.products = products;
+        productPane.getChildren().clear();
+        for(Product p : products){
+            productPane.getChildren().add(new ProductCard(p, ProductCard.cardType.category));
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
