@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iMat.Categories.CategoriesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iMat.MainController">
    <children>
       <AnchorPane layoutX="7.0" layoutY="148.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kategorier">
+            <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kategorier" AnchorPane.topAnchor="10.0">
                <font>
                   <Font size="30.0" />
                </font>
@@ -122,6 +122,24 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5f5f5;">
+                     <children>
+                        <Label fx:id="categoryTitle" alignment="CENTER" layoutX="200.0" layoutY="10.0" prefHeight="60.0" prefWidth="400.0" text="Titel" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane hbarPolicy="NEVER" layoutX="34.0" layoutY="70.0" prefHeight="590.0" prefWidth="736.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="70.0">
+                           <content>
+                              <AnchorPane prefHeight="924.0" prefWidth="700.0">
+                                 <children>
+                                    <FlowPane fx:id="productFlowPane" prefHeight="924.0" prefWidth="700.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
                </children>
             </StackPane>
          </children></AnchorPane>
@@ -131,7 +149,7 @@
                <content>
                   <AnchorPane prefHeight="548.0" prefWidth="238.0">
                      <children>
-                        <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kundvagn">
+                        <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kundvagn" AnchorPane.topAnchor="10.0">
                            <font>
                               <Font size="30.0" />
                            </font>
