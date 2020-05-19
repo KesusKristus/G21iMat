@@ -5,3 +5,8 @@
 .categories:hover {
     -fx-background-color: #EAF5F5;
 }
+
+
+.scrollBackground {
+    -fx-background-color:transparent;
+}
