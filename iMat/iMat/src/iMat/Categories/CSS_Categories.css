@@ -11,13 +11,22 @@
     -fx-background-color:transparent;
 }
 
-.buyButton {
+.buyButtonINC {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 3px;
 }
 
-.buyButton:hover {
-    -fx-background-color: #EAF5F5;
+.buyButtonINC:hover {
+    -fx-background-color: #7fed64;
+}
+
+.buyButtonDEC {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 3px;
+}
+
+.buyButtonDEC:hover {
+    -fx-background-color: #f07269;
 }
 
 .buyButtonBackground {
