@@ -10,3 +10,17 @@
 .scrollBackground {
     -fx-background-color:transparent;
 }
+
+.buyButton {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 3px;
+}
+
+.buyButton:hover {
+    -fx-background-color: #EAF5F5;
+}
+
+.buyButtonBackground {
+    -fx-background-color: #619191;
+    -fx-background-radius: 3px;
+}

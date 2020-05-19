@@ -31,6 +31,8 @@ public class MainController implements Initializable {
     @FXML
     FlowPane productPane;
     @FXML
+    AnchorPane categoryProductPane;
+    @FXML
     Label categoryTitle;
     private MainController parentController;
     private java.util.List<ProductCategory> subCategories;
@@ -102,7 +104,7 @@ public class MainController implements Initializable {
 
     public void populateCategoryScreen(List<Product> products, String title){
 
-        //categoryProductPane.toFront();
+        categoryProductPane.toFront();
 
         categoryTitle.setText(title);
         //this.products = products;
