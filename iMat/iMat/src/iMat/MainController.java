@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     private IMatDataHandler dataHandler;
+    private CategoryScreen categoryScreen;
 
     @FXML AnchorPane startScreen;
     @FXML ScrollPane shoppingCartPane;
