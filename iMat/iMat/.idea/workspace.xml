@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/iMat/AccountScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/iMat/account_page_style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/iMat/iMat/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/iMat/iMat/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/iMat/iMat/ProductCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/iMat/iMat/ProductCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/iMat/iMat/iMatMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/iMat/iMat/iMatMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/iMat/iMat/iMat_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/iMat/iMat/iMat_main.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/iMat/iMat/product_card.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/iMat/iMat/product_card.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/iMat/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iMat/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iMat/ProductCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/iMat/ProductCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/iMat/account_screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/iMat/account_screen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iMat/iMat_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/iMat/iMat_main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,26 +228,26 @@
     </state>
     <state x="473" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589056143492" />
     <state x="526" y="172" key="FileChooserDialogImpl/0.0.1707.920@0.0.1707.920" timestamp="1589892190116" />
-    <state width="1663" height="249" key="GridCell.Tab.0.bottom" timestamp="1589893308037">
+    <state width="1663" height="249" key="GridCell.Tab.0.bottom" timestamp="1589899851578">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589050570568" />
-    <state width="1663" height="249" key="GridCell.Tab.0.bottom/0.0.1707.920@0.0.1707.920" timestamp="1589893308037" />
-    <state width="1663" height="249" key="GridCell.Tab.0.center" timestamp="1589893308037">
+    <state width="1663" height="249" key="GridCell.Tab.0.bottom/0.0.1707.920@0.0.1707.920" timestamp="1589899851578" />
+    <state width="1663" height="249" key="GridCell.Tab.0.center" timestamp="1589899851578">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589050570568" />
-    <state width="1663" height="249" key="GridCell.Tab.0.center/0.0.1707.920@0.0.1707.920" timestamp="1589893308037" />
-    <state width="1663" height="249" key="GridCell.Tab.0.left" timestamp="1589893308036">
+    <state width="1663" height="249" key="GridCell.Tab.0.center/0.0.1707.920@0.0.1707.920" timestamp="1589899851578" />
+    <state width="1663" height="249" key="GridCell.Tab.0.left" timestamp="1589899851578">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589050570568" />
-    <state width="1663" height="249" key="GridCell.Tab.0.left/0.0.1707.920@0.0.1707.920" timestamp="1589893308036" />
-    <state width="1663" height="249" key="GridCell.Tab.0.right" timestamp="1589893308037">
+    <state width="1663" height="249" key="GridCell.Tab.0.left/0.0.1707.920@0.0.1707.920" timestamp="1589899851578" />
+    <state width="1663" height="249" key="GridCell.Tab.0.right" timestamp="1589899851578">
       <screen x="0" y="0" width="1707" height="920" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589050570568" />
-    <state width="1663" height="249" key="GridCell.Tab.0.right/0.0.1707.920@0.0.1707.920" timestamp="1589893308037" />
+    <state width="1663" height="249" key="GridCell.Tab.0.right/0.0.1707.920@0.0.1707.920" timestamp="1589899851578" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1589056162945">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -6,8 +6,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
@@ -48,8 +50,9 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickKONTO() {
-        System.out.println("konto click");
+        productPane.toBack();
         accountScreen.toFront();
+
     }
 
     @FXML
