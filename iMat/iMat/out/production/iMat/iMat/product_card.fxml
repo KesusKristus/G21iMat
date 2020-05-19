@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<fx:root prefHeight="300.0" prefWidth="220.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="160.0" prefWidth="120.0" style="-fx-background-color: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="cardImage" fitHeight="130.0" fitWidth="130.0" layoutX="45.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="20.0" />
-      <Label fx:id="cardName" alignment="CENTER" layoutX="31.0" layoutY="163.0" prefHeight="32.0" prefWidth="159.0" text="Vara">
+      <ImageView fx:id="cardImage" fitHeight="75.0" fitWidth="110.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" />
+      <Label fx:id="cardName" alignment="CENTER" layoutX="1.0" layoutY="97.0" prefHeight="50.0" prefWidth="85.0" text="Ekologisk blandfärs" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font size="20.0" />
+            <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="cardPrice" alignment="CENTER" layoutX="31.0" layoutY="201.0" prefHeight="32.0" prefWidth="159.0" text="Pris">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+      <Label fx:id="cardPrice" alignment="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="22.0" prefWidth="51.0" text="Pris" />
+      <Pane layoutX="64.0" layoutY="23.0" prefHeight="60.0" prefWidth="22.0" styleClass="buyButtonBackground" stylesheets="@Categories/CSS_Categories.css">
+         <children>
+            <Pane layoutX="1.0" prefHeight="20.0" prefWidth="20.0" styleClass="buyButton" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/plus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="4.0" layoutY="54.0" prefHeight="20.0" prefWidth="20.0" styleClass="buyButton" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/minus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label alignment="CENTER" layoutX="4.0" layoutY="24.0" prefHeight="20.0" prefWidth="20.0" text="12" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </fx:root>
