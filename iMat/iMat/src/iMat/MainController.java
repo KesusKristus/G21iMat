@@ -56,44 +56,56 @@ public class MainController implements Initializable {
     void onClickDRYCK(){
         /*POPULATECATEGORYSCREEN(dryckList, "Dryck");*/
 
-        System.out.println("CLICK");
-
         populateCategoryScreen(cController.dryckList, "Dryck");
     }
 
     @FXML
     void onClickFRUKTBÄR(){
         /*POPULATECATEGORYSCREEN(fruktBärList, "Frukt & bär");*/
+
+        populateCategoryScreen(cController.fruktBärList, "Frukt & bär");
     }
 
     @FXML
     void onClickGRÖNSAKER(){
         /*POPULATECATEGORYSCREEN(grönsakerList, "Grönsaker");*/
+
+        populateCategoryScreen(cController.grönsakerList, "Grönsaker");
     }
 
     @FXML
     void onClickKÖTTFISK(){
         /*POPULATECATEGORYSCREEN(dryckList, "Dryck");*/
+
+        populateCategoryScreen(cController.köttFiskList, "Kött & fisk");
     }
 
     @FXML
     void onClickMEJERI(){
         /*POPULATECATEGORYSCREEN(mejeriList, "Mejeri");*/
+
+        populateCategoryScreen(cController.mejeriList, "Mejeri");
     }
 
     @FXML
     void onClickPOTATISRIS(){
         /*POPULATECATEGORYSCREEN(potatisRisList, "Potatis & ris");*/
+
+        populateCategoryScreen(cController.potatisRisList, "Potatis & ris");
     }
 
     @FXML
     void onClickSKAFFERI(){
         /*POPULATECATEGORYSCREEN(skafferList, "Skafferi");*/
+
+        populateCategoryScreen(cController.skafferiList, "Skafferi");
     }
 
     @FXML
     void onClickSÖTSAKERSNACKS(){
         /*POPULATECATEGORYSCREEN(sötsakerSnacksList, "Sötsaker & snacks");*/
+
+        populateCategoryScreen(cController.sötsakerSnacksList, "Sötsaker & snacks");
     }
 
     public void populateCategoryScreen(List<Product> products, String title){

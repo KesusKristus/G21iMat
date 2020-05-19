@@ -27,7 +27,7 @@
                      </font>
                   </Label>
                </children></Pane>
-            <Pane layoutX="20.0" layoutY="140.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="20.0" layoutY="140.0" onMouseClicked="#onClickFRUKTBÄR" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Frukt &amp; bär">
                      <font>
@@ -36,7 +36,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="20.0" layoutY="210.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="20.0" layoutY="210.0" onMouseClicked="#onClickGRÖNSAKER" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Grönsaker">
                      <font>
@@ -45,7 +45,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="20.0" layoutY="280.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="20.0" layoutY="280.0" onMouseClicked="#onClickKÖTTFISK" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Kött &amp; fisk">
                      <font>
@@ -54,7 +54,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="20.0" layoutY="350.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="20.0" layoutY="350.0" onMouseClicked="#onClickMEJERI" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Mejeri">
                      <font>
@@ -63,7 +63,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="20.0" layoutY="420.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="20.0" layoutY="420.0" onMouseClicked="#onClickPOTATISRIS" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Potatis &amp; ris">
                      <font>
@@ -72,7 +72,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="20.0" layoutY="490.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="20.0" layoutY="490.0" onMouseClicked="#onClickSKAFFERI" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Skafferi">
                      <font>
@@ -81,7 +81,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="20.0" layoutY="560.0" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="20.0" layoutY="560.0" onMouseClicked="#onClickSÖTSAKERSNACKS" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Sötsaker &amp; snacks">
                      <font>
@@ -95,7 +95,7 @@
          <children>
             <StackPane fx:id="middlePane" layoutX="300.0" layoutY="255.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane prefHeight="660.0" prefWidth="800.0">
+                  <AnchorPane prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: EAF5F5;">
                      <children>
                         <ScrollPane layoutX="-3.0" prefHeight="660.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <content>
@@ -129,9 +129,9 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <ScrollPane hbarPolicy="NEVER" layoutX="30.0" layoutY="70.0" prefHeight="589.0" prefWidth="735.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="70.0">
+                        <ScrollPane hbarPolicy="NEVER" layoutX="30.0" layoutY="70.0" prefHeight="589.0" prefWidth="735.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="70.0">
                            <content>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="scrollBackground">
                                  <children>
                                     <FlowPane fx:id="productFlowPane" prefHeight="917.0" prefWidth="720.0" />
                                  </children>
