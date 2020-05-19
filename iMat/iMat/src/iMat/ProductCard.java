@@ -22,7 +22,7 @@ public class ProductCard extends AnchorPane {
 
 
 
-    public enum cardType{
+    enum cardType{
         category,
         cart
     }

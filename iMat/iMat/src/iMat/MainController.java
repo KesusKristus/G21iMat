@@ -25,13 +25,15 @@ public class MainController implements Initializable {
 
     @FXML AnchorPane startScreen;
     @FXML ScrollPane shoppingCartPane;
+    @FXML AnchorPane accountScreen = new AccountScreen();
 
     private CategoriesController cController = new CategoriesController();
 
-    @FXML
-    FlowPane productPane;
-    @FXML
-    Label categoryTitle;
+    @FXML FlowPane productFlowPane;
+    @FXML Pane productPane;
+    @FXML Pane middlePane;
+    @FXML Label categoryTitle;
+
     private MainController parentController;
     private java.util.List<ProductCategory> subCategories;
     private java.util.List<Product> products;
@@ -40,9 +42,15 @@ public class MainController implements Initializable {
 
     //CategoryScreen cs = new CategoryScreen(Arrays.asList(ProductCategory.values()), new MainController());
 
-    @FXML
-    Pane dryckPane;
+    @FXML Pane dryckPane;
+    @FXML Pane konto_pane;
 
+
+    @FXML
+    void onClickKONTO() {
+        System.out.println("konto click");
+        accountScreen.toFront();
+    }
 
     @FXML
     void onClickDRYCK(){
@@ -90,19 +98,21 @@ public class MainController implements Initializable {
 
     public void populateCategoryScreen(List<Product> products, String title){
 
-        //categoryProductPane.toFront();
+        productPane.toFront();
 
         categoryTitle.setText(title);
         //this.products = products;
-        productPane.getChildren().clear();
+        productFlowPane.getChildren().clear();
+
         for(Product p : products){
-            productPane.getChildren().add(new ProductCard(p, ProductCard.cardType.category));
+            productFlowPane.getChildren().add(new ProductCard(p, ProductCard.cardType.category));
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        middlePane.getChildren().add(accountScreen);
+        accountScreen.toBack();
     }
 
     public IMatDataHandler getDataHandler() {
