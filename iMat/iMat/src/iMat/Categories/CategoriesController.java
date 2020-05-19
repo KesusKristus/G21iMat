@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 public class CategoriesController {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @FXML
     FlowPane productFlowPane;
     @FXML
@@ -27,6 +28,10 @@ public class CategoriesController {
 =======
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
+=======
+    IMatDataHandler idh = IMatDataHandler.getInstance();
+
+>>>>>>> parent of f0628c7... tog bort categoryscreen och fixade så att kategoriknapparna går att klicka på
     List<Product> dryckList = Stream.concat(idh.getProducts(ProductCategory.COLD_DRINKS).stream(), idh.getProducts(ProductCategory.HOT_DRINKS).stream()).collect(Collectors.toList());
 
     List<Product> fruktBärList = Stream.of(idh.getProducts(ProductCategory.MELONS), idh.getProducts(ProductCategory.EXOTIC_FRUIT),
@@ -100,5 +105,8 @@ public class CategoriesController {
         /*POPULATECATEGORYSCREEN(sötsakerSnacksList, "Sötsaker & snacks");*/
     }
 
+<<<<<<< HEAD
+>>>>>>> parent of f0628c7... tog bort categoryscreen och fixade så att kategoriknapparna går att klicka på
+=======
 >>>>>>> parent of f0628c7... tog bort categoryscreen och fixade så att kategoriknapparna går att klicka på
 }
