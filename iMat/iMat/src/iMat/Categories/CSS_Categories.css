@@ -1,0 +1,7 @@
+.categories {
+    -fx-background-color: #FFFFFF;
+}
+
+.categories:hover {
+    -fx-background-color: #EAF5F5;
+}
