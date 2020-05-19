@@ -12,6 +12,7 @@ public class CategoriesController {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     @FXML
     FlowPane productFlowPane;
     @FXML
@@ -28,6 +29,10 @@ public class CategoriesController {
 =======
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
+=======
+    IMatDataHandler idh = IMatDataHandler.getInstance();
+
+>>>>>>> parent of f0628c7... tog bort categoryscreen och fixade så att kategoriknapparna går att klicka på
 =======
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -106,6 +111,9 @@ public class CategoriesController {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of f0628c7... tog bort categoryscreen och fixade så att kategoriknapparna går att klicka på
+=======
 >>>>>>> parent of f0628c7... tog bort categoryscreen och fixade så att kategoriknapparna går att klicka på
 =======
 >>>>>>> parent of f0628c7... tog bort categoryscreen och fixade så att kategoriknapparna går att klicka på
