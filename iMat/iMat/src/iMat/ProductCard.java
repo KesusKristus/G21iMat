@@ -13,7 +13,7 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 import java.io.IOException;
 
 public class ProductCard extends AnchorPane {
-    private ShoppingItem item;
+    private ShoppingItem item = new ShoppingItem(null, 0);
     private MainController parentController;
     private int amount = 0;
 
@@ -28,14 +28,12 @@ public class ProductCard extends AnchorPane {
         cart
     }
 
+    @FXML
     public void plusButtonPressed(){
         item.setAmount(item.getAmount() + 1);
         parentController.productAdded(this.item);
 
     }
-
-
-
 
     public ProductCard(Product product, cardType type, MainController parentController) { //kanske ändra från mainController. Samma klass för productCard och cartCard
 
