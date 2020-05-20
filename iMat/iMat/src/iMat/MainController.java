@@ -44,6 +44,8 @@ public class MainController implements Initializable {
 
     @FXML TextField searchField;
 
+    @FXML AnchorPane homePane;
+    @FXML Pane iMatPane;
 
     private MainController parentController;
     private java.util.List<ProductCategory> subCategories;
@@ -51,10 +53,9 @@ public class MainController implements Initializable {
 
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
-    //CategoryScreen cs = new CategoryScreen(Arrays.asList(ProductCategory.values()), new MainController());
-
     @FXML Pane dryckPane;
     @FXML Pane konto_pane;
+
 
     //När enter trycks från sökrutan
     @FXML
@@ -65,7 +66,17 @@ public class MainController implements Initializable {
         populateCategoryScreen(idh.findProducts(searchString), "Sökresultat för '" + searchString + "'");
     }
 
+    //Återvänd till startsidan
+    @FXML
+    void onClickHEM() {
+        iMatPane.toFront();
+        startScreen.toFront();
+    }
 
+    //Ska kallas då "startsidan" lämnas
+    void showHomeButton() {
+        homePane.toFront();
+    }
 
 
 
@@ -74,62 +85,72 @@ public class MainController implements Initializable {
         productPane.toBack();
         accountScreen.toFront();
 
+        //Visa hemknappen
+        showHomeButton();
     }
 
     @FXML
     void onClickDRYCK(){
-        /*POPULATECATEGORYSCREEN(dryckList, "Dryck");*/
-
         populateCategoryScreen(cController.dryckList, "Dryck");
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     @FXML
     void onClickFRUKTBÄR(){
-        /*POPULATECATEGORYSCREEN(fruktBärList, "Frukt & bär");*/
-
         populateCategoryScreen(cController.fruktBärList, "Frukt & bär");
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     @FXML
     void onClickGRÖNSAKER(){
-        /*POPULATECATEGORYSCREEN(grönsakerList, "Grönsaker");*/
-
         populateCategoryScreen(cController.grönsakerList, "Grönsaker");
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     @FXML
     void onClickKÖTTFISK(){
-        /*POPULATECATEGORYSCREEN(dryckList, "Dryck");*/
-
         populateCategoryScreen(cController.köttFiskList, "Kött & fisk");
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     @FXML
     void onClickMEJERI(){
-        /*POPULATECATEGORYSCREEN(mejeriList, "Mejeri");*/
-
         populateCategoryScreen(cController.mejeriList, "Mejeri");
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     @FXML
     void onClickPOTATISRIS(){
-        /*POPULATECATEGORYSCREEN(potatisRisList, "Potatis & ris");*/
-
         populateCategoryScreen(cController.potatisRisList, "Potatis & ris");
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     @FXML
     void onClickSKAFFERI(){
-        /*POPULATECATEGORYSCREEN(skafferList, "Skafferi");*/
-
         populateCategoryScreen(cController.skafferiList, "Skafferi");
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     @FXML
     void onClickSÖTSAKERSNACKS(){
-        /*POPULATECATEGORYSCREEN(sötsakerSnacksList, "Sötsaker & snacks");*/
-
         populateCategoryScreen(cController.sötsakerSnacksList, "Sötsaker & snacks");
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     public void populateCategoryScreen(List<Product> products, String title){
@@ -167,7 +188,7 @@ public class MainController implements Initializable {
     public void updateShoppingCart(){
         shoppingCartFlowPane.getChildren().clear();
 
-        shoppingCartFlowPane.setVgap(10);
+        shoppingCartFlowPane.setVgap(5);
 
         for( ShoppingItem item : shoppingCartList){
             shoppingCartFlowPane.getChildren().add(new ProductCard(item, this));

@@ -18,11 +18,11 @@
          <children>
             <StackPane fx:id="middlePane" layoutX="300.0" layoutY="255.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: EAF5F5;">
+                  <AnchorPane fx:id="startScreen" prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: EAF5F5;">
                      <children>
                         <ScrollPane layoutX="-3.0" prefHeight="660.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <AnchorPane fx:id="startScreen" minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="785.0" style="-fx-background-color: #EAF5F5;">
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="785.0" style="-fx-background-color: #EAF5F5;">
                                  <children>
                                     <Pane layoutX="50.0" layoutY="31.0" prefHeight="200.0" style="-fx-background-color: #375656;" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="31.0">
                                        <children>
@@ -205,26 +205,64 @@
             <DropShadow color="#00000054" />
          </effect>
          <children>
-            <TextField fx:id="searchField" layoutX="390.0" layoutY="15.0" onAction="#onEnter" prefHeight="34.0" prefWidth="500.0" promptText="Sök" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="15.0" />
-            <Label layoutX="82.0" layoutY="6.0" text="iMat">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Label>
-            <Pane layoutX="1107.0" layoutY="18.0" onMouseClicked="#onClickKONTO" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: C5C5C5;">
+            <TextField fx:id="searchField" layoutX="390.0" layoutY="13.0" onAction="#onEnter" prefHeight="34.0" prefWidth="500.0" promptText="Sök" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="13.0" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="357.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/sök.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="1171.0" layoutY="15.0" onMouseClicked="#onClickKONTO" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: C5C5C5;">
                <children>
-                  <Label layoutX="21.0" layoutY="-1.0" text="Konto">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="95.0" text="Konto">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <ImageView fitHeight="44.0" fitWidth="28.0" layoutX="357.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="18.0" AnchorPane.topAnchor="18.0">
-               <image>
-                  <Image url="@Images/sök.png" />
-               </image>
-            </ImageView>
+            <Pane layoutX="1055.0" layoutY="15.0" onMouseClicked="#onClickKONTO" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: C5C5C5;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="95.0" text="Hjälp">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <StackPane prefHeight="60.0" prefWidth="240.0">
+               <children>
+                  <AnchorPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Pane layoutX="40.0" layoutY="5.0" onMouseClicked="#onClickHEM" prefHeight="50.0" prefWidth="160.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+                           <children>
+                              <Label layoutX="62.0" layoutY="-4.0" prefHeight="58.0" prefWidth="75.0" text="Hem">
+                                 <font>
+                                    <Font size="34.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Images/hem.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+                  <Pane fx:id="iMatPane" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Label alignment="TOP_CENTER" layoutX="76.0" layoutY="1.0" prefHeight="50.0" prefWidth="88.0" text="iMat">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
          </children>
       </AnchorPane>
    </children>

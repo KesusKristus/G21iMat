@@ -33,3 +33,12 @@
     -fx-background-color: #596964;
     -fx-background-radius: 3px;
 }
+
+
+.homebutton {
+    -fx-background-color: #FFFFFF;
+}
+
+.homebutton:hover {
+    -fx-background-color: #EAF5F5;
+}
