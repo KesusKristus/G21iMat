@@ -7,40 +7,44 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="160.0" prefWidth="120.0" style="-fx-background-color: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="200.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="cardImage" fitHeight="75.0" fitWidth="110.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" />
-      <Label fx:id="cardName" alignment="CENTER" layoutX="1.0" layoutY="97.0" prefHeight="50.0" prefWidth="85.0" text="Ekologisk blandfärs" textAlignment="CENTER" wrapText="true">
+      <ImageView fx:id="cardImage" fitHeight="80.0" fitWidth="160.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="cardName" alignment="CENTER" layoutX="2.0" layoutY="85.0" prefHeight="70.0" prefWidth="119.0" text="Ekologisk blandfärs" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font size="15.0" />
+            <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="cardPrice" alignment="CENTER" layoutX="10.0" layoutY="145.0" prefHeight="22.0" prefWidth="51.0" text="Pris" />
-      <Pane layoutX="64.0" layoutY="23.0" prefHeight="60.0" prefWidth="22.0" styleClass="buyButtonBackground" stylesheets="@Categories/CSS_Categories.css">
+      <Label fx:id="cardPrice" alignment="CENTER" layoutX="2.0" layoutY="151.0" prefHeight="41.0" prefWidth="119.0" text="Pris">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Pane layoutX="123.0" layoutY="98.0" prefHeight="94.0" prefWidth="34.0" styleClass="buyButtonBackground" stylesheets="@Categories/CSS_Categories.css" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="15.0">
          <children>
-            <Pane layoutX="1.0" prefHeight="20.0" prefWidth="20.0" styleClass="buyButton" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="3.0" layoutY="63.0" prefHeight="28.0" prefWidth="28.0" styleClass="buyButtonDEC" stylesheets="@Categories/CSS_Categories.css">
                <children>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/plus.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane layoutX="4.0" layoutY="54.0" prefHeight="20.0" prefWidth="20.0" styleClass="buyButton" stylesheets="@Categories/CSS_Categories.css">
-               <children>
-                  <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/minus.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Label alignment="CENTER" layoutX="4.0" layoutY="24.0" prefHeight="20.0" prefWidth="20.0" text="12" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="2.0" layoutY="32.0" prefHeight="30.0" prefWidth="30.0" text="12" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
+            <Pane fx:id="plusButton" layoutX="3.0" layoutY="3.0" onMouseClicked="#plusButtonPressed" prefHeight="28.0" prefWidth="28.0" styleClass="buyButtonINC" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/plus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>

@@ -52,11 +52,11 @@
                         <Label fx:id="firstname_label" layoutX="54.0" layoutY="150.0" text="Förnamn:" />
                         <Label fx:id="surname_label" layoutX="54.0" layoutY="220.0" text="Efternamn:" />
                         <Label fx:id="adress1_label" layoutX="54.0" layoutY="302.0" text="Adress 1:" />
-                        <Label fx:id="adress2_label" layoutX="54.0" layoutY="365.0" text="Adress 2:" />
+                        <Label fx:id="email_label" layoutX="54.0" layoutY="365.0" text="Email:" />
                         <TextField fx:id="firstname_textfield" layoutX="124.0" layoutY="146.0" />
                         <TextField fx:id="surname_textfield" layoutX="124.0" layoutY="216.0" />
                         <TextField fx:id="adress1_textfield" layoutX="124.0" layoutY="298.0" />
-                        <TextField fx:id="adress2_textfield" layoutX="124.0" layoutY="361.0" />
+                        <TextField fx:id="email_textfield" layoutX="124.0" layoutY="361.0" />
                      </children>
                   </AnchorPane>
                </items>
