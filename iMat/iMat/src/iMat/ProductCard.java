@@ -57,7 +57,7 @@ public class ProductCard extends AnchorPane {
             cardName.setText(product.getName());
             cardPrice.setText("" + product.getPrice());
 
-            cardImage.setImage(IMatDataHandler.getInstance().getFXImage(product, 160, 80));
+            cardImage.setImage(IMatDataHandler.getInstance().getFXImage(product, 100, 80));
 
             //cardImage.setImage(parentController.getDataHandler().getFXImage(product, 130, 130));
 

@@ -150,6 +150,7 @@ public class MainController implements Initializable {
 
     public void updateShoppingCart(){
         shoppingCartFlowPane.getChildren().clear();
+        productFlowPane.setHgap(10);
         for( ShoppingItem item : shoppingCartList){
             shoppingCartFlowPane.getChildren().add(new ProductCard(item, this));
         }

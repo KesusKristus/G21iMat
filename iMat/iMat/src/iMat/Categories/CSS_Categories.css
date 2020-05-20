@@ -17,7 +17,7 @@
 }
 
 .buyButtonINC:hover {
-    -fx-background-color: #7fed64;
+    -fx-background-color: #A9E5BA;
 }
 
 .buyButtonDEC {
@@ -26,10 +26,10 @@
 }
 
 .buyButtonDEC:hover {
-    -fx-background-color: #f07269;
+    -fx-background-color: #e5a9a9;
 }
 
 .buyButtonBackground {
-    -fx-background-color: #619191;
+    -fx-background-color: #596964;
     -fx-background-radius: 3px;
 }

@@ -5,17 +5,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="73.0" prefWidth="356.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="73.0" prefWidth="225.0" style="-fx-background-color: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="cardImage" fitHeight="84.0" fitWidth="84.0" layoutX="32.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="4.0" />
-      <Label fx:id="cardName" alignment="CENTER" layoutX="116.0" layoutY="7.0" prefHeight="32.0" prefWidth="159.0" text="Vara">
+      <ImageView fx:id="cardImage" fitHeight="65.0" fitWidth="65.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="cardName" alignment="CENTER" layoutX="65.0" layoutY="8.0" prefHeight="32.0" prefWidth="154.0" text="Ekologisk blandfärs">
          <font>
-            <Font size="20.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="cardPrice" alignment="CENTER" layoutX="116.0" layoutY="46.0" prefHeight="32.0" prefWidth="159.0" text="Pris">
+      <Label fx:id="cardPrice" alignment="CENTER" layoutX="134.0" layoutY="40.0" prefHeight="32.0" prefWidth="77.0" text="Pris">
          <font>
-            <Font size="20.0" />
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="cardPrice1" alignment="CENTER" layoutX="65.0" layoutY="40.0" prefHeight="32.0" prefWidth="51.0" text="Antal">
+         <font>
+            <Font size="15.0" />
          </font>
       </Label>
    </children>

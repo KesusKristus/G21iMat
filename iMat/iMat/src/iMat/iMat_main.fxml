@@ -4,6 +4,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
@@ -12,85 +14,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iMat.MainController">
    <children>
-      <AnchorPane layoutX="7.0" layoutY="148.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
-         <children>
-            <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kategorier">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Pane fx:id="dryckPane" layoutX="20.0" layoutY="70.0" onMouseClicked="#onClickDRYCK" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
-               <children>
-                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Dryck">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children></Pane>
-            <Pane layoutX="20.0" layoutY="140.0" onMouseClicked="#onClickFRUKTBÄR" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
-               <children>
-                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Frukt &amp; bär">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutX="20.0" layoutY="210.0" onMouseClicked="#onClickGRÖNSAKER" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
-               <children>
-                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Grönsaker">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutX="20.0" layoutY="280.0" onMouseClicked="#onClickKÖTTFISK" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
-               <children>
-                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Kött &amp; fisk">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutX="20.0" layoutY="350.0" onMouseClicked="#onClickMEJERI" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
-               <children>
-                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Mejeri">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutX="20.0" layoutY="420.0" onMouseClicked="#onClickPOTATISRIS" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
-               <children>
-                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Potatis &amp; ris">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutX="20.0" layoutY="490.0" onMouseClicked="#onClickSKAFFERI" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
-               <children>
-                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Skafferi">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutX="20.0" layoutY="560.0" onMouseClicked="#onClickSÖTSAKERSNACKS" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
-               <children>
-                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Sötsaker &amp; snacks">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-         </children></AnchorPane>
       <AnchorPane layoutX="200.0" layoutY="60.0" prefHeight="646.0" prefWidth="880.0" style="-fx-background-color: EAF5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="60.0">
          <children>
             <StackPane fx:id="middlePane" layoutX="300.0" layoutY="255.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -122,54 +45,167 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="productPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;">
+                  <AnchorPane fx:id="productPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF5F5;">
                      <children>
                         <Label fx:id="categoryTitle" alignment="CENTER" layoutX="258.0" layoutY="34.0" prefHeight="60.0" prefWidth="309.0" text="Label" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="productScrollPane" hbarPolicy="NEVER" layoutX="30.0" layoutY="70.0" prefHeight="589.0" prefWidth="735.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="70.0">
+                        <ScrollPane fx:id="productScrollPane" hbarPolicy="NEVER" layoutX="68.0" layoutY="70.0" prefHeight="590.0" prefWidth="665.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS">
                            <content>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="scrollBackground">
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF5F5;">
                                  <children>
-                                    <FlowPane fx:id="productFlowPane" prefHeight="917.0" prefWidth="720.0" />
+                                    <FlowPane fx:id="productFlowPane" prefHeight="500.0" prefWidth="650.0" />
                                  </children>
                               </AnchorPane>
                            </content>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
                         </ScrollPane>
                      </children>
                   </AnchorPane>
                </children>
             </StackPane>
          </children></AnchorPane>
-      <AnchorPane layoutX="575.0" layoutY="118.0" prefHeight="550.0" prefWidth="240.0" style="-fx-background-color: F5F5F5;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane layoutX="575.0" layoutY="118.0" prefHeight="660.0" prefWidth="240.0" style="-fx-background-color: F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <ScrollPane prefHeight="550.0" prefWidth="240.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <content>
-                  <AnchorPane prefHeight="548.0" prefWidth="238.0">
-                     <children>
-                        <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kundvagn">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <ScrollPane fx:id="shoppingCartPane" layoutX="6.0" layoutY="74.0" prefHeight="461.0" prefWidth="231.0">
-                           <content>
-                              <FlowPane fx:id="shoppingCartFlowPane" prefHeight="200.0" prefWidth="200.0" />
-                           </content></ScrollPane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
+            <AnchorPane prefHeight="548.0" prefWidth="240.0">
+               <children>
+                  <ScrollPane fx:id="shoppingCartPane" hbarPolicy="NEVER" layoutY="70.0" prefHeight="480.0" prefWidth="240.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS">
+                     <content>
+                        <FlowPane fx:id="shoppingCartFlowPane" prefHeight="200.0" prefWidth="225.0" />
+                     </content>
+                     <effect>
+                        <DropShadow color="#00000053" />
+                     </effect>
+                  </ScrollPane>
+                  <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kundvagn">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Pane prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #A9E5BA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
+         <effect>
+            <DropShadow color="#00000055" />
+         </effect>
       </AnchorPane>
+      <AnchorPane layoutX="7.0" layoutY="148.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kategorier">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Pane fx:id="dryckPane" layoutX="20.0" layoutY="70.0" onMouseClicked="#onClickDRYCK" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css" AnchorPane.topAnchor="70.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Dryck">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#0000001b" />
+               </effect></Pane>
+            <Pane layoutX="20.0" layoutY="140.0" onMouseClicked="#onClickFRUKTBÄR" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Frukt &amp; bär">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#00000018" />
+               </effect>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="210.0" onMouseClicked="#onClickGRÖNSAKER" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Grönsaker">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#00000018" />
+               </effect>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="280.0" onMouseClicked="#onClickKÖTTFISK" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Kött &amp; fisk">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#00000018" />
+               </effect>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="350.0" onMouseClicked="#onClickMEJERI" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Mejeri">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#00000018" />
+               </effect>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="420.0" onMouseClicked="#onClickPOTATISRIS" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Potatis &amp; ris">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#00000018" />
+               </effect>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="490.0" onMouseClicked="#onClickSKAFFERI" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Skafferi">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#00000018" />
+               </effect>
+            </Pane>
+            <Pane layoutX="20.0" layoutY="560.0" onMouseClicked="#onClickSÖTSAKERSNACKS" prefHeight="60.0" prefWidth="200.0" styleClass="categories" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" prefHeight="64.0" prefWidth="200.0" text="Sötsaker &amp; snacks">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#00000018" />
+               </effect>
+            </Pane>
+         </children>
+         <effect>
+            <DropShadow color="#00000054" />
+         </effect></AnchorPane>
       <AnchorPane prefHeight="60.0" prefWidth="960.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <effect>
             <DropShadow color="#00000054" />
          </effect>
          <children>
-            <TextField layoutX="358.0" layoutY="14.0" prefHeight="33.0" prefWidth="565.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="358.0" AnchorPane.rightAnchor="357.0" AnchorPane.topAnchor="13.0" />
+            <TextField layoutX="390.0" layoutY="15.0" prefHeight="34.0" prefWidth="500.0" promptText="Sök" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="15.0" />
             <Label layoutX="82.0" layoutY="6.0" text="iMat">
                <font>
                   <Font size="40.0" />
@@ -184,8 +220,12 @@
                   </Label>
                </children>
             </Pane>
+            <ImageView fitHeight="44.0" fitWidth="28.0" layoutX="357.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="18.0" AnchorPane.topAnchor="18.0">
+               <image>
+                  <Image url="@Images/sök.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <Pane layoutX="1040.0" layoutY="610.0" prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #A9E5BA;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>
