@@ -75,7 +75,7 @@
                <children>
                   <ScrollPane fx:id="shoppingCartPane" hbarPolicy="NEVER" layoutY="70.0" prefHeight="480.0" prefWidth="240.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS">
                      <content>
-                        <FlowPane fx:id="shoppingCartFlowPane" prefHeight="200.0" prefWidth="230.0" />
+                        <FlowPane fx:id="shoppingCartFlowPane" prefHeight="200.0" prefWidth="225.0" />
                      </content>
                      <effect>
                         <DropShadow color="#00000053" />

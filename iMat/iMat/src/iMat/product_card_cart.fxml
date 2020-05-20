@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="73.0" prefWidth="225.0" style="-fx-background-color: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="110.0" prefWidth="225.0" style="-fx-background-color: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="cardImage" fitHeight="65.0" fitWidth="65.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="cardName" alignment="CENTER" layoutX="65.0" layoutY="8.0" prefHeight="32.0" prefWidth="154.0" text="Ekologisk blandfärs">
+      <ImageView fx:id="cardImage" fitHeight="90.0" fitWidth="90.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="cardName" alignment="TOP_LEFT" layoutX="81.0" layoutY="28.0" prefHeight="65.0" prefWidth="88.0" text="Ekologisk blandfärs" wrapText="true" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="cardPrice" alignment="CENTER" layoutX="134.0" layoutY="40.0" prefHeight="32.0" prefWidth="77.0" text="Pris">
+      <Label fx:id="cardPrice" layoutX="95.0" layoutY="66.0" prefHeight="24.0" prefWidth="85.0" text="Pris" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="45.0">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="cardPrice1" alignment="CENTER" layoutX="65.0" layoutY="40.0" prefHeight="32.0" prefWidth="51.0" text="Antal">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
+      <Pane layoutX="184.0" layoutY="9.0" prefHeight="94.0" prefWidth="34.0" styleClass="buyButtonBackground" stylesheets="@Categories/CSS_Categories.css" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="9.0">
+         <children>
+            <Pane layoutX="3.0" layoutY="63.0" prefHeight="28.0" prefWidth="28.0" styleClass="buyButtonDEC" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/minus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label fx:id="cardAmount" alignment="CENTER" layoutX="2.0" layoutY="32.0" prefHeight="30.0" prefWidth="30.0" text="12" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Pane fx:id="plusButton" layoutX="3.0" layoutY="3.0" onMouseClicked="#plusButtonPressed" prefHeight="28.0" prefWidth="28.0" styleClass="buyButtonINC" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/plus.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+
    </children>
 </fx:root>
