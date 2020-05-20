@@ -1,10 +1,12 @@
 package iMat;
 
 import iMat.Categories.CategoriesController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
@@ -40,6 +42,8 @@ public class MainController implements Initializable {
     @FXML Label categoryTitle;
     @FXML FlowPane shoppingCartFlowPane;
 
+    @FXML TextField searchField;
+
 
     private MainController parentController;
     private java.util.List<ProductCategory> subCategories;
@@ -51,6 +55,18 @@ public class MainController implements Initializable {
 
     @FXML Pane dryckPane;
     @FXML Pane konto_pane;
+
+    //När enter trycks från sökrutan
+    @FXML
+    void onEnter(ActionEvent ae){
+
+        String searchString = searchField.getText();
+
+        populateCategoryScreen(idh.findProducts(searchString), "Sökresultat för '" + searchString + "'");
+    }
+
+
+
 
 
     @FXML

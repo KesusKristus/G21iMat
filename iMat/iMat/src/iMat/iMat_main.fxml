@@ -205,7 +205,7 @@
             <DropShadow color="#00000054" />
          </effect>
          <children>
-            <TextField layoutX="390.0" layoutY="15.0" prefHeight="34.0" prefWidth="500.0" promptText="Sök" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="15.0" />
+            <TextField fx:id="searchField" layoutX="390.0" layoutY="15.0" onAction="#onEnter" prefHeight="34.0" prefWidth="500.0" promptText="Sök" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="15.0" />
             <Label layoutX="82.0" layoutY="6.0" text="iMat">
                <font>
                   <Font size="40.0" />
