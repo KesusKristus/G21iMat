@@ -8,10 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
@@ -19,11 +17,8 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MainController implements Initializable {
 
@@ -69,7 +64,7 @@ public class MainController implements Initializable {
 
         String searchString = searchField.getText();
 
-        populateCategoryScreen(idh.findProducts(searchString), "Sökresultat för '" + searchString + "'");
+        populateSearchScreen(idh.findProducts(searchString), "Sökresultat för '" + searchString + "'");
     }
 
     //Återvänd till startsidan
@@ -164,7 +159,7 @@ public class MainController implements Initializable {
         showHomeButton();
     }
 
-    public void populateCategoryScreen(List<Product> products, String title){
+    public void populateSearchScreen(List<Product> products, String title){
         productPane.toFront();
         productFlowPane.setHgap(10);
         productFlowPane.setVgap(10);
@@ -202,7 +197,6 @@ public class MainController implements Initializable {
             if (!exists) {
                 cardList.add(card);
             }
-
     }
 
     public void productDeleted(ProductCard card){
