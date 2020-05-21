@@ -16,6 +16,7 @@ import java.io.IOException;
 public class ProductCard extends AnchorPane {
     private ShoppingItem item = new ShoppingItem(null, 0);
     private MainController parentController;
+    private ProductCard parentcard;
 
 
     @FXML ImageView cardImage;
@@ -37,6 +38,9 @@ public class ProductCard extends AnchorPane {
         parentController.productAdded(this);
         parentController.updateShoppingCart();
         updateAmount();
+        if(parentcard != null){
+            updateParentCard();
+        }
 
     }
 
@@ -47,11 +51,20 @@ public class ProductCard extends AnchorPane {
         }
         updateAmount(); //Kan gå under noll
         parentController.updateShoppingCart();
+        if(parentcard != null){
+            updateParentCard();
+        }
 
     }
 
     private void updateAmount(){
         cardAmount.setText("" + (int)item.getAmount());
+    }
+
+
+
+    private void updateParentCard(){
+        parentcard.cardAmount.setText("" + (int)item.getAmount());
     }
 
 
@@ -105,7 +118,7 @@ public class ProductCard extends AnchorPane {
         } catch (IOException exception){
             throw new RuntimeException(exception);
         }
-
+        this.parentcard = parentCard;
         this.item = parentCard.item; //va bara intem
         this.parentController = parentController;
 
