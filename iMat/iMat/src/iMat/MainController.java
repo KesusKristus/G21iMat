@@ -122,15 +122,16 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickKÖTTFISK(){
-        populateCategoryScreen(cController.köttFiskList, "Kött & fisk");
-
+        //populateCategoryScreen(cController.köttFiskList, "Kött & fisk");
+        populateCategoryScreen2(listList.get(3), "Kött & Fisk");
         //Visa hemknappen
         showHomeButton();
     }
 
     @FXML
     void onClickMEJERI(){
-        populateCategoryScreen(cController.mejeriList, "Mejeri");
+        //populateCategoryScreen(cController.mejeriList, "Mejeri");
+        populateCategoryScreen2(listList.get(4), "Mejeri");
 
         //Visa hemknappen
         showHomeButton();
@@ -138,7 +139,8 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickPOTATISRIS(){
-        populateCategoryScreen(cController.potatisRisList, "Potatis & ris");
+        //populateCategoryScreen(cController.potatisRisList, "Potatis & ris");
+        populateCategoryScreen2(listList.get(5), "Potatis & Ris");
 
         //Visa hemknappen
         showHomeButton();
@@ -146,7 +148,8 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickSKAFFERI(){
-        populateCategoryScreen(cController.skafferiList, "Skafferi");
+        //populateCategoryScreen(cController.skafferiList, "Skafferi");
+        populateCategoryScreen2(listList.get(6), "Skafferi");
 
         //Visa hemknappen
         showHomeButton();
@@ -154,7 +157,8 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickSÖTSAKERSNACKS(){
-        populateCategoryScreen(cController.sötsakerSnacksList, "Sötsaker & snacks");
+        //populateCategoryScreen(cController.sötsakerSnacksList, "Sötsaker & snacks");
+        populateCategoryScreen2(listList.get(7), "Sötsaker & Snacks");
 
         //Visa hemknappen
         showHomeButton();
@@ -245,6 +249,21 @@ public class MainController implements Initializable {
         }
         for( Product p : cController.grönsakerList){
             listList.get(2).add(new ProductCard(p, ProductCard.cardType.category, this));
+        }
+        for( Product p : cController.köttFiskList){
+            listList.get(3).add(new ProductCard(p, ProductCard.cardType.category, this));
+        }
+        for( Product p : cController.mejeriList){
+            listList.get(4).add(new ProductCard(p, ProductCard.cardType.category, this));
+        }
+        for( Product p : cController.potatisRisList){
+            listList.get(5).add(new ProductCard(p, ProductCard.cardType.category, this));
+        }
+        for( Product p : cController.skafferiList){
+            listList.get(6).add(new ProductCard(p, ProductCard.cardType.category, this));
+        }
+        for( Product p : cController.sötsakerSnacksList){
+            listList.get(7).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
     }
 

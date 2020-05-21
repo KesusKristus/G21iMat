@@ -115,7 +115,10 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-               </children></Pane>
+               </children>
+               <effect>
+                  <DropShadow color="#00000098" />
+               </effect></Pane>
          </children>
          <effect>
             <DropShadow color="#00000055" />
