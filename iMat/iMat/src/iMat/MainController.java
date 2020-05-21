@@ -50,6 +50,9 @@ public class MainController implements Initializable {
     private MainController parentController;
     private java.util.List<ProductCategory> subCategories;
     private java.util.List<ShoppingItem> shoppingCartList = new ArrayList<ShoppingItem>();
+    private java.util.List<ProductCard> cardList = new ArrayList<ProductCard>();
+    private java.util.List<java.util.List<ProductCard>> listList = new ArrayList<java.util.List<ProductCard>>();
+
 
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -91,7 +94,8 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickDRYCK(){
-        populateCategoryScreen(cController.dryckList, "Dryck");
+        //populateCategoryScreen(cController.dryckList, "Dryck");
+        populateCategoryScreen2(listList.get(0), "Dryck");
 
         //Visa hemknappen
         showHomeButton();
@@ -169,37 +173,53 @@ public class MainController implements Initializable {
         }
     }
 
-    public void productAdded(ShoppingItem item){
+    public void populateCategoryScreen2(List<ProductCard> cards, String title){
+        productPane.toFront();
+        productFlowPane.setHgap(10);
+        productFlowPane.setVgap(10);
+        productScrollPane.setVvalue(0);
+        categoryTitle.setText(title);
+        productFlowPane.getChildren().clear();
+        for(ProductCard p : cards){
+            productFlowPane.getChildren().add(p);
+        }
+    }
+
+    public void productAdded(ProductCard card){
         boolean exists = false;
-        if(shoppingCartList == null){
-            shoppingCartList.add(item);
-        } else {
-            for (ShoppingItem i : shoppingCartList) {
-                if (item.getProduct().equals(i.getProduct())) {
+            for (ProductCard p : cardList) {
+                if (card.equals(p)){
                     exists = true;
                 }
             }
             if (!exists) {
-                shoppingCartList.add(item);
+                cardList.add(card);
             }
-        }
+
     }
 
-    public void productDeleted(ShoppingItem item){
-        for(ShoppingItem i : shoppingCartList){
-            if(item.getProduct().equals(i.getProduct())){
-                shoppingCartList.remove(i);
+    public void productDeleted(ProductCard card){
+        for(ProductCard p : cardList){
+            if(card.equals(p)){
+                cardList.remove(p);
             }
         }
     }
 
     public void updateShoppingCart(){
         shoppingCartFlowPane.getChildren().clear();
-
         shoppingCartFlowPane.setVgap(5);
+        for( ProductCard card : cardList){
+            shoppingCartFlowPane.getChildren().add(new ProductCard(card, this));
+        }
+    }
 
-        for( ShoppingItem item : shoppingCartList){
-            shoppingCartFlowPane.getChildren().add(new ProductCard(item, this));
+    public void fillListList(){
+        for(int i = 0; i < 8; i++){
+            listList.add(new ArrayList<ProductCard>());
+        }
+        for( Product p : cController.dryckList){
+            listList.get(0).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
     }
 
@@ -209,6 +229,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         middlePane.getChildren().add(accountScreen);
         accountScreen.toBack();
+        fillListList();
     }
 
     public IMatDataHandler getDataHandler() {

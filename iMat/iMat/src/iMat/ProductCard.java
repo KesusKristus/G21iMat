@@ -34,7 +34,7 @@ public class ProductCard extends AnchorPane {
 
     @FXML public void plusButtonPressed(){
         item.setAmount(item.getAmount() + 1);
-        parentController.productAdded(this.item);
+        parentController.productAdded(this);
         parentController.updateShoppingCart();
         updateAmount();
 
@@ -43,10 +43,9 @@ public class ProductCard extends AnchorPane {
     @FXML public void minusButtonPressed(){
         item.setAmount(item.getAmount() - 1);
         if(item.getAmount() < 1 ){                      //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
-            parentController.productDeleted(item);
-        } else{
-            updateAmount(); //Tillåter den inte att bli noll igen, måste fixas
+            parentController.productDeleted(this);
         }
+        updateAmount(); //Kan gå under noll
         parentController.updateShoppingCart();
 
     }
@@ -93,7 +92,7 @@ public class ProductCard extends AnchorPane {
 
     }
 
-    public ProductCard(ShoppingItem item, MainController parentController){
+    public ProductCard(ProductCard parentCard, MainController parentController){ //denna va ShoppingItem
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_card_cart.fxml"));
@@ -107,7 +106,7 @@ public class ProductCard extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        this.item = item;
+        this.item = parentCard.item; //va bara intem
         this.parentController = parentController;
 
         cardName.setText(item.getProduct().getName());
@@ -117,13 +116,16 @@ public class ProductCard extends AnchorPane {
     }
 
 
+    public ShoppingItem getItem() {
+        return item;
+    }
 
 
 
-
-
-
-
-
-
+    public boolean equals(ProductCard p){
+        if(this.getItem().equals(p.getItem())){
+            return true;
+        }
+        return false;
+    }
 }
