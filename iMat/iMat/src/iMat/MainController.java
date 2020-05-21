@@ -199,9 +199,13 @@ public class MainController implements Initializable {
     }
 
     public void productDeleted(ProductCard card){
+        ProductCard removedCard = null;
         for(ProductCard p : cardList){
             if(card.equals(p))
-                    cardList.remove(p);
+                    removedCard = p;
+        }
+        if(removedCard != null) {
+            cardList.remove(removedCard);
         }
     }
 

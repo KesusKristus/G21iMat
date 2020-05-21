@@ -46,22 +46,21 @@ public class ProductCard extends AnchorPane {
     }
 
     @FXML public void minusButtonPressed(){
-        boolean deleted = false;
-        item.setAmount(item.getAmount() - 1);
-
-        updateAmount(); //Kan gå under noll
-        parentController.updateShoppingCart();
+        if((int) item.getAmount() > 0) {
+            item.setAmount(item.getAmount() - 1);
 
 
-        if((int) item.getAmount() == 0 ){    //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
-            parentController.productDeleted(this);
-            deleted = true;
+            if ((int) item.getAmount() == 0) {    //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
+                parentController.productDeleted(this);
+            }
+
+            updateAmount(); //Kan gå under noll
+            parentController.updateShoppingCart();
+
+            if (parentCard != null) {
+                updateParentCard();
+            }
         }
-
-        if(parentCard != null){
-            updateParentCard();
-        }
-
     }
 
     private void updateAmount(){
