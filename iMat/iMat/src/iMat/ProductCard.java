@@ -49,7 +49,6 @@ public class ProductCard extends AnchorPane {
         if((int) item.getAmount() > 0) {
             item.setAmount(item.getAmount() - 1);
 
-
             if ((int) item.getAmount() == 0) {    //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
                 parentController.productDeleted(this);
             }

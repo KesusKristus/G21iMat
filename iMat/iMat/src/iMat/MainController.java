@@ -47,6 +47,9 @@ public class MainController implements Initializable {
     @FXML AnchorPane homePane;
     @FXML Pane iMatPane;
 
+    @FXML Label numberOfGoods;
+    @FXML Label totalPrice;
+
     private MainController parentController;
     private java.util.List<ProductCategory> subCategories;
     private java.util.List<ShoppingItem> shoppingCartList = new ArrayList<ShoppingItem>();
@@ -215,7 +218,20 @@ public class MainController implements Initializable {
         for( ProductCard card : cardList){
             shoppingCartFlowPane.getChildren().add(new ProductCard(card, this));
         }
+        updateShoppingCartButton();
     }
+
+    public void updateShoppingCartButton(){
+        double goodsSum = 0;
+        double priceSum = 0;
+        for(ProductCard p : cardList){
+            goodsSum += p.getItem().getAmount();
+            priceSum += p.getItem().getTotal();
+        }
+        numberOfGoods.setText("" + (int) goodsSum + " st");
+        totalPrice.setText("" +  priceSum + " kr");
+    }
+
 
     public void fillListList(){
         for(int i = 0; i < 8; i++){
