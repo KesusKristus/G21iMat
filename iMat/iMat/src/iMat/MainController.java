@@ -229,7 +229,7 @@ public class MainController implements Initializable {
             priceSum += p.getItem().getTotal();
         }
         numberOfGoods.setText("" + (int) goodsSum + " st");
-        totalPrice.setText("" +  priceSum + " kr");
+        totalPrice.setText("" + Math.round(priceSum * 100D) / 100D  + " kr");
     }
 
 
