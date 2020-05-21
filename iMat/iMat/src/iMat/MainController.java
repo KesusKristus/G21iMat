@@ -103,16 +103,16 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickFRUKTBÄR(){
-        populateCategoryScreen(cController.fruktBärList, "Frukt & bär");
-
+        //populateCategoryScreen(cController.fruktBärList, "Frukt & bär");
+        populateCategoryScreen2(listList.get(1), "Frukt & Bär");
         //Visa hemknappen
         showHomeButton();
     }
 
     @FXML
     void onClickGRÖNSAKER(){
-        populateCategoryScreen(cController.grönsakerList, "Grönsaker");
-
+        //populateCategoryScreen(cController.grönsakerList, "Grönsaker");
+        populateCategoryScreen2(listList.get(2), "Grönsaker");              //hitils bara ändrat de tre första
         //Visa hemknappen
         showHomeButton();
     }
@@ -200,9 +200,8 @@ public class MainController implements Initializable {
 
     public void productDeleted(ProductCard card){
         for(ProductCard p : cardList){
-            if(card.equals(p)){
-                cardList.remove(p);
-            }
+            if(card.equals(p))
+                    cardList.remove(p);
         }
     }
 
@@ -220,6 +219,12 @@ public class MainController implements Initializable {
         }
         for( Product p : cController.dryckList){
             listList.get(0).add(new ProductCard(p, ProductCard.cardType.category, this));
+        }
+        for( Product p : cController.fruktBärList){
+            listList.get(1).add(new ProductCard(p, ProductCard.cardType.category, this));
+        }
+        for( Product p : cController.grönsakerList){
+            listList.get(2).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
     }
 

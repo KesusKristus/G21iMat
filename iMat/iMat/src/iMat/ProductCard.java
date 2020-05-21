@@ -1,6 +1,5 @@
 package iMat;
 
-import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -16,7 +15,7 @@ import java.io.IOException;
 public class ProductCard extends AnchorPane {
     private ShoppingItem item = new ShoppingItem(null, 0);
     private MainController parentController;
-    private ProductCard parentcard;
+    private ProductCard parentCard;
 
 
     @FXML ImageView cardImage;
@@ -37,21 +36,29 @@ public class ProductCard extends AnchorPane {
         item.setAmount(item.getAmount() + 1);
         parentController.productAdded(this);
         parentController.updateShoppingCart();
+
         updateAmount();
-        if(parentcard != null){
+
+        if(parentCard != null){
             updateParentCard();
         }
 
     }
 
     @FXML public void minusButtonPressed(){
+        boolean deleted = false;
         item.setAmount(item.getAmount() - 1);
-        if(item.getAmount() < 1 ){                      //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
-            parentController.productDeleted(this);
-        }
+
         updateAmount(); //Kan gå under noll
         parentController.updateShoppingCart();
-        if(parentcard != null){
+
+
+        if((int) item.getAmount() == 0 ){    //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
+            parentController.productDeleted(this);
+            deleted = true;
+        }
+
+        if(parentCard != null){
             updateParentCard();
         }
 
@@ -64,7 +71,7 @@ public class ProductCard extends AnchorPane {
 
 
     private void updateParentCard(){
-        parentcard.cardAmount.setText("" + (int)item.getAmount());
+        parentCard.cardAmount.setText("" + (int)item.getAmount());
     }
 
 
@@ -87,7 +94,7 @@ public class ProductCard extends AnchorPane {
             }
 
             cardName.setText(product.getName());
-            cardPrice.setText("" + product.getPrice());
+            cardPrice.setText("" + product.getPrice() + ":-");
 
 
             if (type == cardType.category){
@@ -118,7 +125,7 @@ public class ProductCard extends AnchorPane {
         } catch (IOException exception){
             throw new RuntimeException(exception);
         }
-        this.parentcard = parentCard;
+        this.parentCard = parentCard;
         this.item = parentCard.item; //va bara intem
         this.parentController = parentController;
 
