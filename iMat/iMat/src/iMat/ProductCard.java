@@ -16,12 +16,14 @@ import java.io.IOException;
 public class ProductCard extends AnchorPane {
     private ShoppingItem item = new ShoppingItem(null, 0);
     private MainController parentController;
-    private int amount = 0;
+
 
     @FXML ImageView cardImage;
     @FXML Label cardName;
     @FXML Label cardPrice;
     @FXML Pane plusButton;
+    @FXML Pane minusButton;
+    @FXML Label amount;
 
 
 
@@ -36,6 +38,20 @@ public class ProductCard extends AnchorPane {
         parentController.updateShoppingCart();
 
     }
+
+    @FXML public void minusButtonPressed(){
+        item.setAmount(item.getAmount() - 1);
+        if(item.getAmount() < 1 ){                      //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
+            parentController.productDeleted(item);
+        }
+        parentController.updateShoppingCart();
+    }
+
+    private void updateAmount(){
+        amount.setText("" + item.getAmount());
+    }
+
+
 
     public ProductCard(Product product, cardType type, MainController parentController) { //kanske ändra från mainController. Samma klass för productCard och cartCard
 
@@ -57,6 +73,7 @@ public class ProductCard extends AnchorPane {
             cardName.setText(product.getName());
             cardPrice.setText("" + product.getPrice());
 
+
             if (type == cardType.category){
                 cardImage.setImage(IMatDataHandler.getInstance().getFXImage(product, 100, 80));
             } else {
@@ -67,6 +84,8 @@ public class ProductCard extends AnchorPane {
 
             this.item.setProduct(product);
             this.parentController = parentController;
+            //this.amount.setText("" + this.item.getAmount());
+
 
     }
 
@@ -90,6 +109,7 @@ public class ProductCard extends AnchorPane {
         cardName.setText(item.getProduct().getName());
         cardPrice.setText( "" + item.getProduct().getPrice() + ":-" );
         cardImage.setImage(IMatDataHandler.getInstance().getFXImage(item.getProduct(), 90, 70));
+        //this.amount.setText("" + item.getAmount());
     }
 
 

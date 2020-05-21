@@ -185,6 +185,14 @@ public class MainController implements Initializable {
         }
     }
 
+    public void productDeleted(ShoppingItem item){
+        for(ShoppingItem i : shoppingCartList){
+            if(item.getProduct().equals(i.getProduct())){
+                shoppingCartList.remove(i);
+            }
+        }
+    }
+
     public void updateShoppingCart(){
         shoppingCartFlowPane.getChildren().clear();
 
