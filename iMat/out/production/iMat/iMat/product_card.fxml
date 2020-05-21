@@ -31,7 +31,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Label alignment="CENTER" layoutX="2.0" layoutY="32.0" prefHeight="30.0" prefWidth="30.0" text="12" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="cardAmount" alignment="CENTER" layoutX="2.0" layoutY="32.0" prefHeight="30.0" prefWidth="30.0" text="12" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

@@ -23,7 +23,7 @@ public class ProductCard extends AnchorPane {
     @FXML Label cardPrice;
     @FXML Pane plusButton;
     @FXML Pane minusButton;
-    @FXML Label amount;
+    @FXML Label cardAmount;
 
 
 
@@ -36,6 +36,7 @@ public class ProductCard extends AnchorPane {
         item.setAmount(item.getAmount() + 1);
         parentController.productAdded(this.item);
         parentController.updateShoppingCart();
+        updateAmount();
 
     }
 
@@ -43,12 +44,15 @@ public class ProductCard extends AnchorPane {
         item.setAmount(item.getAmount() - 1);
         if(item.getAmount() < 1 ){                      //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
             parentController.productDeleted(item);
+        } else{
+            updateAmount(); //Tillåter den inte att bli noll igen, måste fixas
         }
         parentController.updateShoppingCart();
+
     }
 
     private void updateAmount(){
-        amount.setText("" + item.getAmount());
+        cardAmount.setText("" + (int)item.getAmount());
     }
 
 
@@ -84,7 +88,7 @@ public class ProductCard extends AnchorPane {
 
             this.item.setProduct(product);
             this.parentController = parentController;
-            //this.amount.setText("" + this.item.getAmount());
+            cardAmount.setText("" + (int) this.item.getAmount());
 
 
     }
@@ -109,7 +113,7 @@ public class ProductCard extends AnchorPane {
         cardName.setText(item.getProduct().getName());
         cardPrice.setText( "" + item.getProduct().getPrice() + ":-" );
         cardImage.setImage(IMatDataHandler.getInstance().getFXImage(item.getProduct(), 90, 70));
-        //this.amount.setText("" + item.getAmount());
+        cardAmount.setText("" + (int) item.getAmount());
     }
 
 
