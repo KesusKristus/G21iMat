@@ -4,6 +4,7 @@ import iMat.Categories.CategoriesController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -27,6 +28,7 @@ public class MainController implements Initializable {
     @FXML AnchorPane startScreen;
     @FXML ScrollPane shoppingCartPane;
     @FXML AnchorPane accountScreen = new AccountScreen();
+    @FXML AnchorPane checkoutScreen = new CheckoutController();
 
     private CategoriesController cController = new CategoriesController();
 
@@ -80,6 +82,15 @@ public class MainController implements Initializable {
         homePane.toFront();
     }
 
+
+    @FXML
+    void onClickKASSA() {
+        productPane.toBack();
+        checkoutScreen.toFront();
+
+        //Visa hemknappen
+        showHomeButton();
+    }
 
 
     @FXML
@@ -277,6 +288,8 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         middlePane.getChildren().add(accountScreen);
         accountScreen.toBack();
+        middlePane.getChildren().add(checkoutScreen);
+        checkoutScreen.toBack();
         fillListList();
     }
 

@@ -39,7 +39,7 @@
 
 
 .homebutton {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #f5f5f5;
 }
 
 .homebutton:hover {
@@ -55,4 +55,13 @@
 .helpFeature:hover {
     -fx-background-color: #507a7a;
     -fx-cursor: hand;
+}
+
+
+.confirmButton {
+    -fx-background-color: #A9E5BA;
+}
+
+.confirmButton:hover{
+    -fx-background-color: #99FBB4;
 }
