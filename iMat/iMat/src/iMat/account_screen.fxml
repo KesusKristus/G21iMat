@@ -12,7 +12,7 @@
    <children>
       <StackPane layoutY="64.0" prefHeight="600" prefWidth="800.0">
          <children>
-            <SplitPane dividerPositions="0.5" prefHeight="600.0" prefWidth="800.0" styleClass="account_page" stylesheets="@account_page_style.css">
+            <SplitPane dividerPositions="0.5" prefHeight="552.0" prefWidth="800.0" styleClass="account_page" stylesheets="@account_page_style.css">
                <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -57,6 +57,15 @@
                         <TextField fx:id="surname_textfield" layoutX="124.0" layoutY="216.0" />
                         <TextField fx:id="adress1_textfield" layoutX="124.0" layoutY="298.0" />
                         <TextField fx:id="email_textfield" layoutX="124.0" layoutY="361.0" />
+                        <Pane layoutX="226.0" layoutY="473.0" onMouseClicked="#onClickSpara" prefHeight="72.0" prefWidth="115.0" style="-fx-background-color: C5C5C5;">
+                           <children>
+                              <Label layoutX="27.0" layoutY="18.0" prefHeight="35.0" prefWidth="61.0" text="SPARA" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children>
                   </AnchorPane>
                </items>

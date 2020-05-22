@@ -282,6 +282,29 @@ public class MainController implements Initializable {
         }
     }
 
+    public void sortListList() {
+        for(int i = 0; i < 8; i++){
+            java.util.List<String> nameOrder = new ArrayList<String>();
+            java.util.List<ProductCard> newProductList = new ArrayList<ProductCard>();
+
+            for(ProductCard p : listList.get(i)){
+                nameOrder.add(p.getItem().getProduct().getName());
+            }
+
+            java.util.Collections.sort(nameOrder);
+
+            for(String s : nameOrder){
+                for(ProductCard p : listList.get(i)){
+                    if (s.equals(p.getItem().getProduct().getName())){
+                        newProductList.add(p);
+                    }
+                }
+
+            }
+            listList.set(i, newProductList);
+        }
+    }
+
 
 
     @Override
@@ -291,6 +314,7 @@ public class MainController implements Initializable {
         middlePane.getChildren().add(checkoutScreen);
         checkoutScreen.toBack();
         fillListList();
+        sortListList();
     }
 
     public IMatDataHandler getDataHandler() {
