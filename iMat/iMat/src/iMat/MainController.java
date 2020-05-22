@@ -40,6 +40,7 @@ public class MainController implements Initializable {
     @FXML TextField searchField;
 
     @FXML AnchorPane homePane;
+    @FXML AnchorPane helpPane;
     @FXML Pane iMatPane;
 
     @FXML Label numberOfGoods;
@@ -85,6 +86,15 @@ public class MainController implements Initializable {
     void onClickKONTO() {
         productPane.toBack();
         accountScreen.toFront();
+
+        //Visa hemknappen
+        showHomeButton();
+    }
+
+    @FXML
+    void onClickHJÄLP() {
+        productPane.toBack();
+        helpPane.toFront();
 
         //Visa hemknappen
         showHomeButton();
@@ -261,6 +271,29 @@ public class MainController implements Initializable {
         }
     }
 
+    public void sortListList() {
+        for(int i = 0; i < 8; i++){
+            java.util.List<String> nameOrder = new ArrayList<String>();
+            java.util.List<ProductCard> newProductList = new ArrayList<ProductCard>();
+
+            for(ProductCard p : listList.get(i)){
+                nameOrder.add(p.getItem().getProduct().getName());
+            }
+
+            java.util.Collections.sort(nameOrder);
+
+            for(String s : nameOrder){
+                for(ProductCard p : listList.get(i)){
+                    if (s.equals(p.getItem().getProduct().getName())){
+                        newProductList.add(p);
+                    }
+                }
+
+            }
+            listList.set(i, newProductList);
+        }
+    }
+
 
 
     @Override
@@ -268,6 +301,7 @@ public class MainController implements Initializable {
         middlePane.getChildren().add(accountScreen);
         accountScreen.toBack();
         fillListList();
+        sortListList();
     }
 
     public IMatDataHandler getDataHandler() {
