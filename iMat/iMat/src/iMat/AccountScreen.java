@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import org.w3c.dom.Text;
 import se.chalmers.cse.dat216.project.CreditCard;
@@ -65,20 +66,72 @@ public class AccountScreen extends AnchorPane {
         getAllCustomerData();
 
         // SET EVENT HANDLERS
-        firstname_textfield.setOnAction(new EventHandler<ActionEvent>() {
+        firstname_textfield.setOnKeyPressed(e -> {
+            alphabeticalFieldValidation((TextField) e.getTarget());
+        });
+
+        surname_textfield.setOnKeyPressed(e -> {
+            alphabeticalFieldValidation((TextField) e.getTarget());
+        });
+
+        adress1_textfield.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
-                c.setFirstName(firstname_textfield.getText());
+            public void handle(KeyEvent e) {
+                TextField target = (TextField) e.getTarget();
+                if (validate(target.getText())) c.setFirstName(firstname_textfield.getText());
+                else {
+                    System.out.println("inte en adress");
+                }
+            }
+
+            private boolean validate(String text) {
+
+                return true;
             }
         });
-        surname_textfield.setOnAction(new TextFieldHandler());
-        adress1_textfield.setOnAction(new TextFieldHandler());
-        email_textfield.setOnAction(new TextFieldHandler());
-        konto_textfield.setOnAction(new TextFieldHandler());
-        giltighet1_textfield.setOnAction(new TextFieldHandler());
-        giltighet2_textfield.setOnAction(new TextFieldHandler());
-        cvc_textfield.setOnAction(new TextFieldHandler());
-        mobilnummer_textfield.setOnAction(new TextFieldHandler());
+        email_textfield.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent e) {
+                TextField target = (TextField) e.getTarget();
+                if (validate(target.getText())) c.setFirstName(firstname_textfield.getText());
+                else {
+                    System.out.println("inte mail adress");
+                }
+            }
+
+            private boolean validate(String text) {
+                return true;
+            }
+        });
+
+        konto_textfield.setOnKeyPressed(e -> {
+            numericFieldValidation((TextField) e.getTarget());
+        });
+        giltighet1_textfield.setOnKeyPressed(e -> {
+            numericFieldValidation((TextField) e.getTarget());
+        });
+        giltighet2_textfield.setOnKeyPressed(e -> {
+            numericFieldValidation((TextField) e.getTarget());
+        });
+        cvc_textfield.setOnKeyPressed(e -> {
+            numericFieldValidation((TextField) e.getTarget());
+        });
+        mobilnummer_textfield.setOnKeyPressed(e -> {
+            numericFieldValidation((TextField) e.getTarget());
+        });
+    }
+
+    private void alphabeticalFieldValidation(TextField target) {
+        if (target.getText().matches("[a-zA-Z]+")) return;
+        target.setText(target.getText().replaceAll("[^a-zA-Z]+", ""));
+        System.out.println("Kan bara vara bokstäver");
+
+    }
+    private void numericFieldValidation(TextField target) {
+
+        if (target.getText().matches("\\d*")) return;
+        target.setText(target.getText().replaceAll("[^\\d]", ""));
+        System.out.println("Kan bara vara nummer");
     }
 
     @FXML
@@ -93,9 +146,7 @@ public class AccountScreen extends AnchorPane {
         adress1_textfield.setText(c.getAddress());
         email_textfield.setText(c.getEmail());
         mobilnummer_textfield.setText(c.getPhoneNumber());
-
         konto_textfield.setText(cc.getCardNumber());
-
         giltighet1_textfield.setText(String.valueOf(cc.getValidMonth()));
         giltighet2_textfield.setText(String.valueOf(cc.getValidYear()));
         cvc_textfield.setText(String.valueOf(cc.getVerificationCode()));
@@ -108,27 +159,11 @@ public class AccountScreen extends AnchorPane {
         c.setEmail(email_textfield.getText());
         c.setMobilePhoneNumber(mobilnummer_textfield.getText());
 
-        CreditCard cc = IMatDataHandler.getInstance().getCreditCard();
-
         cc.setCardNumber(konto_textfield.getText());
         cc.setHoldersName(firstname_textfield.getText() + " " + surname_textfield.getText());
-        //TODO ändra giltighet och cvc till int inputs istället för text
-        /*
         cc.setValidMonth(Integer.parseInt(giltighet1_textfield.getText()));
         cc.setValidYear(Integer.parseInt(giltighet2_textfield.getText()));
         cc.setVerificationCode(Integer.parseInt(cvc_textfield.getText()));
-
-         */
-    }
-    private class TextFieldHandler implements EventHandler {
-
-        @Override
-        public void handle(Event event) {
-
-            setAllCustomerData();
-
-            IMatDataHandler.getInstance().shutDown();
-        }
 
     }
 
