@@ -4,6 +4,7 @@
 
 .categories:hover {
     -fx-background-color: #EAF5F5;
+    -fx-cursor: hand;
 }
 
 
@@ -18,6 +19,7 @@
 
 .buyButtonINC:hover {
     -fx-background-color: #A9E5BA;
+    -fx-cursor: hand;
 }
 
 .buyButtonDEC {
@@ -27,6 +29,7 @@
 
 .buyButtonDEC:hover {
     -fx-background-color: #e5a9a9;
+    -fx-cursor: hand;
 }
 
 .buyButtonBackground {
@@ -41,6 +44,7 @@
 
 .homebutton:hover {
     -fx-background-color: #EAF5F5;
+    -fx-cursor: hand;
 }
 
 
@@ -50,4 +54,5 @@
 
 .helpFeature:hover {
     -fx-background-color: #507a7a;
+    -fx-cursor: hand;
 }

@@ -252,7 +252,10 @@
             <DropShadow color="#00000054" />
          </effect>
          <children>
-            <TextField fx:id="searchField" layoutX="390.0" layoutY="13.0" onAction="#onEnter" prefHeight="34.0" prefWidth="500.0" promptText="Sök" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="13.0" />
+            <TextField fx:id="searchField" layoutX="390.0" layoutY="13.0" onAction="#onEnter" prefHeight="34.0" prefWidth="500.0" promptText="Sök" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="13.0">
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="357.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/sök.png" />
