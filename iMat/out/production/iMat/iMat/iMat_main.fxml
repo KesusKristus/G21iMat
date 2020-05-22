@@ -105,7 +105,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Pane onMouseClicked="#onClickKASSA" prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #A9E5BA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <Pane onMouseClicked="#onClickKASSA" prefHeight="110.0" prefWidth="240.0" styleClass="confirmButton" stylesheets="@Categories/CSS_Categories.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <Label layoutX="53.0" text="Till kassan">
                      <font>

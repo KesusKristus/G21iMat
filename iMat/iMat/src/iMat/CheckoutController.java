@@ -2,13 +2,12 @@ package iMat;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+
+import se.chalmers.cse.dat216.project.*;
 
 import java.io.IOException;
 
@@ -66,9 +65,13 @@ public class CheckoutController extends AnchorPane {
     @FXML
     TextField leveransAdressText;
     @FXML
-    ComboBox leveransDagCombo;
+    TextField postordText;
     @FXML
-    ComboBox leveransMånadCombo;
+    TextField postnummerText;
+    @FXML
+    TextField leveransDagText;
+    @FXML
+    TextField leveransMånadText;
     @FXML
     ComboBox leveransTidCombo;
 
@@ -91,6 +94,13 @@ public class CheckoutController extends AnchorPane {
     @FXML
     Label kvittoPrisLabel;
 
+
+    IMatDataHandler idh = IMatDataHandler.getInstance();
+
+    CreditCard card = idh.getCreditCard();
+
+    Customer customer = idh.getCustomer();
+
     public CheckoutController() {
 
         FXMLLoader fxmlLoader;
@@ -103,6 +113,24 @@ public class CheckoutController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        leveransTidCombo.getItems().addAll(
+                "8:00-12:00",
+                "12:00-16:00",
+                "16:00-20:00");
+
+
+        kontonummerText.setText(card.getCardNumber());
+        giltighetMMText.setText(Integer.toString(card.getValidMonth()));
+        giltighetÅÅText.setText(Integer.toString(card.getValidYear()));
+        cvcText.setText(Integer.toString(card.getVerificationCode()));
+
+        mobilnummerText.setText(customer.getMobilePhoneNumber());
+
+        leveransAdressText.setText(customer.getAddress());
+        postordText.setText(customer.getPostAddress());
+        postnummerText.setText(customer.getPostCode());
+
     }
 
 }

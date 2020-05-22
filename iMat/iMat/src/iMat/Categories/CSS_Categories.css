@@ -64,4 +64,5 @@
 
 .confirmButton:hover{
     -fx-background-color: #99FBB4;
+    -fx-cursor: hand;
 }
