@@ -40,6 +40,9 @@ public class AccountScreen extends AnchorPane {
     @FXML Label swish_label;
     @FXML TextField mobilnummer_textfield;
 
+    private Customer c = IMatDataHandler.getInstance().getCustomer();
+    private CreditCard cc = IMatDataHandler.getInstance().getCreditCard();
+
     public AccountScreen() {
         /* Ladda in account screen i mitten av main sidan */
         FXMLLoader fxmlLoader;
@@ -53,7 +56,21 @@ public class AccountScreen extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        firstname_textfield.setOnAction(new TextFieldHandler());
+        initTextFields();
+
+    }
+
+    private void initTextFields() {
+
+        getAllCustomerData();
+
+        // SET EVENT HANDLERS
+        firstname_textfield.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                c.setFirstName(firstname_textfield.getText());
+            }
+        });
         surname_textfield.setOnAction(new TextFieldHandler());
         adress1_textfield.setOnAction(new TextFieldHandler());
         email_textfield.setOnAction(new TextFieldHandler());
@@ -64,26 +81,55 @@ public class AccountScreen extends AnchorPane {
         mobilnummer_textfield.setOnAction(new TextFieldHandler());
     }
 
+    @FXML
+    public void onClickSpara() {
+        setAllCustomerData();
+        IMatDataHandler.getInstance().shutDown();
+    }
 
+    private void getAllCustomerData() {
+        firstname_textfield.setText(c.getFirstName());
+        surname_textfield.setText(c.getLastName());
+        adress1_textfield.setText(c.getAddress());
+        email_textfield.setText(c.getEmail());
+        mobilnummer_textfield.setText(c.getPhoneNumber());
+
+        konto_textfield.setText(cc.getCardNumber());
+
+        giltighet1_textfield.setText(String.valueOf(cc.getValidMonth()));
+        giltighet2_textfield.setText(String.valueOf(cc.getValidYear()));
+        cvc_textfield.setText(String.valueOf(cc.getVerificationCode()));
+    }
+
+    private void setAllCustomerData() {
+        c.setAddress(adress1_textfield.getText());
+        c.setFirstName(firstname_textfield.getText());
+        c.setLastName(surname_textfield.getText());
+        c.setEmail(email_textfield.getText());
+        c.setMobilePhoneNumber(mobilnummer_textfield.getText());
+
+        CreditCard cc = IMatDataHandler.getInstance().getCreditCard();
+
+        cc.setCardNumber(konto_textfield.getText());
+        cc.setHoldersName(firstname_textfield.getText() + " " + surname_textfield.getText());
+        //TODO ändra giltighet och cvc till int inputs istället för text
+        /*
+        cc.setValidMonth(Integer.parseInt(giltighet1_textfield.getText()));
+        cc.setValidYear(Integer.parseInt(giltighet2_textfield.getText()));
+        cc.setVerificationCode(Integer.parseInt(cvc_textfield.getText()));
+
+         */
+    }
     private class TextFieldHandler implements EventHandler {
 
         @Override
         public void handle(Event event) {
-            Customer c = IMatDataHandler.getInstance().getCustomer();
-            c.setAddress(adress1_textfield.getText());
-            c.setFirstName(firstname_textfield.getText());
-            c.setLastName(surname_textfield.getText());
-            c.setEmail(email_textfield.getText());
-            c.setMobilePhoneNumber(mobilnummer_textfield.getText());
 
-            CreditCard cc = IMatDataHandler.getInstance().getCreditCard();
+            setAllCustomerData();
 
-            cc.setCardNumber(konto_textfield.getText());
-            cc.setHoldersName(firstname_textfield.getText() + " " + surname_textfield.getText());
-            //TODO ändra giltighet och cvc till int inputs istället för text
-            cc.setValidMonth(Integer.parseInt(giltighet1_textfield.getText()));
-            cc.setValidYear(Integer.parseInt(giltighet2_textfield.getText()));
-            cc.setVerificationCode(Integer.parseInt(cvc_textfield.getText()));
+            IMatDataHandler.getInstance().shutDown();
         }
+
     }
+
 }
