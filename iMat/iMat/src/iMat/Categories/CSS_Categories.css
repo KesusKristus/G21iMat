@@ -42,3 +42,12 @@
 .homebutton:hover {
     -fx-background-color: #EAF5F5;
 }
+
+
+.helpFeature {
+    -fx-background-color: #375656;
+}
+
+.helpFeature:hover {
+    -fx-background-color: #507a7a;
+}

@@ -18,6 +18,23 @@
          <children>
             <StackPane fx:id="middlePane" layoutX="300.0" layoutY="255.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <AnchorPane fx:id="helpPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF5F5;">
+                     <children>
+                        <Label alignment="CENTER" layoutX="258.0" layoutY="34.0" prefHeight="60.0" prefWidth="309.0" text="Så här handlar du med iMat" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane hbarPolicy="NEVER" layoutX="68.0" layoutY="70.0" prefHeight="590.0" prefWidth="665.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS">
+                           <content>
+                              <AnchorPane prefHeight="635.0" prefWidth="650.0" style="-fx-background-color: EAF5F5;" />
+                           </content>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
                   <AnchorPane fx:id="productPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF5F5;">
                      <children>
                         <Label fx:id="categoryTitle" alignment="CENTER" layoutX="258.0" layoutY="34.0" prefHeight="60.0" prefWidth="309.0" text="Label" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
@@ -45,7 +62,7 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="785.0" style="-fx-background-color: #EAF5F5;">
                                  <children>
-                                    <Pane layoutX="50.0" layoutY="31.0" prefHeight="200.0" style="-fx-background-color: #375656;" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="31.0">
+                                    <Pane layoutX="50.0" layoutY="31.0" onMouseClicked="#onClickHJÄLP" prefHeight="200.0" styleClass="helpFeature" stylesheets="@Categories/CSS_Categories.css" AnchorPane.bottomAnchor="534.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="31.0">
                                        <children>
                                           <Label layoutX="148.0" layoutY="71.0" text="Så handlar du på iMat" textFill="WHITE">
                                              <font>
@@ -54,7 +71,7 @@
                                           </Label>
                                        </children>
                                     </Pane>
-                                    <FlowPane layoutX="273.0" layoutY="271.0" prefHeight="479.0" prefWidth="785.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="271.0" />
+                                    <FlowPane layoutX="7.0" layoutY="271.0" prefHeight="479.0" prefWidth="785.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="271.0" />
                                     <Label layoutX="224.0" layoutY="218.0" prefHeight="50.0" prefWidth="337.0" text="Tidigare köpta varor?">
                                        <font>
                                           <Font size="36.0" />
@@ -241,7 +258,7 @@
                   <Image url="@Images/sök.png" />
                </image>
             </ImageView>
-            <Pane layoutX="1171.0" layoutY="15.0" onMouseClicked="#onClickKONTO" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: C5C5C5;">
+            <Pane layoutX="1171.0" layoutY="15.0" onMouseClicked="#onClickKONTO" prefHeight="30.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="30.0" prefWidth="95.0" text="Konto">
                      <font>
@@ -249,8 +266,11 @@
                      </font>
                   </Label>
                </children>
+               <effect>
+                  <DropShadow color="#00000054" />
+               </effect>
             </Pane>
-            <Pane layoutX="1055.0" layoutY="15.0" onMouseClicked="#onClickKONTO" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: C5C5C5;">
+            <Pane layoutX="1055.0" layoutY="15.0" onMouseClicked="#onClickHJÄLP" prefHeight="30.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" prefHeight="30.0" prefWidth="95.0" text="Hjälp">
                      <font>
@@ -258,6 +278,9 @@
                      </font>
                   </Label>
                </children>
+               <effect>
+                  <DropShadow color="#00000053" />
+               </effect>
             </Pane>
             <StackPane prefHeight="60.0" prefWidth="240.0">
                <children>

@@ -40,6 +40,7 @@ public class MainController implements Initializable {
     @FXML TextField searchField;
 
     @FXML AnchorPane homePane;
+    @FXML AnchorPane helpPane;
     @FXML Pane iMatPane;
 
     @FXML Label numberOfGoods;
@@ -85,6 +86,15 @@ public class MainController implements Initializable {
     void onClickKONTO() {
         productPane.toBack();
         accountScreen.toFront();
+
+        //Visa hemknappen
+        showHomeButton();
+    }
+
+    @FXML
+    void onClickHJÄLP() {
+        productPane.toBack();
+        helpPane.toFront();
 
         //Visa hemknappen
         showHomeButton();
