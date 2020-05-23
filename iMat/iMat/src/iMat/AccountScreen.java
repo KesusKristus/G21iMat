@@ -1,5 +1,7 @@
 package iMat;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -17,6 +19,8 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AccountScreen extends AnchorPane {
 
@@ -90,37 +94,83 @@ public class AccountScreen extends AnchorPane {
                 return true;
             }
         });
-        email_textfield.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+        email_textfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            private Pattern VALID_EMAIL_ADDRESS_REGEX =
+                    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
             @Override
-            public void handle(KeyEvent e) {
-                TextField target = (TextField) e.getTarget();
-                if (validate(target.getText())) c.setFirstName(firstname_textfield.getText());
-                else {
-                    //TODO något att visa att det är fel
-                    System.out.println("inte mail adress");
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldProertyValue, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    if (validate(email_textfield.getText())) {
+                        System.out.println("korrekt email");
+                        removeErrorClass(email_textfield);
+                    } else {
+                        System.out.println("inte korrekt email");
+                        addErrorClass(email_textfield);
+                    }
                 }
             }
 
             private boolean validate(String text) {
-                return true;
+                Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(text);
+                return matcher.find();
             }
         });
 
+
         konto_textfield.setOnKeyReleased(e -> {
-            numericFieldValidation((TextField) e.getTarget());
+            TextField target = ((TextField) e.getTarget());
+            if (target.getText().length() < 16) {
+                numericFieldValidation((TextField) e.getTarget());
+            }else {
+                target.setText(target.getText().substring(0, 16));
+                target.positionCaret(target.getText().length());
+            }
         });
         giltighet1_textfield.setOnKeyReleased(e -> {
-            numericFieldValidation((TextField) e.getTarget());
+            TextField target = ((TextField) e.getTarget());
+            if (target.getText().length() < 2) {
+                numericFieldValidation((TextField) e.getTarget());
+            } else {
+                target.setText(target.getText().substring(0, 2));
+                target.positionCaret(target.getText().length());
+            }
         });
         giltighet2_textfield.setOnKeyReleased(e -> {
-            numericFieldValidation((TextField) e.getTarget());
+            TextField target = ((TextField) e.getTarget());
+            if (target.getText().length() < 2) {
+                numericFieldValidation((TextField) e.getTarget());
+            }else {
+                target.setText(target.getText().substring(0, 2));
+                target.positionCaret(target.getText().length());
+            }
         });
         cvc_textfield.setOnKeyReleased(e -> {
-            numericFieldValidation((TextField) e.getTarget());
+            TextField target = ((TextField) e.getTarget());
+            if (target.getText().length() < 3) {
+                numericFieldValidation((TextField) e.getTarget());
+            }else {
+                target.setText(target.getText().substring(0, 3));
+                target.positionCaret(target.getText().length());
+            }
         });
         mobilnummer_textfield.setOnKeyReleased(e -> {
-            numericFieldValidation((TextField) e.getTarget());
+            TextField target = ((TextField) e.getTarget());
+            if (target.getText().length() < 10) {
+                numericFieldValidation((TextField) e.getTarget());
+            } else {
+                target.setText(target.getText().substring(0, 10));
+                target.positionCaret(target.getText().length());
+            }
         });
+    }
+
+    private void addErrorClass(TextField tf) {
+        tf.getStyleClass().add("error");
+    }
+
+    private void removeErrorClass(TextField tf) {
+        tf.getStyleClass().remove("error");
     }
 
     private void alphabeticalFieldValidation(TextField target) {
@@ -128,8 +178,6 @@ public class AccountScreen extends AnchorPane {
 
         target.setText(target.getText().replaceAll("[^a-zA-Z]+", ""));
         target.positionCaret(target.getText().length());
-        //TODO något att visa att det är fel
-        System.out.println("Kan bara vara bokstäver");
 
     }
     private void numericFieldValidation(TextField target) {
@@ -137,8 +185,7 @@ public class AccountScreen extends AnchorPane {
 
         target.setText(target.getText().replaceAll("[^\\d]", ""));
         target.positionCaret(target.getText().length());
-        //TODO något att visa att det är fel
-        System.out.println("Kan bara vara nummer");
+
     }
 
     @FXML

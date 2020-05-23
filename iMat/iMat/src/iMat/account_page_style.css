@@ -1,3 +1,7 @@
 .account_page {
     -fx-background-color: #FFFFFF;
 }
+
+.error {
+    -fx-border-color: #FF0000;
+}
