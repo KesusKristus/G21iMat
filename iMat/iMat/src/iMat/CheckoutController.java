@@ -12,6 +12,7 @@ import se.chalmers.cse.dat216.project.*;
 import java.io.IOException;
 
 import java.util.Date;
+import java.text.DecimalFormat;
 
 public class CheckoutController extends AnchorPane {
 
@@ -96,6 +97,15 @@ public class CheckoutController extends AnchorPane {
     @FXML
     Label kvittoPrisLabel;
 
+    //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+    //ERRORMEDDELANDEN
+    @FXML
+    Label checkoutErrorLabel;
+
+    //TODO SKRIV UT OLIKA ERRORMEDDELANDEN OCH STOPPA ANVÄNDAREN FRÅN ATT STEGA VIDARE IFALL INFORMATIONEN INTE RÄCKER/ÄR OKEJ
+
 
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -104,6 +114,8 @@ public class CheckoutController extends AnchorPane {
     Customer customer = idh.getCustomer();
 
     MainController mainController;
+
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
 
     public CheckoutController(MainController mainController) {
 
@@ -215,10 +227,8 @@ public class CheckoutController extends AnchorPane {
         idh.getOrders().add(newOrder);
 
         //Set kvitto total price and amount
-        kvittoAntalVarorLabel.setText("" + idh.getShoppingCart().getItems().size());
-
-        //TODO BEGRÄNSA TILL TVÅ DECIMALER
-        kvittoPrisLabel.setText("" + idh.getShoppingCart().getTotal());
+        kvittoAntalVarorLabel.setText("" + idh.getShoppingCart().getItems().size() + " st");
+        kvittoPrisLabel.setText("" + df2.format(idh.getShoppingCart().getTotal()) + " kr");
 
         //Add bought items to kvitto flowpane list
         kvittoFlowPane.getChildren().clear();

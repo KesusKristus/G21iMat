@@ -14,9 +14,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="660.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane fx:id="kassaPane" prefHeight="640.0" prefWidth="800.0" style="-fx-background-color: EAF5F5;">
+      <AnchorPane fx:id="kassaPane" prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: EAF5F5;">
          <children>
             <Label alignment="CENTER" layoutX="258.0" layoutY="34.0" prefHeight="60.0" prefWidth="309.0" text="Kassa" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
                <font>
@@ -55,6 +55,9 @@
                   <Polygon fill="#99b9b9" layoutX="250.0" layoutY="3.0" points="-44.0, 30.0, -22.0, 17.0, -44.0, 5.0" strokeType="INSIDE" />
                   <Polygon fill="#99b9b9" layoutX="482.0" layoutY="3.0" points="-44.0, 30.0, -22.0, 17.0, -44.0, 5.0" strokeType="INSIDE" />
                </children>
+               <effect>
+                  <DropShadow color="#00000055" />
+               </effect>
             </Pane>
             <StackPane layoutX="68.0" layoutY="140.0" prefHeight="420.0" prefWidth="665.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="140.0">
                <children>
@@ -134,6 +137,68 @@
                         <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="125.0" prefHeight="21.0" prefWidth="113.0" text="Postort:">
                            <font>
                               <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="kvittoUppgifterPane" layoutX="10.0" layoutY="10.0" prefHeight="420.0" prefWidth="665.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="390.0" layoutX="20.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+                        <Label alignment="CENTER" layoutX="20.0" layoutY="22.0" prefHeight="30.0" prefWidth="300.0" text="Kvitto:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="383.0" layoutY="29.0" prefHeight="40.0" prefWidth="250.0" text="Det är säkert att handla hos oss" underline="true" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="383.0" layoutY="60.0" prefHeight="88.0" prefWidth="250.0" text="Här hos iMat så ligger våra kunders säkerhet i högsta prioritet. Därför behöver du aldrig känna dig otrygg när du handlar hos oss." textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Pane fx:id="nästaSteg1Pane1" layoutX="455.0" layoutY="350.0" prefHeight="45.0" prefWidth="180.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="142.0" text="Fortsätt handla">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Polygon fill="#99b9b9" layoutX="185.0" layoutY="5.0" points="-44.0, 30.0, -22.0, 17.0, -44.0, 5.0" strokeType="INSIDE" />
+                           </children>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
+                        </Pane>
+                        <ScrollPane fx:id="kvittoScrollPane" hbarPolicy="NEVER" layoutX="40.0" layoutY="53.0" prefHeight="280.0" prefWidth="260.0" vbarPolicy="ALWAYS">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="245.0">
+                                 <children>
+                                    <FlowPane fx:id="kvittoFlowPane" prefHeight="200.0" prefWidth="245.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                        <Label alignment="CENTER_RIGHT" layoutX="130.0" layoutY="345.0" prefHeight="25.0" prefWidth="90.0" text="Antal varor:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="130.0" layoutY="370.0" prefHeight="25.0" prefWidth="90.0" text="Pris:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="kvittoAntalVarorLabel" layoutX="233.0" layoutY="345.0" prefHeight="25.0" prefWidth="55.0" text="100 st">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="kvittoPrisLabel" layoutX="233.0" layoutY="370.0" prefHeight="25.0" prefWidth="75.0" text="2000:56 kr">
+                           <font>
+                              <Font size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -267,71 +332,17 @@
                         </Pane>
                      </children>
                   </Pane>
-                  <Pane fx:id="kvittoUppgifterPane" layoutX="10.0" layoutY="10.0" prefHeight="420.0" prefWidth="665.0" style="-fx-background-color: #FFFFFF;">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="390.0" layoutX="20.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
-                        <Label alignment="CENTER" layoutX="20.0" layoutY="22.0" prefHeight="30.0" prefWidth="300.0" text="Kvitto:">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="383.0" layoutY="29.0" prefHeight="40.0" prefWidth="250.0" text="Det är säkert att handla hos oss" underline="true" wrapText="true">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="383.0" layoutY="60.0" prefHeight="88.0" prefWidth="250.0" text="Här hos iMat så ligger våra kunders säkerhet i högsta prioritet. Därför behöver du aldrig känna dig otrygg när du handlar hos oss." textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Pane fx:id="nästaSteg1Pane1" layoutX="455.0" layoutY="350.0" prefHeight="45.0" prefWidth="180.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="142.0" text="Fortsätt handla">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Polygon fill="#99b9b9" layoutX="185.0" layoutY="5.0" points="-44.0, 30.0, -22.0, 17.0, -44.0, 5.0" strokeType="INSIDE" />
-                           </children>
-                           <effect>
-                              <DropShadow color="#00000055" />
-                           </effect>
-                        </Pane>
-                        <ScrollPane fx:id="kvittoScrollPane" hbarPolicy="NEVER" layoutX="40.0" layoutY="53.0" prefHeight="280.0" prefWidth="260.0" vbarPolicy="ALWAYS">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="245.0">
-                                 <children>
-                                    <FlowPane fx:id="kvittoFlowPane" prefHeight="200.0" prefWidth="245.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </ScrollPane>
-                        <Label alignment="CENTER_RIGHT" layoutX="130.0" layoutY="345.0" prefHeight="25.0" prefWidth="90.0" text="Antal varor:">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="130.0" layoutY="370.0" prefHeight="25.0" prefWidth="90.0" text="Pris:">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="kvittoAntalVarorLabel" layoutX="233.0" layoutY="345.0" prefHeight="25.0" prefWidth="55.0" text="100 st">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="kvittoPrisLabel" layoutX="233.0" layoutY="370.0" prefHeight="25.0" prefWidth="75.0" text="2000:56 kr">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
                </children>
+               <effect>
+                  <DropShadow color="#00000053" />
+               </effect>
             </StackPane>
          </children>
       </AnchorPane>
+      <Label fx:id="checkoutErrorLabel" alignment="TOP_LEFT" layoutY="90.0" prefHeight="36.0" prefWidth="160.0" textFill="RED" AnchorPane.bottomAnchor="84.0" AnchorPane.rightAnchor="97.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </fx:root>
