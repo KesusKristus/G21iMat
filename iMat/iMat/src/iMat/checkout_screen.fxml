@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -61,86 +62,6 @@
             </Pane>
             <StackPane layoutX="68.0" layoutY="140.0" prefHeight="420.0" prefWidth="665.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="140.0">
                <children>
-                  <Pane fx:id="fraktUppgifterPane" layoutX="10.0" layoutY="10.0" prefHeight="420.0" prefWidth="665.0" style="-fx-background-color: #FFFFFF;">
-                     <children>
-                        <Label layoutX="21.0" layoutY="14.0" prefHeight="30.0" prefWidth="209.0" text="Fyll i leveransdetaljer:">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="383.0" layoutY="29.0" prefHeight="40.0" prefWidth="250.0" text="Det är säkert att handla hos oss" underline="true" wrapText="true">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="383.0" layoutY="60.0" prefHeight="88.0" prefWidth="250.0" text="Här hos iMat så ligger våra kunders säkerhet i högsta prioritet. Därför behöver du aldrig känna dig otrygg när du handlar hos oss." textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Pane fx:id="bekräftaKöpPane" layoutX="445.0" layoutY="325.0" onMouseClicked="#onClickNÄSTASTEGTILLKVITTO" prefHeight="70.0" prefWidth="190.0" styleClass="confirmButton" stylesheets="@Categories/CSS_Categories.css">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="70.0" prefWidth="134.0" text="Bekräfta köp">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Polygon fill="WHITE" layoutX="192.0" layoutY="18.0" points="-56.0, 36.0, -20.0, 18.0, -56.0, 0.0" strokeType="INSIDE">
-                                 <effect>
-                                    <InnerShadow color="#00000053" />
-                                 </effect>
-                              </Polygon>
-                           </children>
-                           <effect>
-                              <DropShadow color="#00000055" />
-                           </effect>
-                        </Pane>
-                        <Pane fx:id="föregåendeSteg2Pane" layoutX="21.0" layoutY="350.0" onMouseClicked="#onClickFÖRRASTEGTILLBETALNING" prefHeight="45.0" prefWidth="180.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
-                           <children>
-                              <Label alignment="CENTER" layoutX="30.0" prefHeight="45.0" prefWidth="150.0" text="Föregående steg">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Polygon fill="#99b9b9" layoutX="50.0" layoutY="5.0" points="-44.0, 30.0, -22.0, 17.0, -44.0, 5.0" rotate="180.0" strokeType="INSIDE" />
-                           </children>
-                           <effect>
-                              <DropShadow color="#00000055" />
-                           </effect>
-                        </Pane>
-                        <TextField fx:id="leveransAdressText" layoutX="170.0" layoutY="78.0" prefHeight="25.0" prefWidth="180.0" />
-                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="80.0" prefHeight="21.0" prefWidth="113.0" text="Adress:">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="215.0" prefHeight="21.0" prefWidth="113.0" text="Leveransdatum:">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="260.0" prefHeight="21.0" prefWidth="113.0" text="Leveranstid:">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="leveransTidCombo" layoutX="170.0" layoutY="258.0" prefHeight="25.0" prefWidth="95.0" promptText="Tid" visibleRowCount="7" />
-                        <TextField fx:id="leveransDagText" layoutX="170.0" layoutY="213.0" prefHeight="25.0" prefWidth="40.0" promptText="DD" />
-                        <TextField fx:id="leveransMånadText" layoutX="225.0" layoutY="213.0" prefHeight="25.0" prefWidth="40.0" promptText="MM" />
-                        <TextField fx:id="postnummerText" layoutX="170.0" layoutY="168.0" prefHeight="25.0" prefWidth="70.0" promptText="XXX-XX" />
-                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="170.0" prefHeight="21.0" prefWidth="113.0" text="Postnummer:">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="postortText" layoutX="170.0" layoutY="123.0" prefHeight="25.0" prefWidth="180.0" />
-                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="125.0" prefHeight="21.0" prefWidth="113.0" text="Postort:">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
                   <Pane fx:id="kvittoUppgifterPane" layoutX="10.0" layoutY="10.0" prefHeight="420.0" prefWidth="665.0" style="-fx-background-color: #FFFFFF;">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="390.0" layoutX="20.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
@@ -210,7 +131,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Pane fx:id="bankkortPane" layoutX="20.0" layoutY="50.0" onMouseClicked="#onClickBANKKORT" prefHeight="45.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+                        <Pane fx:id="bankkortPane" layoutX="20.0" layoutY="50.0" onMouseClicked="#onClickBANKKORT" prefHeight="45.0" prefWidth="95.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="45.0" prefWidth="95.0" text="Bankkort">
                                  <font>
@@ -221,8 +142,11 @@
                            <effect>
                               <DropShadow color="#00000055" />
                            </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Pane>
-                        <Pane fx:id="swishPane" layoutX="130.0" layoutY="50.0" onMouseClicked="#onClickSWISH" prefHeight="45.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+                        <Pane fx:id="swishPane" layoutX="130.0" layoutY="50.0" onMouseClicked="#onClickSWISH" prefHeight="45.0" prefWidth="95.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="45.0" prefWidth="95.0" text="Swish">
                                  <font>
@@ -233,8 +157,11 @@
                            <effect>
                               <DropShadow color="#00000055" />
                            </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Pane>
-                        <Pane fx:id="fakturaPane" layoutX="240.0" layoutY="50.0" onMouseClicked="#onClickFAKTURA" prefHeight="45.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+                        <Pane fx:id="fakturaPane" layoutX="240.0" layoutY="50.0" onMouseClicked="#onClickFAKTURA" prefHeight="45.0" prefWidth="95.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="45.0" prefWidth="95.0" text="Faktura">
                                  <font>
@@ -245,6 +172,9 @@
                            <effect>
                               <DropShadow color="#00000055" />
                            </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Pane>
                         <Label alignment="CENTER" layoutX="383.0" layoutY="29.0" prefHeight="40.0" prefWidth="250.0" text="Det är säkert att handla hos oss" underline="true" wrapText="true">
                            <font>
@@ -258,34 +188,6 @@
                         </Label>
                         <StackPane layoutX="20.0" layoutY="110.0" prefHeight="300.0" prefWidth="358.0">
                            <children>
-                              <AnchorPane fx:id="bankkortInfoPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-                                 <children>
-                                    <Label layoutY="30.0" text="Bankkort:" underline="true">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="90.0" text="Kontonummer:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="150.0" text="Giltighetstid:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="210.0" text="CVC:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="kontonummerText" layoutX="150.0" layoutY="88.0" prefHeight="25.0" prefWidth="180.0" promptText="XXXX-XXXX-XXXX-XXXX" />
-                                    <TextField fx:id="giltighetMMText" layoutX="150.0" layoutY="148.0" prefHeight="25.0" prefWidth="43.0" promptText="MM" />
-                                    <TextField fx:id="giltighetÅÅText" layoutX="202.0" layoutY="148.0" prefHeight="25.0" prefWidth="43.0" promptText="ÅÅ" />
-                                    <TextField fx:id="cvcText" layoutX="149.0" layoutY="208.0" prefHeight="25.0" prefWidth="43.0" promptText="XXX" />
-                                 </children>
-                              </AnchorPane>
                               <AnchorPane fx:id="fakturaInfoPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
                                  <children>
                                     <Label layoutY="30.0" text="Faktura:" underline="true">
@@ -315,6 +217,36 @@
                                     <TextField fx:id="mobilnummerText" layoutX="150.0" layoutY="88.0" prefHeight="25.0" prefWidth="180.0" promptText="XXX XXX XX XX" />
                                  </children>
                               </AnchorPane>
+                              <AnchorPane fx:id="bankkortInfoPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                                 <children>
+                                    <Label layoutY="30.0" text="Bankkort:" underline="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="90.0" text="Kontonummer:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="150.0" text="Giltighetstid:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="210.0" text="CVC:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="kontonummerText" layoutX="150.0" layoutY="88.0" prefHeight="25.0" prefWidth="180.0" promptText="XXXX-XXXX-XXXX-XXXX" />
+                                    <TextField fx:id="giltighetMMText" layoutX="150.0" layoutY="148.0" prefHeight="25.0" prefWidth="43.0" promptText="MM" />
+                                    <TextField fx:id="giltighetÅÅText" layoutX="202.0" layoutY="148.0" prefHeight="25.0" prefWidth="43.0" promptText="ÅÅ" />
+                                    <TextField fx:id="cvcText" layoutX="149.0" layoutY="208.0" prefHeight="25.0" prefWidth="43.0" promptText="XXX" />
+                                    <Label layoutX="155.0" layoutY="174.0" text="MM" />
+                                    <Label layoutX="208.0" layoutY="174.0" text="ÅÅ" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </StackPane>
                         <Pane fx:id="nästaSteg1Pane" layoutX="475.0" layoutY="350.0" onMouseClicked="#onClickNÄSTASTEGTILLFRAKT" prefHeight="45.0" prefWidth="160.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
@@ -332,6 +264,88 @@
                         </Pane>
                      </children>
                   </Pane>
+                  <Pane fx:id="fraktUppgifterPane" layoutX="10.0" layoutY="10.0" prefHeight="420.0" prefWidth="665.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Label layoutX="21.0" layoutY="14.0" prefHeight="30.0" prefWidth="209.0" text="Fyll i leveransdetaljer:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="383.0" layoutY="29.0" prefHeight="40.0" prefWidth="250.0" text="Det är säkert att handla hos oss" underline="true" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="383.0" layoutY="60.0" prefHeight="88.0" prefWidth="250.0" text="Här hos iMat så ligger våra kunders säkerhet i högsta prioritet. Därför behöver du aldrig känna dig otrygg när du handlar hos oss." textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Pane fx:id="bekräftaKöpPane" layoutX="445.0" layoutY="325.0" onMouseClicked="#onClickNÄSTASTEGTILLKVITTO" prefHeight="70.0" prefWidth="190.0" styleClass="confirmButton" stylesheets="@Categories/CSS_Categories.css">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="70.0" prefWidth="134.0" text="Bekräfta köp">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Polygon fill="WHITE" layoutX="192.0" layoutY="18.0" points="-56.0, 36.0, -20.0, 18.0, -56.0, 0.0" strokeType="INSIDE">
+                                 <effect>
+                                    <InnerShadow color="#00000053" />
+                                 </effect>
+                              </Polygon>
+                           </children>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
+                        </Pane>
+                        <Pane fx:id="föregåendeSteg2Pane" layoutX="21.0" layoutY="350.0" onMouseClicked="#onClickFÖRRASTEGTILLBETALNING" prefHeight="45.0" prefWidth="180.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+                           <children>
+                              <Label alignment="CENTER" layoutX="30.0" prefHeight="45.0" prefWidth="150.0" text="Föregående steg">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Polygon fill="#99b9b9" layoutX="50.0" layoutY="5.0" points="-44.0, 30.0, -22.0, 17.0, -44.0, 5.0" rotate="180.0" strokeType="INSIDE" />
+                           </children>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
+                        </Pane>
+                        <TextField fx:id="leveransAdressText" layoutX="170.0" layoutY="78.0" prefHeight="25.0" prefWidth="180.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="80.0" prefHeight="21.0" prefWidth="113.0" text="Adress:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="230.0" prefHeight="21.0" prefWidth="113.0" text="Leveransdatum:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="280.0" prefHeight="21.0" prefWidth="113.0" text="Leveranstid:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="leveransTidCombo" layoutX="170.0" layoutY="278.0" prefHeight="25.0" prefWidth="95.0" promptText="Tid" visibleRowCount="7" />
+                        <TextField fx:id="leveransDagText" layoutX="225.0" layoutY="228.0" prefHeight="25.0" prefWidth="40.0" promptText="DD" />
+                        <TextField fx:id="leveransMånadText" layoutX="170.0" layoutY="228.0" prefHeight="25.0" prefWidth="40.0" promptText="MM" />
+                        <TextField fx:id="postnummerText" layoutX="170.0" layoutY="178.0" prefHeight="25.0" prefWidth="70.0" promptText="XXX-XX" />
+                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="180.0" prefHeight="21.0" prefWidth="113.0" text="Postnummer:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="postortText" layoutX="170.0" layoutY="128.0" prefHeight="25.0" prefWidth="180.0" />
+                        <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="130.0" prefHeight="21.0" prefWidth="113.0" text="Postort:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="230.0" layoutY="253.0" text="DD" />
+                        <Label layoutX="175.0" layoutY="253.0" text="MM" />
+                     </children>
+                  </Pane>
                </children>
                <effect>
                   <DropShadow color="#00000053" />
@@ -339,7 +353,7 @@
             </StackPane>
          </children>
       </AnchorPane>
-      <Label fx:id="checkoutErrorLabel" alignment="TOP_LEFT" layoutY="90.0" prefHeight="36.0" prefWidth="160.0" textFill="RED" AnchorPane.bottomAnchor="84.0" AnchorPane.rightAnchor="97.0">
+      <Label fx:id="checkoutErrorLabel" alignment="CENTER_RIGHT" layoutY="90.0" prefHeight="36.0" prefWidth="250.0" textFill="RED" AnchorPane.bottomAnchor="84.0" AnchorPane.rightAnchor="97.0">
          <font>
             <Font size="14.0" />
          </font>

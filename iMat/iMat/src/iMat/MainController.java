@@ -75,6 +75,8 @@ public class MainController implements Initializable {
     void onClickHEM() {
         iMatPane.toFront();
         startScreen.toFront();
+
+        showCheckoutButton();
     }
 
     //Ska kallas då "startsidan" lämnas

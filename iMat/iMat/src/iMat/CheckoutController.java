@@ -117,6 +117,14 @@ public class CheckoutController extends AnchorPane {
 
     private static DecimalFormat df2 = new DecimalFormat("#.##");
 
+    enum payMethod {
+        CARD,
+        SWISH,
+        INVOICE
+    }
+
+    payMethod paymethod = payMethod.CARD;
+
     public CheckoutController(MainController mainController) {
 
         this.mainController = mainController;
@@ -150,8 +158,8 @@ public class CheckoutController extends AnchorPane {
 
         updateCheckoutInfo();
 
-        switch (currentStep){
-            case(1):
+        switch (currentStep) {
+            case (1):
 
                 betalning1kassaPane.setStyle("-fx-background-color: #B7E9E9");
                 frakt2kassaPane.setStyle("-fx-background-color: #EBEBEB");
@@ -160,10 +168,8 @@ public class CheckoutController extends AnchorPane {
                 betalningsUppgifterPane.toFront();
 
 
-
-
                 break;
-            case(2):
+            case (2):
 
                 betalning1kassaPane.setStyle("-fx-background-color: #EBEBEB");
                 frakt2kassaPane.setStyle("-fx-background-color: #B7E9E9");
@@ -172,10 +178,8 @@ public class CheckoutController extends AnchorPane {
                 fraktUppgifterPane.toFront();
 
 
-
-
                 break;
-            case(3):
+            case (3):
 
                 betalning1kassaPane.setStyle("-fx-background-color: #EBEBEB");
                 frakt2kassaPane.setStyle("-fx-background-color: #EBEBEB");
@@ -184,12 +188,13 @@ public class CheckoutController extends AnchorPane {
                 kvittoUppgifterPane.toFront();
 
                 break;
-            default: break;
+            default:
+                break;
         }
 
     }
 
-    public void setupCheckout(){
+    public void setupCheckout() {
 
         currentStep = 1;
 
@@ -201,14 +206,78 @@ public class CheckoutController extends AnchorPane {
         updateCheckout();
     }
 
-    public void nästaStegTillFrakt(){
-        if (currentStep == 1)
-            currentStep = 2;
+    public void nästaStegTillFrakt() {
 
-        updateCheckout();
+        //Felkontroller
+        boolean någotÄrFel = false;
+        switch (paymethod) {
+            case CARD:
+
+                if (kontonummerText.getText().length() != 16) {
+                    någotÄrFel = true;
+
+                    checkoutErrorLabel.setText("FEL KORTNUMMER");
+
+                    break;
+
+                }
+
+                if (((giltighetMMText.getText().length() != 2) && (giltighetMMText.getText().length() != 1)) || (Integer.parseInt(giltighetMMText.getText()) > 12 || Integer.parseInt(giltighetMMText.getText()) < 0)) {
+
+                    någotÄrFel = true;
+
+                    checkoutErrorLabel.setText("FEL GILTIGHETSTID MÅNAD");
+
+                    break;
+                }
+
+                if ((giltighetÅÅText.getText().length() != 2) || (Integer.parseInt(giltighetÅÅText.getText()) > 99 || Integer.parseInt(giltighetÅÅText.getText()) < 0)) {
+
+                    någotÄrFel = true;
+
+                    checkoutErrorLabel.setText("FEL GILTIGHETSTID ÅR");
+
+                    break;
+                }
+
+                if (cvcText.getText().length() != 3) {
+                    någotÄrFel = true;
+
+                    checkoutErrorLabel.setText("FEL CVC-KOD");
+
+                    break;
+                }
+
+                break;
+
+            case SWISH:
+
+                if ((mobilnummerText.getText().length() != 10) || (mobilnummerText.getCharacters().charAt(0) != '0' && mobilnummerText.getCharacters().charAt(1) != '7')) {
+                    någotÄrFel = true;
+
+                    checkoutErrorLabel.setText("OGILTIGT MOBILNUMMER");
+
+                    break;
+                }
+                break;
+
+            case INVOICE:
+
+                //Ingen kontroll behövs här
+
+                break;
+        }
+
+        if (!någotÄrFel) {
+            checkoutErrorLabel.setText("");
+
+            if (currentStep == 1)
+                currentStep = 2;
+            updateCheckout();
+        }
     }
 
-    public void förraStegTillBetalning(){
+    public void förraStegTillBetalning() {
         if (currentStep == 2)
             currentStep = 1;
 
@@ -216,8 +285,71 @@ public class CheckoutController extends AnchorPane {
     }
 
     // CONFIRM
-    public void nästaStegTillKvitto(){
+    public void nästaStegTillKvitto() {
 
+        //Felkontroller
+        boolean någotÄrFel = false;
+        if (postnummerText.getText().length() != 5){
+            någotÄrFel = true;
+
+            checkoutErrorLabel.setText("OGILTIGT POSTNUMMER");
+        } else if (leveransTidCombo.getSelectionModel().isEmpty()){
+            någotÄrFel = true;
+
+            checkoutErrorLabel.setText("VÄLJ LEVERANSTID");
+        }
+        if ((leveransMånadText.getText().length() != 2) || (Integer.parseInt(leveransMånadText.getText()) > 12) || (Integer.parseInt(leveransMånadText.getText()) < 0)){
+            någotÄrFel = true;
+
+            checkoutErrorLabel.setText("OGILTIGT LEVERANSDATUM: MÅNAD");
+        } else {
+
+            //Kolla så att dagen stämmer med månaden
+            switch(Integer.parseInt(leveransMånadText.getText())){
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    if ((Integer.parseInt(leveransDagText.getText()) > 31) || (Integer.parseInt(leveransDagText.getText()) < 0)){
+                        någotÄrFel = true;
+                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
+                    }
+                    break;
+                case 2:
+                    if ((Integer.parseInt(leveransDagText.getText()) > 29) || (Integer.parseInt(leveransDagText.getText()) < 0)){
+                        någotÄrFel = true;
+                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    if ((Integer.parseInt(leveransDagText.getText()) > 30) || (Integer.parseInt(leveransDagText.getText()) < 0)){
+                        någotÄrFel = true;
+                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
+                    }
+                    break;
+            }
+        }
+
+
+        if (!någotÄrFel) {
+            checkoutErrorLabel.setText("");
+
+            loadKvitto();
+
+            //Change to kvitto pane
+            if (currentStep == 2)
+                currentStep = 3;
+            updateCheckout();
+        }
+    }
+
+    void loadKvitto(){
         //Add order to list of orders
         Order newOrder = new Order();
         newOrder.setDate(new Date());
@@ -235,11 +367,11 @@ public class CheckoutController extends AnchorPane {
         int index = 1;
         ReceiptCard receiptCard;
         AnchorPane receiptPane;
-        for (ShoppingItem sI : newOrder.getItems()){
+        for (ShoppingItem sI : newOrder.getItems()) {
 
             receiptCard = new ReceiptCard(sI);
             receiptPane = receiptCard;
-            if (index % 2 == 1){
+            if (index % 2 == 1) {
                 receiptPane.setStyle("-fx-background-color: #FFFFFF");
             } else {
                 receiptPane.setStyle("-fx-background-color: #F9F9F9");
@@ -249,23 +381,15 @@ public class CheckoutController extends AnchorPane {
             kvittoFlowPane.getChildren().add(receiptCard);
         }
 
-
         //Clear current shoppingCart
         idh.getShoppingCart().clear();
         mainController.clearShoppingCart();
         mainController.updateShoppingCart();
         mainController.updateShoppingCartButton();
-
-
-
-        //Change to kvitto pane
-        if(currentStep == 2)
-            currentStep = 3;
-
-        updateCheckout();
     }
 
-    public void updateCheckoutInfo(){
+
+    public void updateCheckoutInfo() {
         kontonummerText.setText(card.getCardNumber());
         giltighetMMText.setText(Integer.toString(card.getValidMonth()));
         giltighetÅÅText.setText(Integer.toString(card.getValidYear()));
@@ -279,24 +403,26 @@ public class CheckoutController extends AnchorPane {
     }
 
 
-
     @FXML
     void onClickNÄSTASTEGTILLFRAKT() {
         nästaStegTillFrakt();
     }
 
     @FXML
-    void onClickFÖRRASTEGTILLBETALNING(){
+    void onClickFÖRRASTEGTILLBETALNING() {
         förraStegTillBetalning();
     }
 
     @FXML
-    void onClickNÄSTASTEGTILLKVITTO(){
+    void onClickNÄSTASTEGTILLKVITTO() {
         nästaStegTillKvitto();
     }
 
     @FXML
-    void onClickBANKKORT(){
+    void onClickBANKKORT() {
+
+        paymethod = payMethod.CARD;
+
         bankkortInfoPane.toFront();
         bankkortPane.setStyle("-fx-background-color: #99FBB4");
         swishPane.setStyle("-fx-background-color: #EBEBEB");
@@ -304,7 +430,10 @@ public class CheckoutController extends AnchorPane {
     }
 
     @FXML
-    void onClickSWISH(){
+    void onClickSWISH() {
+
+        paymethod = payMethod.SWISH;
+
         swishInfoPane.toFront();
         bankkortPane.setStyle("-fx-background-color: #EBEBEB");
         swishPane.setStyle("-fx-background-color: #99FBB4");
@@ -312,13 +441,15 @@ public class CheckoutController extends AnchorPane {
     }
 
     @FXML
-    void onClickFAKTURA(){
+    void onClickFAKTURA() {
+
+        paymethod = payMethod.INVOICE;
+
         fakturaInfoPane.toFront();
         bankkortPane.setStyle("-fx-background-color: #EBEBEB");
         swishPane.setStyle("-fx-background-color: #EBEBEB");
         fakturaPane.setStyle("-fx-background-color: #99FBB4");
     }
-
 
 
 }
