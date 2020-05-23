@@ -214,6 +214,12 @@ public class CheckoutController extends AnchorPane {
         newOrder.setOrderNumber(currentOrder);
         idh.getOrders().add(newOrder);
 
+        //Set kvitto total price and amount
+        kvittoAntalVarorLabel.setText("" + idh.getShoppingCart().getItems().size());
+
+        //TODO BEGRÄNSA TILL TVÅ DECIMALER
+        kvittoPrisLabel.setText("" + idh.getShoppingCart().getTotal());
+
         //Add bought items to kvitto flowpane list
         kvittoFlowPane.getChildren().clear();
         int index = 1;
@@ -236,13 +242,11 @@ public class CheckoutController extends AnchorPane {
 
         //Clear current shoppingCart
         idh.getShoppingCart().clear();
-        mainController.updateShoppingCart();
-        mainController.updateShoppingCartButton();
         mainController.clearShoppingCart();
-
-        //Update shoppingcart
         mainController.updateShoppingCart();
         mainController.updateShoppingCartButton();
+
+
 
         //Change to kvitto pane
         if(currentStep == 2)
