@@ -127,6 +127,20 @@ public class AccountScreen extends AnchorPane {
                 target.positionCaret(target.getText().length());
             }
         });
+        konto_textfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    if (konto_textfield.getText().length() == 16) {
+                        removeErrorClass(konto_textfield);
+                    } else {
+                        System.out.println("inte korrekt kontokod mmåste vara 16 siffror");
+                        addErrorClass(konto_textfield);
+                    }
+                }
+            }
+        });
+
         giltighet1_textfield.setOnKeyReleased(e -> {
             TextField target = ((TextField) e.getTarget());
             if (target.getText().length() < 2) {
@@ -136,6 +150,21 @@ public class AccountScreen extends AnchorPane {
                 target.positionCaret(target.getText().length());
             }
         });
+        giltighet1_textfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    Integer månad = Integer.parseInt(giltighet1_textfield.getText());
+                    if (månad < 13 && månad > 0 && giltighet1_textfield.getText().length() == 2) {
+                      removeErrorClass(giltighet1_textfield);
+                    } else {
+                        System.out.println("inte korrekt månad måste vara 2 siffror");
+                        addErrorClass(giltighet1_textfield);
+                    }
+                }
+            }
+        });
+
         giltighet2_textfield.setOnKeyReleased(e -> {
             TextField target = ((TextField) e.getTarget());
             if (target.getText().length() < 2) {
@@ -145,6 +174,20 @@ public class AccountScreen extends AnchorPane {
                 target.positionCaret(target.getText().length());
             }
         });
+        giltighet2_textfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    if (giltighet2_textfield.getText().length() == 2) {
+                        removeErrorClass(giltighet2_textfield);
+                    } else {
+                        System.out.println("inte korrekt år måste vara 2 siffror");
+                        addErrorClass(giltighet2_textfield);
+                    }
+                }
+            }
+        });
+
         cvc_textfield.setOnKeyReleased(e -> {
             TextField target = ((TextField) e.getTarget());
             if (target.getText().length() < 3) {
@@ -152,6 +195,19 @@ public class AccountScreen extends AnchorPane {
             }else {
                 target.setText(target.getText().substring(0, 3));
                 target.positionCaret(target.getText().length());
+            }
+        });
+        cvc_textfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    if (cvc_textfield.getText().length() == 3) {
+                        removeErrorClass(cvc_textfield);
+                    } else {
+                        System.out.println("inte korrekt cvc måste vara 3 siffror");
+                        addErrorClass(cvc_textfield);
+                    }
+                }
             }
         });
         mobilnummer_textfield.setOnKeyReleased(e -> {
