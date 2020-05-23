@@ -11,6 +11,8 @@ import se.chalmers.cse.dat216.project.*;
 
 import java.io.IOException;
 
+import java.util.Date;
+
 public class CheckoutController extends AnchorPane {
 
     //Kassans fxml
@@ -101,7 +103,11 @@ public class CheckoutController extends AnchorPane {
 
     Customer customer = idh.getCustomer();
 
-    public CheckoutController() {
+    MainController mainController;
+
+    public CheckoutController(MainController mainController) {
+
+        this.mainController = mainController;
 
         FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(getClass().getResource("checkout_screen.fxml"));
@@ -125,6 +131,8 @@ public class CheckoutController extends AnchorPane {
     }
 
     private int currentStep = 1;
+
+    private int currentOrder = idh.getOrders().size();
 
     private void updateCheckout() {
 
@@ -197,6 +205,46 @@ public class CheckoutController extends AnchorPane {
 
     // CONFIRM
     public void nästaStegTillKvitto(){
+
+        //Add order to list of orders
+        Order newOrder = new Order();
+        newOrder.setDate(new Date());
+        newOrder.setItems(idh.getShoppingCart().getItems());
+        currentOrder++;
+        newOrder.setOrderNumber(currentOrder);
+        idh.getOrders().add(newOrder);
+
+        //Add bought items to kvitto flowpane list
+        kvittoFlowPane.getChildren().clear();
+        int index = 1;
+        ReceiptCard receiptCard;
+        AnchorPane receiptPane;
+        for (ShoppingItem sI : newOrder.getItems()){
+
+            receiptCard = new ReceiptCard(sI);
+            receiptPane = receiptCard;
+            if (index % 2 == 1){
+                receiptPane.setStyle("-fx-background-color: #FFFFFF");
+            } else {
+                receiptPane.setStyle("-fx-background-color: #F9F9F9");
+            }
+            index++;
+
+            kvittoFlowPane.getChildren().add(receiptCard);
+        }
+
+
+        //Clear current shoppingCart
+        idh.getShoppingCart().clear();
+        mainController.updateShoppingCart();
+        mainController.updateShoppingCartButton();
+        mainController.clearShoppingCart();
+
+        //Update shoppingcart
+        mainController.updateShoppingCart();
+        mainController.updateShoppingCartButton();
+
+        //Change to kvitto pane
         if(currentStep == 2)
             currentStep = 3;
 

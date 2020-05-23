@@ -11,10 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ProductCategory;
-import se.chalmers.cse.dat216.project.ShoppingItem;
+import se.chalmers.cse.dat216.project.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,7 +24,7 @@ public class MainController implements Initializable {
     @FXML ScrollPane shoppingCartPane;
     @FXML AnchorPane accountScreen = new AccountScreen();
 
-    CheckoutController checkoutController = new CheckoutController();
+    CheckoutController checkoutController = new CheckoutController(this);
     @FXML AnchorPane checkoutScreen = checkoutController;//new CheckoutController();
 
     private CategoriesController cController = new CategoriesController();
@@ -48,14 +45,14 @@ public class MainController implements Initializable {
     @FXML Label numberOfGoods;
     @FXML Label totalPrice;
 
+    IMatDataHandler idh = IMatDataHandler.getInstance();
+
     private MainController parentController;
     private java.util.List<ProductCategory> subCategories;
-    private java.util.List<ShoppingItem> shoppingCartList = new ArrayList<ShoppingItem>();
+    //private java.util.List<ShoppingItem> shoppingCartList = new ArrayList<ShoppingItem>();
+    private ShoppingCart shoppingCart = idh.getShoppingCart();
     private java.util.List<ProductCard> cardList = new ArrayList<ProductCard>();
     private java.util.List<java.util.List<ProductCard>> listList = new ArrayList<java.util.List<ProductCard>>();
-
-
-    IMatDataHandler idh = IMatDataHandler.getInstance();
 
     @FXML Pane dryckPane;
     @FXML Pane konto_pane;
@@ -223,6 +220,7 @@ public class MainController implements Initializable {
             }
             if (!exists) {
                 cardList.add(card);
+                shoppingCart.addItem(card.getItem());
             }
     }
 
@@ -234,7 +232,12 @@ public class MainController implements Initializable {
         }
         if(removedCard != null) {
             cardList.remove(removedCard);
+            shoppingCart.removeItem(removedCard.getItem());
         }
+    }
+
+    public void clearShoppingCart(){
+        cardList.clear();
     }
 
     public void updateShoppingCart(){
