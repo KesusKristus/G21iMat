@@ -65,7 +65,7 @@ public class CheckoutController extends AnchorPane {
     @FXML
     TextField leveransAdressText;
     @FXML
-    TextField postordText;
+    TextField postortText;
     @FXML
     TextField postnummerText;
     @FXML
@@ -119,7 +119,91 @@ public class CheckoutController extends AnchorPane {
                 "12:00-16:00",
                 "16:00-20:00");
 
+        updateCheckoutInfo();
 
+
+    }
+
+    private int currentStep = 1;
+
+    private void updateCheckout() {
+
+        updateCheckoutInfo();
+
+        switch (currentStep){
+            case(1):
+
+                betalning1kassaPane.setStyle("-fx-background-color: #B7E9E9");
+                frakt2kassaPane.setStyle("-fx-background-color: #EBEBEB");
+                kvitto3kassaPane.setStyle("-fx-background-color: #EBEBEB");
+
+                betalningsUppgifterPane.toFront();
+
+
+
+
+                break;
+            case(2):
+
+                betalning1kassaPane.setStyle("-fx-background-color: #EBEBEB");
+                frakt2kassaPane.setStyle("-fx-background-color: #B7E9E9");
+                kvitto3kassaPane.setStyle("-fx-background-color: #EBEBEB");
+
+                fraktUppgifterPane.toFront();
+
+
+
+
+                break;
+            case(3):
+
+                betalning1kassaPane.setStyle("-fx-background-color: #EBEBEB");
+                frakt2kassaPane.setStyle("-fx-background-color: #EBEBEB");
+                kvitto3kassaPane.setStyle("-fx-background-color: #B7E9E9");
+
+                kvittoUppgifterPane.toFront();
+
+                break;
+            default: break;
+        }
+
+    }
+
+    public void setupCheckout(){
+
+        currentStep = 1;
+
+        bankkortInfoPane.toFront();
+        bankkortPane.setStyle("-fx-background-color: #99FBB4");
+        swishPane.setStyle("-fx-background-color: #EBEBEB");
+        fakturaPane.setStyle("-fx-background-color: #EBEBEB");
+
+        updateCheckout();
+    }
+
+    public void nästaStegTillFrakt(){
+        if (currentStep == 1)
+            currentStep = 2;
+
+        updateCheckout();
+    }
+
+    public void förraStegTillBetalning(){
+        if (currentStep == 2)
+            currentStep = 1;
+
+        updateCheckout();
+    }
+
+    // CONFIRM
+    public void nästaStegTillKvitto(){
+        if(currentStep == 2)
+            currentStep = 3;
+
+        updateCheckout();
+    }
+
+    public void updateCheckoutInfo(){
         kontonummerText.setText(card.getCardNumber());
         giltighetMMText.setText(Integer.toString(card.getValidMonth()));
         giltighetÅÅText.setText(Integer.toString(card.getValidYear()));
@@ -128,9 +212,51 @@ public class CheckoutController extends AnchorPane {
         mobilnummerText.setText(customer.getMobilePhoneNumber());
 
         leveransAdressText.setText(customer.getAddress());
-        postordText.setText(customer.getPostAddress());
+        postortText.setText(customer.getPostAddress());
         postnummerText.setText(customer.getPostCode());
-
     }
+
+
+
+    @FXML
+    void onClickNÄSTASTEGTILLFRAKT() {
+        nästaStegTillFrakt();
+    }
+
+    @FXML
+    void onClickFÖRRASTEGTILLBETALNING(){
+        förraStegTillBetalning();
+    }
+
+    @FXML
+    void onClickNÄSTASTEGTILLKVITTO(){
+        nästaStegTillKvitto();
+    }
+
+    @FXML
+    void onClickBANKKORT(){
+        bankkortInfoPane.toFront();
+        bankkortPane.setStyle("-fx-background-color: #99FBB4");
+        swishPane.setStyle("-fx-background-color: #EBEBEB");
+        fakturaPane.setStyle("-fx-background-color: #EBEBEB");
+    }
+
+    @FXML
+    void onClickSWISH(){
+        swishInfoPane.toFront();
+        bankkortPane.setStyle("-fx-background-color: #EBEBEB");
+        swishPane.setStyle("-fx-background-color: #99FBB4");
+        fakturaPane.setStyle("-fx-background-color: #EBEBEB");
+    }
+
+    @FXML
+    void onClickFAKTURA(){
+        fakturaInfoPane.toFront();
+        bankkortPane.setStyle("-fx-background-color: #EBEBEB");
+        swishPane.setStyle("-fx-background-color: #EBEBEB");
+        fakturaPane.setStyle("-fx-background-color: #99FBB4");
+    }
+
+
 
 }

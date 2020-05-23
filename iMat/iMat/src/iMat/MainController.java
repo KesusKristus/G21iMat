@@ -23,12 +23,12 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    private IMatDataHandler dataHandler;
-
     @FXML AnchorPane startScreen;
     @FXML ScrollPane shoppingCartPane;
     @FXML AnchorPane accountScreen = new AccountScreen();
-    @FXML AnchorPane checkoutScreen = new CheckoutController();
+
+    CheckoutController checkoutController = new CheckoutController();
+    @FXML AnchorPane checkoutScreen = checkoutController;//new CheckoutController();
 
     private CategoriesController cController = new CategoriesController();
 
@@ -85,12 +85,18 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickKASSA() {
+
+        checkoutController.setupCheckout();
+
         productPane.toBack();
         checkoutScreen.toFront();
 
         //Visa hemknappen
         showHomeButton();
     }
+
+
+
 
 
     @FXML
@@ -318,6 +324,6 @@ public class MainController implements Initializable {
     }
 
     public IMatDataHandler getDataHandler() {
-        return dataHandler;
+        return idh;
     }
 }
