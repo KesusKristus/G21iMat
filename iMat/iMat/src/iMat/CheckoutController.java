@@ -17,13 +17,13 @@ import java.text.DecimalFormat;
 public class CheckoutController extends AnchorPane {
 
     //Kassans fxml
-    //stegvisare
     @FXML
     Pane betalning1kassaPane;
     @FXML
     Pane frakt2kassaPane;
     @FXML
     Pane kvitto3kassaPane;
+
     //Panes för varje steg
     @FXML
     Pane betalningsUppgifterPane;
@@ -33,6 +33,7 @@ public class CheckoutController extends AnchorPane {
     Pane kvittoUppgifterPane;
 
     //BETALNIGSUPPGIFTER //////////////////////////////
+
     //Knappar för val av betalningsmetod
     @FXML
     Pane bankkortPane;
@@ -40,6 +41,7 @@ public class CheckoutController extends AnchorPane {
     Pane swishPane;
     @FXML
     Pane fakturaPane;
+
     //Fönster för ifyllning av info (betalningsmetod)
     @FXML
     AnchorPane bankkortInfoPane;
@@ -60,8 +62,8 @@ public class CheckoutController extends AnchorPane {
     @FXML
     AnchorPane fakturaInfoPane;
 
-    @FXML
-    Pane nästaSteg1Pane; //betalningsuppgifter
+    /*@FXML
+    Pane nästaSteg1Pane; //betalningsuppgifter*/
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     //FRAKTUPPGIFTER ///////////////////////////////////
@@ -78,11 +80,11 @@ public class CheckoutController extends AnchorPane {
     @FXML
     ComboBox leveransTidCombo;
 
-    @FXML
+    /*@FXML
     Pane föregåendeSteg2Pane;
 
     @FXML
-    Pane bekräftaKöpPane;
+    Pane bekräftaKöpPane;*/
 
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -96,34 +98,43 @@ public class CheckoutController extends AnchorPane {
     Label kvittoAntalVarorLabel;
     @FXML
     Label kvittoPrisLabel;
+    @FXML
+    Label orderInfoLabel;
 
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 
     //ERRORMEDDELANDEN
     @FXML
     Label checkoutErrorLabel;
 
-    //TODO SKRIV UT OLIKA ERRORMEDDELANDEN OCH STOPPA ANVÄNDAREN FRÅN ATT STEGA VIDARE IFALL INFORMATIONEN INTE RÄCKER/ÄR OKEJ
 
+    private final IMatDataHandler idh = IMatDataHandler.getInstance();
 
-    IMatDataHandler idh = IMatDataHandler.getInstance();
+    private final CreditCard card = idh.getCreditCard();
 
-    CreditCard card = idh.getCreditCard();
+    private final Customer customer = idh.getCustomer();
 
-    Customer customer = idh.getCustomer();
+    private final MainController mainController;
 
-    MainController mainController;
+    private static final DecimalFormat df2 = new DecimalFormat("#.##");
 
-    private static DecimalFormat df2 = new DecimalFormat("#.##");
-
-    enum payMethod {
+    //ENUM för hantering av vilken betalningsmetod som är aktiv
+    private enum payMethod {
         CARD,
         SWISH,
         INVOICE
     }
 
-    payMethod paymethod = payMethod.CARD;
+    private payMethod paymethod = payMethod.CARD;
+
+    //Variabel för att spara adressen (bara för kassan, egentligen onödig)
+    private String adress = "";
+
+    //Vilket steg användaren är i i kassan
+    private int currentStep = 1;
+
+    //Nummer för pågående beställningen för att kunna sätta "order number"
+    private int currentOrder = idh.getOrders().size();
 
     public CheckoutController(MainController mainController) {
 
@@ -150,9 +161,6 @@ public class CheckoutController extends AnchorPane {
 
     }
 
-    private int currentStep = 1;
-
-    private int currentOrder = idh.getOrders().size();
 
     private void updateCheckout() {
 
@@ -206,15 +214,15 @@ public class CheckoutController extends AnchorPane {
         updateCheckout();
     }
 
-    public void nästaStegTillFrakt() {
+    private void nästaStegTillFrakt() {
 
         //Felkontroller
-        boolean någotÄrFel = false;
+        boolean somethingIsWrong = false;
         switch (paymethod) {
             case CARD:
 
                 if (kontonummerText.getText().length() != 16) {
-                    någotÄrFel = true;
+                    somethingIsWrong = true;
 
                     checkoutErrorLabel.setText("FEL KORTNUMMER");
 
@@ -224,7 +232,7 @@ public class CheckoutController extends AnchorPane {
 
                 if (((giltighetMMText.getText().length() != 2) && (giltighetMMText.getText().length() != 1)) || (Integer.parseInt(giltighetMMText.getText()) > 12 || Integer.parseInt(giltighetMMText.getText()) < 0)) {
 
-                    någotÄrFel = true;
+                    somethingIsWrong = true;
 
                     checkoutErrorLabel.setText("FEL GILTIGHETSTID MÅNAD");
 
@@ -233,7 +241,7 @@ public class CheckoutController extends AnchorPane {
 
                 if ((giltighetÅÅText.getText().length() != 2) || (Integer.parseInt(giltighetÅÅText.getText()) > 99 || Integer.parseInt(giltighetÅÅText.getText()) < 0)) {
 
-                    någotÄrFel = true;
+                    somethingIsWrong = true;
 
                     checkoutErrorLabel.setText("FEL GILTIGHETSTID ÅR");
 
@@ -241,7 +249,7 @@ public class CheckoutController extends AnchorPane {
                 }
 
                 if (cvcText.getText().length() != 3) {
-                    någotÄrFel = true;
+                    somethingIsWrong = true;
 
                     checkoutErrorLabel.setText("FEL CVC-KOD");
 
@@ -253,7 +261,7 @@ public class CheckoutController extends AnchorPane {
             case SWISH:
 
                 if ((mobilnummerText.getText().length() != 10) || (mobilnummerText.getCharacters().charAt(0) != '0' && mobilnummerText.getCharacters().charAt(1) != '7')) {
-                    någotÄrFel = true;
+                    somethingIsWrong = true;
 
                     checkoutErrorLabel.setText("OGILTIGT MOBILNUMMER");
 
@@ -268,7 +276,7 @@ public class CheckoutController extends AnchorPane {
                 break;
         }
 
-        if (!någotÄrFel) {
+        if (!somethingIsWrong) {
             checkoutErrorLabel.setText("");
 
             if (currentStep == 1)
@@ -277,7 +285,7 @@ public class CheckoutController extends AnchorPane {
         }
     }
 
-    public void förraStegTillBetalning() {
+    private void förraStegTillBetalning() {
         if (currentStep == 2)
             currentStep = 1;
 
@@ -285,27 +293,29 @@ public class CheckoutController extends AnchorPane {
     }
 
     // CONFIRM
-    public void nästaStegTillKvitto() {
+    private void nästaStegTillKvitto() {
+
+        adress = leveransAdressText.getText();
 
         //Felkontroller
-        boolean någotÄrFel = false;
-        if (postnummerText.getText().length() != 5){
-            någotÄrFel = true;
+        boolean somethingIsWrong = false;
+        if (postnummerText.getText().length() != 5) {
+            somethingIsWrong = true;
 
             checkoutErrorLabel.setText("OGILTIGT POSTNUMMER");
-        } else if (leveransTidCombo.getSelectionModel().isEmpty()){
-            någotÄrFel = true;
+        } else if (leveransTidCombo.getSelectionModel().isEmpty()) {
+            somethingIsWrong = true;
 
             checkoutErrorLabel.setText("VÄLJ LEVERANSTID");
         }
-        if ((leveransMånadText.getText().length() != 2) || (Integer.parseInt(leveransMånadText.getText()) > 12) || (Integer.parseInt(leveransMånadText.getText()) < 0)){
-            någotÄrFel = true;
+        if ((leveransMånadText.getText().length() != 2) || (Integer.parseInt(leveransMånadText.getText()) > 12) || (Integer.parseInt(leveransMånadText.getText()) < 0)) {
+            somethingIsWrong = true;
 
             checkoutErrorLabel.setText("OGILTIGT LEVERANSDATUM: MÅNAD");
         } else {
 
             //Kolla så att dagen stämmer med månaden
-            switch(Integer.parseInt(leveransMånadText.getText())){
+            switch (Integer.parseInt(leveransMånadText.getText())) {
                 case 1:
                 case 3:
                 case 5:
@@ -313,14 +323,14 @@ public class CheckoutController extends AnchorPane {
                 case 8:
                 case 10:
                 case 12:
-                    if ((Integer.parseInt(leveransDagText.getText()) > 31) || (Integer.parseInt(leveransDagText.getText()) < 0)){
-                        någotÄrFel = true;
+                    if ((Integer.parseInt(leveransDagText.getText()) > 31) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
+                        somethingIsWrong = true;
                         checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
                     }
                     break;
                 case 2:
-                    if ((Integer.parseInt(leveransDagText.getText()) > 29) || (Integer.parseInt(leveransDagText.getText()) < 0)){
-                        någotÄrFel = true;
+                    if ((Integer.parseInt(leveransDagText.getText()) > 29) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
+                        somethingIsWrong = true;
                         checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
                     }
                     break;
@@ -328,8 +338,8 @@ public class CheckoutController extends AnchorPane {
                 case 6:
                 case 9:
                 case 11:
-                    if ((Integer.parseInt(leveransDagText.getText()) > 30) || (Integer.parseInt(leveransDagText.getText()) < 0)){
-                        någotÄrFel = true;
+                    if ((Integer.parseInt(leveransDagText.getText()) > 30) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
+                        somethingIsWrong = true;
                         checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
                     }
                     break;
@@ -337,7 +347,7 @@ public class CheckoutController extends AnchorPane {
         }
 
 
-        if (!någotÄrFel) {
+        if (!somethingIsWrong) {
             checkoutErrorLabel.setText("");
 
             loadKvitto();
@@ -349,7 +359,49 @@ public class CheckoutController extends AnchorPane {
         }
     }
 
-    void loadKvitto(){
+    private String getMonthString() {
+
+        switch (Integer.parseInt(leveransMånadText.getText())) {
+            case 1:
+                return "januari";
+            case 2:
+                return "februari";
+            case 3:
+                return "mars";
+            case 4:
+                return "april";
+            case 5:
+                return "maj";
+            case 6:
+                return "juni";
+            case 7:
+                return "juli";
+            case 8:
+                return "augusti";
+            case 9:
+                return "september";
+            case 10:
+                return "oktober";
+            case 11:
+                return "november";
+            case 12:
+                return "december";
+            default:
+                return "ERROR";
+        }
+
+
+    }
+
+    private void loadKvitto() {
+
+        //Set order-text on receipt page
+        orderInfoLabel.setText("Din order förväntas anlända mellan \n" + leveransTidCombo.getValue().toString() + " den " +
+                leveransDagText.getText() + " " + getMonthString() + "\nhos " + adress + ".");
+
+        //reset adress
+        adress = "";
+
         //Add order to list of orders
         Order newOrder = new Order();
         newOrder.setDate(new Date());
@@ -388,8 +440,7 @@ public class CheckoutController extends AnchorPane {
         mainController.updateShoppingCartButton();
     }
 
-
-    public void updateCheckoutInfo() {
+    private void updateCheckoutInfo() {
         kontonummerText.setText(card.getCardNumber());
         giltighetMMText.setText(Integer.toString(card.getValidMonth()));
         giltighetÅÅText.setText(Integer.toString(card.getValidYear()));
@@ -402,6 +453,11 @@ public class CheckoutController extends AnchorPane {
         postnummerText.setText(customer.getPostCode());
     }
 
+    private void fortsätthandla() {
+        if (currentStep == 3) {
+            mainController.onClickHEM();
+        }
+    }
 
     @FXML
     void onClickNÄSTASTEGTILLFRAKT() {
@@ -416,6 +472,11 @@ public class CheckoutController extends AnchorPane {
     @FXML
     void onClickNÄSTASTEGTILLKVITTO() {
         nästaStegTillKvitto();
+    }
+
+    @FXML
+    void onClickFORTSÄTTHANDLA() {
+        fortsätthandla();
     }
 
     @FXML
