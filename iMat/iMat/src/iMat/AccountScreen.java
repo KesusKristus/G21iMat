@@ -66,11 +66,11 @@ public class AccountScreen extends AnchorPane {
         getAllCustomerData();
 
         // SET EVENT HANDLERS
-        firstname_textfield.setOnKeyPressed(e -> {
+        firstname_textfield.setOnKeyReleased(e -> {
             alphabeticalFieldValidation((TextField) e.getTarget());
         });
 
-        surname_textfield.setOnKeyPressed(e -> {
+        surname_textfield.setOnKeyReleased(e -> {
             alphabeticalFieldValidation((TextField) e.getTarget());
         });
 
@@ -80,6 +80,7 @@ public class AccountScreen extends AnchorPane {
                 TextField target = (TextField) e.getTarget();
                 if (validate(target.getText())) c.setFirstName(firstname_textfield.getText());
                 else {
+                    //TODO något att visa att det är fel
                     System.out.println("inte en adress");
                 }
             }
@@ -95,6 +96,7 @@ public class AccountScreen extends AnchorPane {
                 TextField target = (TextField) e.getTarget();
                 if (validate(target.getText())) c.setFirstName(firstname_textfield.getText());
                 else {
+                    //TODO något att visa att det är fel
                     System.out.println("inte mail adress");
                 }
             }
@@ -104,33 +106,38 @@ public class AccountScreen extends AnchorPane {
             }
         });
 
-        konto_textfield.setOnKeyPressed(e -> {
+        konto_textfield.setOnKeyReleased(e -> {
             numericFieldValidation((TextField) e.getTarget());
         });
-        giltighet1_textfield.setOnKeyPressed(e -> {
+        giltighet1_textfield.setOnKeyReleased(e -> {
             numericFieldValidation((TextField) e.getTarget());
         });
-        giltighet2_textfield.setOnKeyPressed(e -> {
+        giltighet2_textfield.setOnKeyReleased(e -> {
             numericFieldValidation((TextField) e.getTarget());
         });
-        cvc_textfield.setOnKeyPressed(e -> {
+        cvc_textfield.setOnKeyReleased(e -> {
             numericFieldValidation((TextField) e.getTarget());
         });
-        mobilnummer_textfield.setOnKeyPressed(e -> {
+        mobilnummer_textfield.setOnKeyReleased(e -> {
             numericFieldValidation((TextField) e.getTarget());
         });
     }
 
     private void alphabeticalFieldValidation(TextField target) {
         if (target.getText().matches("[a-zA-Z]+")) return;
+
         target.setText(target.getText().replaceAll("[^a-zA-Z]+", ""));
+        target.positionCaret(target.getText().length());
+        //TODO något att visa att det är fel
         System.out.println("Kan bara vara bokstäver");
 
     }
     private void numericFieldValidation(TextField target) {
-
         if (target.getText().matches("\\d*")) return;
+
         target.setText(target.getText().replaceAll("[^\\d]", ""));
+        target.positionCaret(target.getText().length());
+        //TODO något att visa att det är fel
         System.out.println("Kan bara vara nummer");
     }
 
