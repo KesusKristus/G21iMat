@@ -66,6 +66,11 @@
                               </Label>
                            </children>
                         </Pane>
+                        <Label fx:id="error_label" layoutX="39.0" layoutY="473.0" prefHeight="72.0" prefWidth="185.0" textFill="RED" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </items>

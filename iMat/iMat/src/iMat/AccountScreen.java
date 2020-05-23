@@ -17,8 +17,7 @@ import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,6 +43,9 @@ public class AccountScreen extends AnchorPane {
 
     @FXML Label swish_label;
     @FXML TextField mobilnummer_textfield;
+
+    @FXML Label error_label;
+    private Map<String, String> validationErrors = new HashMap<>();
 
     private Customer c = IMatDataHandler.getInstance().getCustomer();
     private CreditCard cc = IMatDataHandler.getInstance().getCreditCard();
@@ -104,8 +106,10 @@ public class AccountScreen extends AnchorPane {
                     if (validate(email_textfield.getText())) {
                         System.out.println("korrekt email");
                         removeErrorClass(email_textfield);
+                        validationErrors.remove("email");
                     } else {
                         System.out.println("inte korrekt email");
+                        validationErrors.put("email","inte korrekt email");
                         addErrorClass(email_textfield);
                     }
                 }
@@ -133,8 +137,10 @@ public class AccountScreen extends AnchorPane {
                 if (!newPropertyValue) {
                     if (konto_textfield.getText().length() == 16) {
                         removeErrorClass(konto_textfield);
+                        validationErrors.remove("konto");
                     } else {
                         System.out.println("inte korrekt kontokod mmåste vara 16 siffror");
+                        validationErrors.put("konto","inte korrekt kontonummer måste vara 16 siffror");
                         addErrorClass(konto_textfield);
                     }
                 }
@@ -157,8 +163,10 @@ public class AccountScreen extends AnchorPane {
                     Integer månad = Integer.parseInt(giltighet1_textfield.getText());
                     if (månad < 13 && månad > 0 && giltighet1_textfield.getText().length() == 2) {
                       removeErrorClass(giltighet1_textfield);
+                      validationErrors.remove("månad");
                     } else {
                         System.out.println("inte korrekt månad måste vara 2 siffror");
+                        validationErrors.put("månad","inte korrekt månad måste vara 2 siffror");
                         addErrorClass(giltighet1_textfield);
                     }
                 }
@@ -180,8 +188,10 @@ public class AccountScreen extends AnchorPane {
                 if (!newPropertyValue) {
                     if (giltighet2_textfield.getText().length() == 2) {
                         removeErrorClass(giltighet2_textfield);
+                        validationErrors.remove("år");
                     } else {
                         System.out.println("inte korrekt år måste vara 2 siffror");
+                        validationErrors.put("år","inte korrekt år måste vara 2 siffror");
                         addErrorClass(giltighet2_textfield);
                     }
                 }
@@ -203,8 +213,10 @@ public class AccountScreen extends AnchorPane {
                 if (!newPropertyValue) {
                     if (cvc_textfield.getText().length() == 3) {
                         removeErrorClass(cvc_textfield);
+                        validationErrors.remove("cvc");
                     } else {
                         System.out.println("inte korrekt cvc måste vara 3 siffror");
+                        validationErrors.put("cvc","inte korrekt cvc måste vara 3 siffror");
                         addErrorClass(cvc_textfield);
                     }
                 }
@@ -246,8 +258,19 @@ public class AccountScreen extends AnchorPane {
 
     @FXML
     public void onClickSpara() {
-        setAllCustomerData();
-        IMatDataHandler.getInstance().shutDown();
+        if (validationErrors.size() == 0) {
+            error_label.setText("");
+            setAllCustomerData();
+            IMatDataHandler.getInstance().shutDown();
+        } else {
+            String text = "";
+            for (Map.Entry<String, String> entry : validationErrors.entrySet()) {
+                System.out.println(entry.getKey() + " = " + entry.getValue());
+                text = entry.getValue();
+                break;
+            }
+            error_label.setText(text);
+        }
     }
 
     private void getAllCustomerData() {
