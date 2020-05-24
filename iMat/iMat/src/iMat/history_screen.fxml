@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root fx:id="historyPane" prefHeight="660.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane hbarPolicy="NEVER" layoutX="77.0" layoutY="70.0" prefHeight="590.0" prefWidth="130.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="115.0">
+               <children>
+                  <FlowPane fx:id="dateFlowPane" prefHeight="172.0" prefWidth="115.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <ScrollPane hbarPolicy="NEVER" layoutX="224.0" layoutY="70.0" prefHeight="590.0" prefWidth="500.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="485.0">
+               <children>
+                  <FlowPane fx:id="productFlowPane" prefHeight="169.0" prefWidth="485.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <Label alignment="CENTER" layoutX="349.0" prefHeight="70.0" prefWidth="102.0" text="Historik" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</fx:root>
