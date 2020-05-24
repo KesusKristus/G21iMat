@@ -25,7 +25,7 @@ public class MainController implements Initializable {
     @FXML
     ScrollPane shoppingCartPane;
     @FXML
-    AnchorPane accountScreen = new AccountScreen();
+    AnchorPane accountScreen = new AccountScreen(this);
 
     CheckoutController checkoutController = new CheckoutController(this);
     @FXML
@@ -88,6 +88,14 @@ public class MainController implements Initializable {
     Pane konto_pane;
 
 
+    public List<ProductCard> getCardList(){
+        return cardList;
+    }
+
+    public List<List<ProductCard>> getListList(){
+        return listList;
+    }
+
     //När enter trycks från sökrutan
     @FXML
     void onEnter(ActionEvent ae) {
@@ -102,8 +110,6 @@ public class MainController implements Initializable {
     void onClickHEM() {
         iMatPane.toFront();
         startScreen.toFront();
-
-        showCheckoutButton();
     }
 
     //Ska kallas då "startsidan" lämnas
@@ -111,7 +117,7 @@ public class MainController implements Initializable {
         homePane.toFront();
     }
 
-    void greyoutCheckoutButton() {
+    public void greyoutCheckoutButton() {
 
         double goodsSum = 0;
         double priceSum = 0;
@@ -128,6 +134,15 @@ public class MainController implements Initializable {
 
     void showCheckoutButton() {
         checkoutButtonPane.toFront();
+    }
+
+    public void openHistoryPane(){
+        historyController.populateDateList();
+        productPane.toFront();
+        historyScreen.toFront();
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     @FXML
@@ -149,8 +164,6 @@ public class MainController implements Initializable {
         productPane.toBack();
         accountScreen.toFront();
 
-        showCheckoutButton();
-
         //Visa hemknappen
         showHomeButton();
     }
@@ -159,8 +172,6 @@ public class MainController implements Initializable {
     void onClickHJÄLP() {
         productPane.toBack();
         helpPane.toFront();
-
-        showCheckoutButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -171,8 +182,6 @@ public class MainController implements Initializable {
         //populateCategoryScreen(cController.dryckList, "Dryck");
         populateCategoryScreen2(listList.get(0), "Dryck");
 
-        showCheckoutButton();
-
         //Visa hemknappen
         showHomeButton();
     }
@@ -181,7 +190,7 @@ public class MainController implements Initializable {
     void onClickFRUKTBÄR() {
         //populateCategoryScreen(cController.fruktBärList, "Frukt & bär");
         populateCategoryScreen2(listList.get(1), "Frukt & Bär");
-        showCheckoutButton();
+
         //Visa hemknappen
         showHomeButton();
     }
@@ -190,7 +199,7 @@ public class MainController implements Initializable {
     void onClickGRÖNSAKER() {
         //populateCategoryScreen(cController.grönsakerList, "Grönsaker");
         populateCategoryScreen2(listList.get(2), "Grönsaker");              //hitils bara ändrat de tre första
-        showCheckoutButton();
+
         //Visa hemknappen
         showHomeButton();
     }
@@ -199,7 +208,7 @@ public class MainController implements Initializable {
     void onClickKÖTTFISK() {
         //populateCategoryScreen(cController.köttFiskList, "Kött & fisk");
         populateCategoryScreen2(listList.get(3), "Kött & Fisk");
-        showCheckoutButton();
+
         //Visa hemknappen
         showHomeButton();
     }
@@ -208,7 +217,6 @@ public class MainController implements Initializable {
     void onClickMEJERI() {
         //populateCategoryScreen(cController.mejeriList, "Mejeri");
         populateCategoryScreen2(listList.get(4), "Mejeri");
-        showCheckoutButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -218,7 +226,6 @@ public class MainController implements Initializable {
     void onClickPOTATISRIS() {
         //populateCategoryScreen(cController.potatisRisList, "Potatis & ris");
         populateCategoryScreen2(listList.get(5), "Potatis & Ris");
-        showCheckoutButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -228,7 +235,6 @@ public class MainController implements Initializable {
     void onClickSKAFFERI() {
         //populateCategoryScreen(cController.skafferiList, "Skafferi");
         populateCategoryScreen2(listList.get(6), "Skafferi");
-        showCheckoutButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -238,7 +244,6 @@ public class MainController implements Initializable {
     void onClickSÖTSAKERSNACKS() {
         //populateCategoryScreen(cController.sötsakerSnacksList, "Sötsaker & snacks");
         populateCategoryScreen2(listList.get(7), "Sötsaker & Snacks");
-        showCheckoutButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -319,6 +324,11 @@ public class MainController implements Initializable {
         }
         numberOfGoods.setText("" + (int) goodsSum + " st");
         totalPrice.setText("" + Math.round(priceSum * 100D) / 100D + " kr");
+
+        if (goodsSum == 0){
+            greyoutCheckoutButton();
+        } else
+            showCheckoutButton();
     }
 
 
@@ -383,12 +393,16 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //Reset shoppingCart
+        idh.getShoppingCart().clear();
+
         middlePane.getChildren().add(accountScreen);
         accountScreen.toBack();
         middlePane.getChildren().add(checkoutScreen);
         checkoutScreen.toBack();
         middlePane.getChildren().add(historyScreen);
-        historyScreen.toFront(); //TODO TOBACK NÄR DEN ÄR KLAR
+        historyScreen.toBack();
         fillListList();
         sortListList();
     }

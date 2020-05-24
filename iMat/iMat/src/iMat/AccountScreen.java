@@ -50,7 +50,10 @@ public class AccountScreen extends AnchorPane {
     private Customer c = IMatDataHandler.getInstance().getCustomer();
     private CreditCard cc = IMatDataHandler.getInstance().getCreditCard();
 
-    public AccountScreen() {
+    //la till denna för att kunna öpna historikförnstret från kontot
+    MainController mainController;
+
+    public AccountScreen(MainController mainController) {
         /* Ladda in account screen i mitten av main sidan */
         FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(getClass().getResource("account_screen.fxml"));
@@ -62,6 +65,8 @@ public class AccountScreen extends AnchorPane {
         } catch (IOException exception){
             throw new RuntimeException(exception);
         }
+
+        this.mainController = mainController;
 
         initTextFields();
 
@@ -299,6 +304,11 @@ public class AccountScreen extends AnchorPane {
             }
             error_label.setText(text);
         }
+    }
+
+    @FXML
+    public void onClickHistorik(){
+        mainController.openHistoryPane();
     }
 
     private void getAllCustomerData() {

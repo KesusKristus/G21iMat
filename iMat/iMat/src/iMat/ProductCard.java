@@ -11,12 +11,13 @@ import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ProductCard extends AnchorPane {
     private ShoppingItem item = new ShoppingItem(null, 0);
     private MainController parentController;
     private ProductCard parentCard;
-
+    private IMatDataHandler idh = IMatDataHandler.getInstance();
 
     @FXML ImageView cardImage;
     @FXML Label cardName;
@@ -130,6 +131,41 @@ public class ProductCard extends AnchorPane {
         cardName.setText(item.getProduct().getName());
         cardPrice.setText( "" + item.getProduct().getPrice() + " kr/st" );
         cardImage.setImage(IMatDataHandler.getInstance().getFXImage(item.getProduct(), 90, 70));
+        cardAmount.setText("" + (int) item.getAmount());
+    }
+
+
+    //Denna är för historiken
+    public ProductCard(ShoppingItem shoppingItem, MainController parentController){
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product_card.fxml"));
+
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try{
+            fxmlLoader.load();
+        } catch (IOException exception){
+            throw new RuntimeException(exception);
+        }
+        this.item = shoppingItem; //va bara intem
+        this.parentController = parentController;
+
+        cardName.setText(item.getProduct().getName());
+        cardPrice.setText( "" + item.getProduct().getPrice() + " kr/st" );
+        cardImage.setImage(idh.getFXImage(item.getProduct(), 90, 70));
+
+
+        //DETTA GÖR SÅ ATT VARORNA I HISTORIKENS MÄNGD STÄMMER MED HUR MÅNGA MAN HAR I KUNDVAGNEN ATM
+        item.setAmount(0);
+
+        for (ShoppingItem sI : idh.getShoppingCart().getItems()){
+            if (sI.getProduct().getProductId() == item.getProduct().getProductId()){
+                item.setAmount(sI.getAmount());
+                break;
+            }
+        }
+
         cardAmount.setText("" + (int) item.getAmount());
     }
 

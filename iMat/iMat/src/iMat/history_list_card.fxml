@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="historyPane" prefHeight="35.0" prefWidth="165.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="historyPane" prefHeight="35.0" prefWidth="165.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="cardDateLabel" alignment="CENTER" onMouseClicked="#onClick" prefHeight="33.0" prefWidth="165.0" text="2020-04-16" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>

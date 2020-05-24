@@ -24,6 +24,7 @@ public class iMatMain extends Application {
                 System.out.println("CLOSING");
             }
         });
+
         primaryStage.show();
     }
 

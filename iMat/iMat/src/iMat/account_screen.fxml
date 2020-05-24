@@ -3,14 +3,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="account_pane" prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="account_pane" prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: #EAF5F5;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <StackPane layoutY="64.0" prefHeight="600" prefWidth="800.0">
+      <StackPane layoutY="64.0" prefHeight="600" prefWidth="800.0" AnchorPane.bottomAnchor="0.0">
          <children>
             <SplitPane dividerPositions="0.5" prefHeight="552.0" prefWidth="800.0" styleClass="account_page" stylesheets="@account_page_style.css">
                <items>
@@ -57,7 +60,7 @@
                         <TextField fx:id="surname_textfield" layoutX="124.0" layoutY="216.0" />
                         <TextField fx:id="adress1_textfield" layoutX="124.0" layoutY="298.0" />
                         <TextField fx:id="email_textfield" layoutX="124.0" layoutY="361.0" />
-                        <Pane layoutX="226.0" layoutY="473.0" onMouseClicked="#onClickSpara" prefHeight="72.0" prefWidth="115.0" style="-fx-background-color: C5C5C5;">
+                        <Pane layoutX="226.0" layoutY="473.0" onMouseClicked="#onClickSpara" prefHeight="72.0" prefWidth="115.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
                            <children>
                               <Label layoutX="27.0" layoutY="18.0" prefHeight="35.0" prefWidth="61.0" text="SPARA" textAlignment="CENTER">
                                  <font>
@@ -65,6 +68,9 @@
                                  </font>
                               </Label>
                            </children>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
                         </Pane>
                         <Label fx:id="error_label" layoutX="39.0" layoutY="473.0" prefHeight="72.0" prefWidth="185.0" textFill="RED" wrapText="true">
                            <font>
@@ -79,11 +85,28 @@
       </StackPane>
       <Pane prefHeight="72.0" prefWidth="800.0" styleClass="account_page" stylesheets="@account_page_style.css">
          <children>
-            <Label fx:id="account_label" alignment="TOP_CENTER" layoutX="357.0" layoutY="14.0" text="KONTO">
+            <Label fx:id="account_label" alignment="TOP_CENTER" layoutX="357.0" layoutY="14.0" prefWidth="85.0" text="KONTO">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
+            <Pane layoutX="630.0" layoutY="20.0" onMouseClicked="#onClickHistorik" prefHeight="30.0" prefWidth="115.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+               <children>
+                  <Label alignment="CENTER" layoutX="36.0" prefHeight="30.0" prefWidth="70.0" text="Historik">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/historik.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow color="#00000054" />
+               </effect>
+            </Pane>
          </children>
       </Pane>
    </children>

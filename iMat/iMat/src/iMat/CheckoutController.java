@@ -11,8 +11,10 @@ import se.chalmers.cse.dat216.project.*;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class CheckoutController extends AnchorPane {
 
@@ -354,6 +356,8 @@ public class CheckoutController extends AnchorPane {
 
             loadKvitto();
 
+            mainController.greyoutCheckoutButton();
+
             //Change to kvitto pane
             if (currentStep == 2)
                 currentStep = 3;
@@ -401,13 +405,19 @@ public class CheckoutController extends AnchorPane {
         orderInfoLabel.setText("Din order förväntas anlända mellan \n" + leveransTidCombo.getValue().toString() + " den " +
                 leveransDagText.getText() + " " + getMonthString() + "\nhos " + adress + ".");
 
-        //reset adress
-        //adress = "";
-
         //Add order to list of orders
         Order newOrder = new Order();
         newOrder.setDate(new Date());
-        newOrder.setItems(idh.getShoppingCart().getItems());
+
+
+        List<ShoppingItem> shoppingItems = new ArrayList<ShoppingItem>();
+
+        for (ShoppingItem si : idh.getShoppingCart().getItems()) {
+            shoppingItems.add(si);
+        }
+
+        newOrder.setItems(shoppingItems);
+
         currentOrder++;
         newOrder.setOrderNumber(currentOrder);
         idh.getOrders().add(newOrder);
@@ -415,11 +425,11 @@ public class CheckoutController extends AnchorPane {
         //Set kvitto total price and amount
         int antalvaror = 0;
 
-        for (int i = 0; i < idh.getShoppingCart().getItems().size(); i++){
+        for (int i = 0; i < idh.getShoppingCart().getItems().size(); i++) {
             antalvaror += idh.getShoppingCart().getItems().get(i).getAmount();
         }
 
-        kvittoAntalVarorLabel.setText("" + antalvaror + " st"); //TODO
+        kvittoAntalVarorLabel.setText("" + antalvaror + " st");
         kvittoPrisLabel.setText("" + df2.format(idh.getShoppingCart().getTotal()) + " kr");
 
         //Add bought items to kvitto flowpane list

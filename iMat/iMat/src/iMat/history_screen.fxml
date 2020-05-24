@@ -17,7 +17,7 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="249.0" layoutY="70.0" prefHeight="590.0" prefWidth="500.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0">
+      <ScrollPane fx:id="productScrollPane" hbarPolicy="NEVER" layoutX="249.0" layoutY="70.0" prefHeight="590.0" prefWidth="500.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="485.0">
                <children>
@@ -26,11 +26,11 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Label alignment="CENTER" layoutX="349.0" prefHeight="70.0" prefWidth="160.0" text="Historik" AnchorPane.leftAnchor="320.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="historikLabel" alignment="CENTER" layoutX="349.0" prefHeight="70.0" prefWidth="160.0" text="Historik" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label layoutX="224.0" layoutY="53.0" text="Välj ett datum i listan till vänster för att få upp de varor som köptes då." />
+      <Label layoutX="264.0" layoutY="53.0" text="Välj ett datum i listan till vänster för att få upp de varor som köptes då." />
    </children>
 </fx:root>

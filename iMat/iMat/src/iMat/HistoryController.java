@@ -3,6 +3,8 @@ package iMat;
 import com.sun.prism.Image;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -11,6 +13,10 @@ import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 
 public class HistoryController extends AnchorPane {
 
@@ -21,6 +27,10 @@ public class HistoryController extends AnchorPane {
     FlowPane dateFlowPane;
     @FXML
     FlowPane productFlowPane;
+    @FXML
+    ScrollPane productScrollPane;
+    @FXML
+    Label historikLabel;
 
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -45,28 +55,55 @@ public class HistoryController extends AnchorPane {
 
     }
 
-    void populateDateList(){
+    void populateDateList() {
         dateFlowPane.getChildren().clear();
 
-        if (idh.getOrders() != null) {
-            for (Order o : idh.getOrders()) {
-                dateFlowPane.getChildren().add(new HistoryCardController(this, o));
+        if (idh.getOrders().size() != 0) {
+
+            List<Order> sortedList = sortListNewestFirst();
+
+            for (Order o : sortedList) {
+                //Only add the order to the history if there were any items bought
+                if (o.getItems().size() != 0){
+                    dateFlowPane.getChildren().add(new HistoryCardController(this, o));
+                }
+
             }
         }
     }
 
-    public void populateProductList(Order o){
-        productFlowPane.getChildren().clear();
+    List<Order> sortListNewestFirst() {
 
-        for (ShoppingItem sI : o.getItems()){
-            productFlowPane.getChildren().add(new ProductCard(sI.getProduct(), ProductCard.cardType.category, mainController));
+        List<Order> sortedOrderList = idh.getOrders();
+
+        sortedOrderList.sort(new Comparator<Order>() {
+            @Override
+            public int compare(Order o1, Order o2) {
+                return o1.getDate().compareTo(o2.getDate());
+            }
+        });
+
+        Collections.reverse(sortedOrderList);
+
+        return sortedOrderList;
+
+    }
+
+    public void populateProductList(Order o, Date date) {
+
+        historikLabel.setText("Varor köpta: " + date.toString().substring(0, 16));
+
+        productFlowPane.getChildren().clear();
+        productFlowPane.setVgap(5);
+        productFlowPane.setHgap(5);
+        productScrollPane.setVvalue(0);
+
+        for (ShoppingItem sI : o.getItems()) {
+            productFlowPane.getChildren().add(new ProductCard(sI, mainController));
         }
 
 
     }
-
-
-
 
 
 }
