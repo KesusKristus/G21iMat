@@ -20,36 +20,58 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    @FXML AnchorPane startScreen;
-    @FXML ScrollPane shoppingCartPane;
-    @FXML AnchorPane accountScreen = new AccountScreen();
+    @FXML
+    AnchorPane startScreen;
+    @FXML
+    ScrollPane shoppingCartPane;
+    @FXML
+    AnchorPane accountScreen = new AccountScreen();
 
     CheckoutController checkoutController = new CheckoutController(this);
-    @FXML AnchorPane checkoutScreen = checkoutController;//new CheckoutController();
+    @FXML
+    AnchorPane checkoutScreen = checkoutController;//new CheckoutController();
 
     HistoryController historyController = new HistoryController(this);
-    @FXML AnchorPane historyScreen = historyController;
+    @FXML
+    AnchorPane historyScreen = historyController;
 
     private CategoriesController cController = new CategoriesController();
 
-    @FXML ScrollPane productScrollPane;
-    @FXML FlowPane productFlowPane;
-    @FXML Pane productPane;
-    @FXML Pane middlePane;
-    @FXML Label categoryTitle;
-    @FXML FlowPane shoppingCartFlowPane;
+    @FXML
+    ScrollPane productScrollPane;
+    @FXML
+    FlowPane productFlowPane;
+    @FXML
+    Pane productPane;
+    @FXML
+    Pane middlePane;
+    @FXML
+    Label categoryTitle;
+    @FXML
+    FlowPane shoppingCartFlowPane;
 
-    @FXML TextField searchField;
+    @FXML
+    TextField searchField;
 
-    @FXML AnchorPane homePane;
-    @FXML AnchorPane helpPane;
-    @FXML Pane iMatPane;
+    @FXML
+    AnchorPane homePane;
+    @FXML
+    AnchorPane helpPane;
+    @FXML
+    Pane iMatPane;
 
-    @FXML Label numberOfGoods;
-    @FXML Label totalPrice;
+    @FXML
+    Label numberOfGoods;
+    @FXML
+    Label totalPrice;
 
-    @FXML Pane checkoutButtonPane;
-    @FXML Pane checkoutGreyoutPane;
+    @FXML Label numberOfGoodsGREY;
+    @FXML Label totalPriceGREY;
+
+    @FXML
+    Pane checkoutButtonPane;
+    @FXML
+    Pane checkoutGreyoutPane;
 
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -60,13 +82,15 @@ public class MainController implements Initializable {
     private java.util.List<ProductCard> cardList = new ArrayList<ProductCard>();
     private java.util.List<java.util.List<ProductCard>> listList = new ArrayList<java.util.List<ProductCard>>();
 
-    @FXML Pane dryckPane;
-    @FXML Pane konto_pane;
+    @FXML
+    Pane dryckPane;
+    @FXML
+    Pane konto_pane;
 
 
     //När enter trycks från sökrutan
     @FXML
-    void onEnter(ActionEvent ae){
+    void onEnter(ActionEvent ae) {
 
         String searchString = searchField.getText();
 
@@ -87,8 +111,24 @@ public class MainController implements Initializable {
         homePane.toFront();
     }
 
-    void greyoutCheckoutButton(){checkoutGreyoutPane.toFront();}
-    void showCheckoutButton(){checkoutButtonPane.toFront();}
+    void greyoutCheckoutButton() {
+
+        double goodsSum = 0;
+        double priceSum = 0;
+        for (ProductCard p : cardList) {
+            goodsSum += p.getItem().getAmount();
+            priceSum += p.getItem().getTotal();
+        }
+
+        numberOfGoodsGREY.setText("" + (int) goodsSum + " st");
+        totalPriceGREY.setText("" + Math.round(priceSum * 100D) / 100D + " kr");
+
+        checkoutGreyoutPane.toFront();
+    }
+
+    void showCheckoutButton() {
+        checkoutButtonPane.toFront();
+    }
 
     @FXML
     void onClickKASSA() {
@@ -127,7 +167,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void onClickDRYCK(){
+    void onClickDRYCK() {
         //populateCategoryScreen(cController.dryckList, "Dryck");
         populateCategoryScreen2(listList.get(0), "Dryck");
 
@@ -138,7 +178,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void onClickFRUKTBÄR(){
+    void onClickFRUKTBÄR() {
         //populateCategoryScreen(cController.fruktBärList, "Frukt & bär");
         populateCategoryScreen2(listList.get(1), "Frukt & Bär");
         showCheckoutButton();
@@ -147,7 +187,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void onClickGRÖNSAKER(){
+    void onClickGRÖNSAKER() {
         //populateCategoryScreen(cController.grönsakerList, "Grönsaker");
         populateCategoryScreen2(listList.get(2), "Grönsaker");              //hitils bara ändrat de tre första
         showCheckoutButton();
@@ -156,7 +196,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void onClickKÖTTFISK(){
+    void onClickKÖTTFISK() {
         //populateCategoryScreen(cController.köttFiskList, "Kött & fisk");
         populateCategoryScreen2(listList.get(3), "Kött & Fisk");
         showCheckoutButton();
@@ -165,7 +205,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void onClickMEJERI(){
+    void onClickMEJERI() {
         //populateCategoryScreen(cController.mejeriList, "Mejeri");
         populateCategoryScreen2(listList.get(4), "Mejeri");
         showCheckoutButton();
@@ -175,7 +215,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void onClickPOTATISRIS(){
+    void onClickPOTATISRIS() {
         //populateCategoryScreen(cController.potatisRisList, "Potatis & ris");
         populateCategoryScreen2(listList.get(5), "Potatis & Ris");
         showCheckoutButton();
@@ -185,7 +225,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void onClickSKAFFERI(){
+    void onClickSKAFFERI() {
         //populateCategoryScreen(cController.skafferiList, "Skafferi");
         populateCategoryScreen2(listList.get(6), "Skafferi");
         showCheckoutButton();
@@ -195,7 +235,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void onClickSÖTSAKERSNACKS(){
+    void onClickSÖTSAKERSNACKS() {
         //populateCategoryScreen(cController.sötsakerSnacksList, "Sötsaker & snacks");
         populateCategoryScreen2(listList.get(7), "Sötsaker & Snacks");
         showCheckoutButton();
@@ -204,7 +244,7 @@ public class MainController implements Initializable {
         showHomeButton();
     }
 
-    public void populateSearchScreen(List<Product> products, String title){
+    public void populateSearchScreen(List<Product> products, String title) {
         productPane.toFront();
         productFlowPane.setHgap(10);
         productFlowPane.setVgap(10);
@@ -215,117 +255,117 @@ public class MainController implements Initializable {
         //this.products = products;
         productFlowPane.getChildren().clear();
 
-        for(Product p : products){
+        for (Product p : products) {
             productFlowPane.getChildren().add(new ProductCard(p, ProductCard.cardType.category, this));
         }
     }
 
-    public void populateCategoryScreen2(List<ProductCard> cards, String title){
+    public void populateCategoryScreen2(List<ProductCard> cards, String title) {
         productPane.toFront();
         productFlowPane.setHgap(10);
         productFlowPane.setVgap(10);
         productScrollPane.setVvalue(0);
         categoryTitle.setText(title);
         productFlowPane.getChildren().clear();
-        for(ProductCard p : cards){
+        for (ProductCard p : cards) {
             productFlowPane.getChildren().add(p);
         }
     }
 
-    public void productAdded(ProductCard card){
+    public void productAdded(ProductCard card) {
         boolean exists = false;
-            for (ProductCard p : cardList) {
-                if (card.equals(p)){
-                    exists = true;
-                }
+        for (ProductCard p : cardList) {
+            if (card.equals(p)) {
+                exists = true;
             }
-            if (!exists) {
-                cardList.add(card);
-                shoppingCart.addItem(card.getItem());
-            }
+        }
+        if (!exists) {
+            cardList.add(card);
+            shoppingCart.addItem(card.getItem());
+        }
     }
 
-    public void productDeleted(ProductCard card){
+    public void productDeleted(ProductCard card) {
         ProductCard removedCard = null;
-        for(ProductCard p : cardList){
-            if(card.equals(p))
-                    removedCard = p;
+        for (ProductCard p : cardList) {
+            if (card.equals(p))
+                removedCard = p;
         }
-        if(removedCard != null) {
+        if (removedCard != null) {
             cardList.remove(removedCard);
             shoppingCart.removeItem(removedCard.getItem());
         }
     }
 
-    public void clearShoppingCart(){
+    public void clearShoppingCart() {
         cardList.clear();
     }
 
-    public void updateShoppingCart(){
+    public void updateShoppingCart() {
         shoppingCartFlowPane.getChildren().clear();
         shoppingCartFlowPane.setVgap(5);
-        for( ProductCard card : cardList){
+        for (ProductCard card : cardList) {
             shoppingCartFlowPane.getChildren().add(new ProductCard(card, this));
         }
         updateShoppingCartButton();
     }
 
-    public void updateShoppingCartButton(){
+    public void updateShoppingCartButton() {
         double goodsSum = 0;
         double priceSum = 0;
-        for(ProductCard p : cardList){
+        for (ProductCard p : cardList) {
             goodsSum += p.getItem().getAmount();
             priceSum += p.getItem().getTotal();
         }
         numberOfGoods.setText("" + (int) goodsSum + " st");
-        totalPrice.setText("" + Math.round(priceSum * 100D) / 100D  + " kr");
+        totalPrice.setText("" + Math.round(priceSum * 100D) / 100D + " kr");
     }
 
 
-    public void fillListList(){
-        for(int i = 0; i < 8; i++){
+    public void fillListList() {
+        for (int i = 0; i < 8; i++) {
             listList.add(new ArrayList<ProductCard>());
         }
-        for( Product p : cController.dryckList){
+        for (Product p : cController.dryckList) {
             listList.get(0).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
-        for( Product p : cController.fruktBärList){
+        for (Product p : cController.fruktBärList) {
             listList.get(1).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
-        for( Product p : cController.grönsakerList){
+        for (Product p : cController.grönsakerList) {
             listList.get(2).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
-        for( Product p : cController.köttFiskList){
+        for (Product p : cController.köttFiskList) {
             listList.get(3).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
-        for( Product p : cController.mejeriList){
+        for (Product p : cController.mejeriList) {
             listList.get(4).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
-        for( Product p : cController.potatisRisList){
+        for (Product p : cController.potatisRisList) {
             listList.get(5).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
-        for( Product p : cController.skafferiList){
+        for (Product p : cController.skafferiList) {
             listList.get(6).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
-        for( Product p : cController.sötsakerSnacksList){
+        for (Product p : cController.sötsakerSnacksList) {
             listList.get(7).add(new ProductCard(p, ProductCard.cardType.category, this));
         }
     }
 
     public void sortListList() {
-        for(int i = 0; i < 8; i++){
+        for (int i = 0; i < 8; i++) {
             java.util.List<String> nameOrder = new ArrayList<String>();
             java.util.List<ProductCard> newProductList = new ArrayList<ProductCard>();
 
-            for(ProductCard p : listList.get(i)){
+            for (ProductCard p : listList.get(i)) {
                 nameOrder.add(p.getItem().getProduct().getName());
             }
 
             java.util.Collections.sort(nameOrder);
 
-            for(String s : nameOrder){
-                for(ProductCard p : listList.get(i)){
-                    if (s.equals(p.getItem().getProduct().getName())){
+            for (String s : nameOrder) {
+                for (ProductCard p : listList.get(i)) {
+                    if (s.equals(p.getItem().getProduct().getName())) {
                         newProductList.add(p);
                     }
                 }
@@ -335,7 +375,7 @@ public class MainController implements Initializable {
         }
     }
 
-    public void clearFillSortListList(){
+    public void clearFillSortListList() {
         listList.clear();
         fillListList();
         sortListList();
