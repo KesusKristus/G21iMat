@@ -18,7 +18,9 @@ public class HistoryCardController extends AnchorPane {
     @FXML
     Label cardDateLabel;
 
-    public HistoryCardController(Order order) {
+    HistoryController controller;
+
+    public HistoryCardController(HistoryController historyController, Order order) {
 
         FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(getClass().getResource("history_list_card.fxml"));
@@ -31,12 +33,20 @@ public class HistoryCardController extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
+        controller = historyController;
+
         this.order = order;
         date = order.getDate();
 
         cardDateLabel.setText(date.toString().substring(0, 16));
     }
 
+
+    @FXML
+    void onClick() {
+        System.out.println("CLICKED POP LIST PLS");
+        controller.populateProductList(order);
+    }
 
 
 }

@@ -27,7 +27,7 @@ public class MainController implements Initializable {
     CheckoutController checkoutController = new CheckoutController(this);
     @FXML AnchorPane checkoutScreen = checkoutController;//new CheckoutController();
 
-    HistoryController historyController = new HistoryController();
+    HistoryController historyController = new HistoryController(this);
     @FXML AnchorPane historyScreen = historyController;
 
     private CategoriesController cController = new CategoriesController();
@@ -344,7 +344,7 @@ public class MainController implements Initializable {
         middlePane.getChildren().add(checkoutScreen);
         checkoutScreen.toBack();
         middlePane.getChildren().add(historyScreen);
-        historyScreen.toFront();
+        historyScreen.toFront(); //TODO TOBACK NÄR DEN ÄR KLAR
         fillListList();
         sortListList();
     }
