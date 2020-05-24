@@ -18,7 +18,7 @@ public class HistoryCardController extends AnchorPane {
     @FXML
     Label cardDateLabel;
 
-    public HistoryCardController(Date date, Order order) {
+    public HistoryCardController(Order order) {
 
         FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(getClass().getResource("history_list_card.fxml"));
@@ -32,9 +32,9 @@ public class HistoryCardController extends AnchorPane {
         }
 
         this.order = order;
-        this.date = date;
+        date = order.getDate();
 
-        cardDateLabel.setText(date.toString());
+        cardDateLabel.setText(date.toString().substring(0, 16));
     }
 
 

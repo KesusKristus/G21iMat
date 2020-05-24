@@ -2,14 +2,16 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="historyPane" prefHeight="50.0" prefWidth="115.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="historyPane" prefHeight="35.0" prefWidth="165.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutX="11.0" layoutY="11.0" text="2020-04-16" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <Label fx:id="cardDateLabel" alignment="CENTER" prefHeight="33.0" prefWidth="165.0" text="2020-04-16" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
-            <Font size="18.0" />
+            <Font size="15.0" />
          </font>
       </Label>
+      <Pane layoutY="33.0" prefHeight="2.0" prefWidth="165.0" style="-fx-background-color: #A0A0A0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0" />
    </children>
 </fx:root>
