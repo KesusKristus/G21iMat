@@ -335,7 +335,11 @@ public class MainController implements Initializable {
         }
     }
 
-
+    public void clearFillSortListList(){
+        listList.clear();
+        fillListList();
+        sortListList();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

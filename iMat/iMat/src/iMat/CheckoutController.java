@@ -402,7 +402,7 @@ public class CheckoutController extends AnchorPane {
                 leveransDagText.getText() + " " + getMonthString() + "\nhos " + adress + ".");
 
         //reset adress
-        adress = "";
+        //adress = "";
 
         //Add order to list of orders
         Order newOrder = new Order();
@@ -437,6 +437,9 @@ public class CheckoutController extends AnchorPane {
 
         //Clear current shoppingCart
         idh.getShoppingCart().clear();
+
+        mainController.clearFillSortListList();
+
         mainController.clearShoppingCart();
         mainController.updateShoppingCart();
         mainController.updateShoppingCartButton();
