@@ -105,12 +105,7 @@ public class MainController implements Initializable {
         populateSearchScreen(idh.findProducts(searchString), "Sökresultat för '" + searchString + "'");
     }
 
-    //Återvänd till startsidan
-    @FXML
-    void onClickHEM() {
-        iMatPane.toFront();
-        startScreen.toFront();
-    }
+
 
     //Ska kallas då "startsidan" lämnas
     void showHomeButton() {
@@ -145,6 +140,15 @@ public class MainController implements Initializable {
         showHomeButton();
     }
 
+    //Återvänd till startsidan
+    @FXML
+    void onClickHEM() {
+        iMatPane.toFront();
+        startScreen.toFront();
+
+        updateShoppingCartButton();
+    }
+
     @FXML
     void onClickKASSA() {
 
@@ -164,6 +168,8 @@ public class MainController implements Initializable {
         productPane.toBack();
         accountScreen.toFront();
 
+        updateShoppingCartButton();
+
         //Visa hemknappen
         showHomeButton();
     }
@@ -173,14 +179,17 @@ public class MainController implements Initializable {
         productPane.toBack();
         helpPane.toFront();
 
+        updateShoppingCartButton();
+
         //Visa hemknappen
         showHomeButton();
     }
 
     @FXML
     void onClickDRYCK() {
-        //populateCategoryScreen(cController.dryckList, "Dryck");
         populateCategoryScreen2(listList.get(0), "Dryck");
+
+        updateShoppingCartButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -188,8 +197,9 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickFRUKTBÄR() {
-        //populateCategoryScreen(cController.fruktBärList, "Frukt & bär");
         populateCategoryScreen2(listList.get(1), "Frukt & Bär");
+
+        updateShoppingCartButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -197,8 +207,9 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickGRÖNSAKER() {
-        //populateCategoryScreen(cController.grönsakerList, "Grönsaker");
         populateCategoryScreen2(listList.get(2), "Grönsaker");              //hitils bara ändrat de tre första
+
+        updateShoppingCartButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -206,8 +217,9 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickKÖTTFISK() {
-        //populateCategoryScreen(cController.köttFiskList, "Kött & fisk");
         populateCategoryScreen2(listList.get(3), "Kött & Fisk");
+
+        updateShoppingCartButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -215,8 +227,9 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickMEJERI() {
-        //populateCategoryScreen(cController.mejeriList, "Mejeri");
         populateCategoryScreen2(listList.get(4), "Mejeri");
+
+        updateShoppingCartButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -224,8 +237,9 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickPOTATISRIS() {
-        //populateCategoryScreen(cController.potatisRisList, "Potatis & ris");
         populateCategoryScreen2(listList.get(5), "Potatis & Ris");
+
+        updateShoppingCartButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -233,8 +247,9 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickSKAFFERI() {
-        //populateCategoryScreen(cController.skafferiList, "Skafferi");
         populateCategoryScreen2(listList.get(6), "Skafferi");
+
+        updateShoppingCartButton();
 
         //Visa hemknappen
         showHomeButton();
@@ -242,8 +257,9 @@ public class MainController implements Initializable {
 
     @FXML
     void onClickSÖTSAKERSNACKS() {
-        //populateCategoryScreen(cController.sötsakerSnacksList, "Sötsaker & snacks");
         populateCategoryScreen2(listList.get(7), "Sötsaker & Snacks");
+
+        updateShoppingCartButton();
 
         //Visa hemknappen
         showHomeButton();

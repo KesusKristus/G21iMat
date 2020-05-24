@@ -317,6 +317,11 @@
                            </effect>
                         </Pane>
                         <TextField fx:id="leveransAdressText" layoutX="170.0" layoutY="78.0" prefHeight="25.0" prefWidth="180.0" />
+                        <TextField fx:id="postortText" layoutX="170.0" layoutY="128.0" prefHeight="25.0" prefWidth="180.0" />
+                        <TextField fx:id="postnummerText" layoutX="170.0" layoutY="178.0" prefHeight="25.0" prefWidth="52.0" promptText="XXXXX" />
+                        <TextField fx:id="leveransDagText" layoutX="170.0" layoutY="228.0" prefHeight="25.0" prefWidth="40.0" promptText="DD" />
+                        <TextField fx:id="leveransMånadText" layoutX="235.0" layoutY="228.0" prefHeight="25.0" prefWidth="40.0" promptText="MM" />
+                        <ComboBox fx:id="leveransTidCombo" layoutX="170.0" layoutY="278.0" prefHeight="25.0" prefWidth="104.0" promptText="Välj tid..." visibleRowCount="7" />
                         <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="80.0" prefHeight="21.0" prefWidth="113.0" text="Adress:">
                            <font>
                               <Font size="15.0" />
@@ -332,16 +337,11 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="leveransTidCombo" layoutX="170.0" layoutY="278.0" prefHeight="25.0" prefWidth="120.0" promptText="Tid" visibleRowCount="7" />
-                        <TextField fx:id="leveransDagText" layoutX="170.0" layoutY="228.0" prefHeight="25.0" prefWidth="50.0" promptText="DD" />
-                        <TextField fx:id="leveransMånadText" layoutX="235.0" layoutY="228.0" prefHeight="25.0" prefWidth="50.0" promptText="MM" />
-                        <TextField fx:id="postnummerText" layoutX="170.0" layoutY="178.0" prefHeight="25.0" prefWidth="65.0" promptText="XXX-XX" />
                         <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="180.0" prefHeight="21.0" prefWidth="113.0" text="Postnummer:">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="postortText" layoutX="170.0" layoutY="128.0" prefHeight="25.0" prefWidth="180.0" />
                         <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="130.0" prefHeight="21.0" prefWidth="113.0" text="Postort:">
                            <font>
                               <Font size="15.0" />
@@ -349,7 +349,7 @@
                         </Label>
                         <Label layoutX="176.0" layoutY="253.0" text="DD" />
                         <Label layoutX="241.0" layoutY="253.0" text="MM" />
-                        <Label alignment="CENTER" layoutX="220.0" layoutY="225.0" prefHeight="30.0" prefWidth="15.0" text="/">
+                        <Label alignment="CENTER" layoutX="210.0" layoutY="225.0" prefHeight="30.0" prefWidth="25.0" text="/">
                            <font>
                               <Font size="20.0" />
                            </font>

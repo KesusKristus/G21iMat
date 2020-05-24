@@ -302,54 +302,7 @@ public class CheckoutController extends AnchorPane {
         adress = leveransAdressText.getText();
 
         //Felkontroller
-        boolean somethingIsWrong = false;
-        if (postnummerText.getText().length() != 5) {
-            somethingIsWrong = true;
-
-            checkoutErrorLabel.setText("OGILTIGT POSTNUMMER");
-        } else if (leveransTidCombo.getSelectionModel().isEmpty()) {
-            somethingIsWrong = true;
-
-            checkoutErrorLabel.setText("VÄLJ LEVERANSTID");
-        }
-        if ((Integer.parseInt(leveransMånadText.getText()) > 12) || (Integer.parseInt(leveransMånadText.getText()) < 0)) {
-            somethingIsWrong = true;
-
-            checkoutErrorLabel.setText("OGILTIGT LEVERANSDATUM: MÅNAD");
-        } else {
-
-            //Kolla så att dagen stämmer med månaden
-            switch (Integer.parseInt(leveransMånadText.getText())) {
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12:
-                    if ((Integer.parseInt(leveransDagText.getText()) > 31) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
-                        somethingIsWrong = true;
-                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
-                    }
-                    break;
-                case 2:
-                    if ((Integer.parseInt(leveransDagText.getText()) > 29) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
-                        somethingIsWrong = true;
-                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
-                    }
-                    break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    if ((Integer.parseInt(leveransDagText.getText()) > 30) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
-                        somethingIsWrong = true;
-                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
-                    }
-                    break;
-            }
-        }
-
+        boolean somethingIsWrong = felkontrollTillKvittoSteg();
 
         if (!somethingIsWrong) {
             checkoutErrorLabel.setText("");
@@ -363,6 +316,93 @@ public class CheckoutController extends AnchorPane {
                 currentStep = 3;
             updateCheckout();
         }
+    }
+
+    private boolean felkontrollTillKvittoSteg(){
+
+        if (leveransAdressText.getText().length() == 0){
+
+            checkoutErrorLabel.setText("ANGE ADRESS");
+            return true;
+
+        }
+        if (postortText.getText().length() == 0){
+
+            checkoutErrorLabel.setText("ANGE POSTORT");
+            return true;
+
+        }
+        if (postnummerText.getText().length() == 0){
+
+            checkoutErrorLabel.setText("ANGE POSTNUMMER");
+            return true;
+
+        }
+        if (postnummerText.getText().length() != 5) {
+
+            checkoutErrorLabel.setText("OGILTIGT POSTNUMMER");
+            return true;
+
+        }
+
+        if (leveransDagText.getText().length() == 0){
+
+            checkoutErrorLabel.setText("VÄLJ LEVERANSDAG");
+            return true;
+        }
+
+        if (leveransMånadText.getText().length() == 0){
+
+            checkoutErrorLabel.setText("VÄLJ LEVERANSMÅNAD");
+            return true;
+        }
+
+        if ((Integer.parseInt(leveransMånadText.getText()) > 12) || (Integer.parseInt(leveransMånadText.getText()) < 0)) {
+            checkoutErrorLabel.setText("OGILTIGT LEVERANSDATUM: MÅNAD");
+
+            return true;
+        } else {
+            //Kolla så att dagen stämmer med månaden
+            switch (Integer.parseInt(leveransMånadText.getText())) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    if ((Integer.parseInt(leveransDagText.getText()) > 31) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
+                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
+                        return true;
+                    }
+                    break;
+                case 2:
+                    if ((Integer.parseInt(leveransDagText.getText()) > 29) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
+
+                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
+                        return true;
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    if ((Integer.parseInt(leveransDagText.getText()) > 30) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
+
+                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
+                        return true;
+                    }
+                    break;
+            }
+        }
+
+        if (leveransTidCombo.getSelectionModel().isEmpty()) {
+
+            checkoutErrorLabel.setText("VÄLJ LEVERANSTID");
+            return true;
+        }
+
+        return false;
     }
 
     private String getMonthString() {
