@@ -224,7 +224,7 @@ public class CheckoutController extends AnchorPane {
                 if (kontonummerText.getText().length() != 16) {
                     somethingIsWrong = true;
 
-                    checkoutErrorLabel.setText("FEL KORTNUMMER");
+                    checkoutErrorLabel.setText("OGILTIGT KORTNUMMER");
 
                     break;
 
@@ -234,7 +234,7 @@ public class CheckoutController extends AnchorPane {
 
                     somethingIsWrong = true;
 
-                    checkoutErrorLabel.setText("FEL GILTIGHETSTID MÅNAD");
+                    checkoutErrorLabel.setText("OGILTIG GILTIGHETSTID: MÅNAD");
 
                     break;
                 }
@@ -243,7 +243,7 @@ public class CheckoutController extends AnchorPane {
 
                     somethingIsWrong = true;
 
-                    checkoutErrorLabel.setText("FEL GILTIGHETSTID ÅR");
+                    checkoutErrorLabel.setText("OGILTIG GILTIGHETSTID: ÅR");
 
                     break;
                 }
@@ -251,7 +251,7 @@ public class CheckoutController extends AnchorPane {
                 if (cvcText.getText().length() != 3) {
                     somethingIsWrong = true;
 
-                    checkoutErrorLabel.setText("FEL CVC-KOD");
+                    checkoutErrorLabel.setText("OGILTIG CVC-KOD");
 
                     break;
                 }
@@ -288,6 +288,8 @@ public class CheckoutController extends AnchorPane {
     private void förraStegTillBetalning() {
         if (currentStep == 2)
             currentStep = 1;
+
+        checkoutErrorLabel.setText("");
 
         updateCheckout();
     }
