@@ -107,6 +107,7 @@
             </AnchorPane>
             <StackPane prefHeight="110.0" prefWidth="240.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
+                  <Pane fx:id="checkoutGreyoutPane" layoutX="10.0" layoutY="10.0" prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #A0A0A0;" />
                   <Pane fx:id="checkoutButtonPane" onMouseClicked="#onClickKASSA" prefHeight="110.0" prefWidth="240.0" styleClass="confirmButton" stylesheets="@Categories/CSS_Categories.css">
                      <children>
                         <Label layoutX="53.0" text="Till kassan">
@@ -114,22 +115,22 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="14.0" layoutY="45.0" text="Antal varor:">
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="45.0" prefHeight="30.0" prefWidth="95.0" text="Antal varor:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="15.0" layoutY="72.0" text="Totalpris:">
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="75.0" prefHeight="30.0" prefWidth="95.0" text="Totalpris:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="numberOfGoods" layoutX="111.0" layoutY="45.0" text="0 st">
+                        <Label fx:id="numberOfGoods" layoutX="125.0" layoutY="45.0" prefHeight="30.0" prefWidth="95.0" text="0 st">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalPrice" layoutX="97.0" layoutY="73.0" text="0.0 kr">
+                        <Label fx:id="totalPrice" layoutX="125.0" layoutY="75.0" prefHeight="30.0" prefWidth="95.0" text="0.0 kr">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -138,15 +139,6 @@
                      <effect>
                         <DropShadow color="#00000098" />
                      </effect>
-                  </Pane>
-                  <Pane fx:id="checkoutGreyoutPane" layoutX="10.0" layoutY="10.0" prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #A0A0A0;">
-                     <children>
-                        <Label layoutX="53.0">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                     </children>
                   </Pane>
                </children>
             </StackPane>

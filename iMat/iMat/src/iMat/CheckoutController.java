@@ -310,7 +310,7 @@ public class CheckoutController extends AnchorPane {
 
             checkoutErrorLabel.setText("VÄLJ LEVERANSTID");
         }
-        if ((leveransMånadText.getText().length() != 2) || (Integer.parseInt(leveransMånadText.getText()) > 12) || (Integer.parseInt(leveransMånadText.getText()) < 0)) {
+        if ((Integer.parseInt(leveransMånadText.getText()) > 12) || (Integer.parseInt(leveransMånadText.getText()) < 0)) {
             somethingIsWrong = true;
 
             checkoutErrorLabel.setText("OGILTIGT LEVERANSDATUM: MÅNAD");
@@ -413,7 +413,13 @@ public class CheckoutController extends AnchorPane {
         idh.getOrders().add(newOrder);
 
         //Set kvitto total price and amount
-        kvittoAntalVarorLabel.setText("" + idh.getShoppingCart().getItems().size() + " st");
+        int antalvaror = 0;
+
+        for (int i = 0; i < idh.getShoppingCart().getItems().size(); i++){
+            antalvaror += idh.getShoppingCart().getItems().get(i).getAmount();
+        }
+
+        kvittoAntalVarorLabel.setText("" + antalvaror + " st"); //TODO
         kvittoPrisLabel.setText("" + df2.format(idh.getShoppingCart().getTotal()) + " kr");
 
         //Add bought items to kvitto flowpane list
