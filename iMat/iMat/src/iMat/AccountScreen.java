@@ -75,9 +75,24 @@ public class AccountScreen extends AnchorPane {
         firstname_textfield.setOnKeyReleased(e -> {
             alphabeticalFieldValidation((TextField) e.getTarget());
         });
-
+        firstname_textfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    c.setFirstName(firstname_textfield.getText());
+                }
+            }
+        });
         surname_textfield.setOnKeyReleased(e -> {
             alphabeticalFieldValidation((TextField) e.getTarget());
+        });
+        surname_textfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                    c.setLastName(surname_textfield.getText());
+                }
+            }
         });
 
         adress1_textfield.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -96,6 +111,14 @@ public class AccountScreen extends AnchorPane {
                 return true;
             }
         });
+        adress1_textfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newPropertyValue) {
+                if (!newPropertyValue) {
+                        c.setAddress(adress1_textfield.getText());
+                }
+            }
+        });
 
         email_textfield.focusedProperty().addListener(new ChangeListener<Boolean>() {
             private Pattern VALID_EMAIL_ADDRESS_REGEX =
@@ -107,6 +130,7 @@ public class AccountScreen extends AnchorPane {
                         System.out.println("korrekt email");
                         removeErrorClass(email_textfield);
                         validationErrors.remove("email");
+                        c.setEmail(email_textfield.getText());
                     } else {
                         System.out.println("inte korrekt email");
                         validationErrors.put("email","inte korrekt email");
@@ -138,6 +162,7 @@ public class AccountScreen extends AnchorPane {
                     if (konto_textfield.getText().length() == 16) {
                         removeErrorClass(konto_textfield);
                         validationErrors.remove("konto");
+                        cc.setCardNumber(konto_textfield.getText());
                     } else {
                         System.out.println("inte korrekt kontokod mmåste vara 16 siffror");
                         validationErrors.put("konto","inte korrekt kontonummer måste vara 16 siffror");
@@ -164,6 +189,7 @@ public class AccountScreen extends AnchorPane {
                     if (månad < 13 && månad > 0 && giltighet1_textfield.getText().length() == 2) {
                       removeErrorClass(giltighet1_textfield);
                       validationErrors.remove("månad");
+                        cc.setValidMonth(Integer.parseInt(giltighet1_textfield.getText()));
                     } else {
                         System.out.println("inte korrekt månad måste vara 2 siffror");
                         validationErrors.put("månad","inte korrekt månad måste vara 2 siffror");
@@ -189,6 +215,7 @@ public class AccountScreen extends AnchorPane {
                     if (giltighet2_textfield.getText().length() == 2) {
                         removeErrorClass(giltighet2_textfield);
                         validationErrors.remove("år");
+                        cc.setValidYear(Integer.parseInt(giltighet2_textfield.getText()));
                     } else {
                         System.out.println("inte korrekt år måste vara 2 siffror");
                         validationErrors.put("år","inte korrekt år måste vara 2 siffror");
@@ -214,6 +241,7 @@ public class AccountScreen extends AnchorPane {
                     if (cvc_textfield.getText().length() == 3) {
                         removeErrorClass(cvc_textfield);
                         validationErrors.remove("cvc");
+                        cc.setVerificationCode(Integer.parseInt(cvc_textfield.getText()));
                     } else {
                         System.out.println("inte korrekt cvc måste vara 3 siffror");
                         validationErrors.put("cvc","inte korrekt cvc måste vara 3 siffror");
