@@ -27,7 +27,10 @@
                         </Label>
                         <ScrollPane hbarPolicy="NEVER" layoutX="68.0" layoutY="70.0" prefHeight="590.0" prefWidth="665.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS">
                            <content>
-                              <AnchorPane prefHeight="589.0" prefWidth="650.0" style="-fx-background-color: EAF5F5;" />
+                              <AnchorPane prefWidth="650.0">
+                                 <children>
+                                    <ImageView fitHeight="150.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children></AnchorPane>
                            </content>
                            <effect>
                               <DropShadow color="#00000055" />
@@ -67,7 +70,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Label alignment="CENTER" layoutX="232.0" layoutY="216.0" prefHeight="50.0" prefWidth="337.0" text="Senast köpta varor">
+                        <Label fx:id="previouslyBoughtLabel" alignment="CENTER" layoutX="232.0" layoutY="216.0" prefHeight="50.0" prefWidth="337.0" text="Senast köpta varor">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -324,7 +327,7 @@
                   <DropShadow color="#00000054" />
                </effect>
             </Pane>
-            <Pane layoutX="1040.0" layoutY="15.0" onMouseClicked="#onClickHJÄLP" prefHeight="30.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="1055.0" layoutY="15.0" onMouseClicked="#onClickHJÄLP" prefHeight="30.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
                <children>
                   <Label alignment="CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="75.0" text="Hjälp">
                      <font>

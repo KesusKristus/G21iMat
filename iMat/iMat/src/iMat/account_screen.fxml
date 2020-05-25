@@ -17,7 +17,7 @@
          <children>
             <SplitPane dividerPositions="0.5" prefHeight="552.0" prefWidth="800.0" styleClass="account_page" stylesheets="@account_page_style.css">
                <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minHeight="598.0" minWidth="396.0" prefHeight="598.0" prefWidth="396.0">
                      <children>
                         <Label layoutX="51.0" layoutY="80.0" text="BETALNING:">
                            <font>
@@ -45,7 +45,7 @@
                         <TextField fx:id="mobilnummer_textfield" layoutX="144.0" layoutY="379.0" />
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minHeight="598.0" minWidth="396.0" prefHeight="598.0" prefWidth="396.0">
                      <children>
                         <Label fx:id="uppgifter_label" layoutX="54.0" layoutY="87.0" text="UPPGIFTER:">
                            <font>

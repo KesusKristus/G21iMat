@@ -77,8 +77,10 @@ public class MainController implements Initializable {
 
     @FXML
     FlowPane previouslyBoughtFlowPane;
-    @FXML ScrollPane previouslyBoughtScrollPane;
-
+    @FXML
+    ScrollPane previouslyBoughtScrollPane;
+    @FXML
+    Label previouslyBoughtLabel;
 
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -413,7 +415,7 @@ public class MainController implements Initializable {
         sortListList();
     }
 
-    public void updatePreviouslyBought(){
+    public void updatePreviouslyBought() {
 
         //TA BORT ALLA TOMMA ORDERS SOM GÖR ALLT OCOOLT
         idh.getOrders().removeIf(o -> o.getItems().size() == 0);
@@ -427,13 +429,16 @@ public class MainController implements Initializable {
         //Make a list with the newest order first
         List<Order> sortedOrderList = historyController.sortListNewestFirst();
 
+        previouslyBoughtLabel.setText("Senast köpta varor");
+
         if (idh.getOrders().size() != 0) {
             Order lastOrder = sortedOrderList.get(0);
 
             for (ShoppingItem sI : lastOrder.getItems()) {
                 previouslyBoughtFlowPane.getChildren().add(new ProductCard(sI, this));
             }
-        }
+        } else
+            previouslyBoughtLabel.setText("När ett köp utförts visas varorna här");
 
         previouslyBoughtScrollPane.setVvalue(0);
     }
