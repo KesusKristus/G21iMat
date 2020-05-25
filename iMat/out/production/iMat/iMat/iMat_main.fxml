@@ -98,11 +98,16 @@
                         <DropShadow color="#00000053" />
                      </effect>
                   </ScrollPane>
-                  <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kundvagn">
+                  <Label alignment="CENTER" layoutX="60.0" layoutY="10.0" prefHeight="60.0" prefWidth="160.0" text="Kundvagn">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="24.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@Images/kundvagn.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <StackPane prefHeight="110.0" prefWidth="240.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -176,7 +181,7 @@
       </AnchorPane>
       <AnchorPane layoutX="7.0" layoutY="148.0" prefHeight="480.0" prefWidth="240.0" style="-fx-background-color: F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label alignment="CENTER" layoutX="20.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" text="Kategorier">
+            <Label alignment="CENTER" layoutX="60.0" layoutY="10.0" prefHeight="60.0" prefWidth="160.0" text="Kategorier">
                <font>
                   <Font size="30.0" />
                </font>
@@ -276,6 +281,11 @@
                   <DropShadow color="#00000018" />
                </effect>
             </Pane>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="24.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+               <image>
+                  <Image url="@Images/kategorier.png" />
+               </image>
+            </ImageView>
          </children>
          <effect>
             <DropShadow color="#00000054" />
@@ -294,25 +304,35 @@
                   <Image url="@Images/sök.png" />
                </image>
             </ImageView>
-            <Pane layoutX="1171.0" layoutY="15.0" onMouseClicked="#onClickKONTO" prefHeight="30.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="1169.0" layoutY="15.0" onMouseClicked="#onClickKONTO" prefHeight="30.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css" AnchorPane.rightAnchor="15.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="95.0" text="Konto">
+                  <Label alignment="CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="75.0" text="Konto">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@Images/konto.png" />
+                     </image>
+                  </ImageView>
                </children>
                <effect>
                   <DropShadow color="#00000054" />
                </effect>
             </Pane>
-            <Pane layoutX="1055.0" layoutY="15.0" onMouseClicked="#onClickHJÄLP" prefHeight="30.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+            <Pane layoutX="1040.0" layoutY="15.0" onMouseClicked="#onClickHJÄLP" prefHeight="30.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
                <children>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="95.0" text="Hjälp">
+                  <Label alignment="CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="75.0" text="Hjälp">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                     <image>
+                        <Image url="@Images/hjälp.png" />
+                     </image>
+                  </ImageView>
                </children>
                <effect>
                   <DropShadow color="#00000053" />
