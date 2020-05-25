@@ -139,24 +139,29 @@
                         <DropShadow color="#00000098" />
                      </effect>
                   </Pane>
-                  <Pane fx:id="checkoutGreyoutPane" layoutX="10.0" layoutY="10.0" prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #D0D0D0;">
+                  <Pane fx:id="checkoutGreyoutPane" layoutX="10.0" layoutY="10.0" prefHeight="110.0" prefWidth="240.0" style="-fx-background-color: #909090;">
                      <children>
-                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="45.0" prefHeight="30.0" prefWidth="95.0" text="Antal varor:">
+                        <Label layoutX="53.0" text="Till kassan" textFill="WHITE">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="45.0" prefHeight="30.0" prefWidth="95.0" text="Antal varor:" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="75.0" prefHeight="30.0" prefWidth="95.0" text="Totalpris:">
+                        <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="75.0" prefHeight="30.0" prefWidth="95.0" text="Totalpris:" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="numberOfGoodsGREY" layoutX="125.0" layoutY="45.0" prefHeight="30.0" prefWidth="95.0" text="0 st">
+                        <Label fx:id="numberOfGoodsGREY" layoutX="125.0" layoutY="45.0" prefHeight="30.0" prefWidth="95.0" text="0 st" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="totalPriceGREY" layoutX="125.0" layoutY="75.0" prefHeight="30.0" prefWidth="95.0" text="0.0 kr">
+                        <Label fx:id="totalPriceGREY" layoutX="125.0" layoutY="75.0" prefHeight="30.0" prefWidth="95.0" text="0.0 kr" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
