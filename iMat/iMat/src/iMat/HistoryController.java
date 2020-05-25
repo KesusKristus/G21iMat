@@ -72,7 +72,7 @@ public class HistoryController extends AnchorPane {
         }
     }
 
-    List<Order> sortListNewestFirst() {
+    public List<Order> sortListNewestFirst() {
 
         List<Order> sortedOrderList = idh.getOrders();
 

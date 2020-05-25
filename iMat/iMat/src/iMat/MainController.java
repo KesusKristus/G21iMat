@@ -65,13 +65,20 @@ public class MainController implements Initializable {
     @FXML
     Label totalPrice;
 
-    @FXML Label numberOfGoodsGREY;
-    @FXML Label totalPriceGREY;
+    @FXML
+    Label numberOfGoodsGREY;
+    @FXML
+    Label totalPriceGREY;
 
     @FXML
     Pane checkoutButtonPane;
     @FXML
     Pane checkoutGreyoutPane;
+
+    @FXML
+    FlowPane previouslyBoughtFlowPane;
+    @FXML ScrollPane previouslyBoughtScrollPane;
+
 
     IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -88,11 +95,11 @@ public class MainController implements Initializable {
     Pane konto_pane;
 
 
-    public List<ProductCard> getCardList(){
+    public List<ProductCard> getCardList() {
         return cardList;
     }
 
-    public List<List<ProductCard>> getListList(){
+    public List<List<ProductCard>> getListList() {
         return listList;
     }
 
@@ -104,7 +111,6 @@ public class MainController implements Initializable {
 
         populateSearchScreen(idh.findProducts(searchString), "Sökresultat för '" + searchString + "'");
     }
-
 
 
     //Ska kallas då "startsidan" lämnas
@@ -131,7 +137,7 @@ public class MainController implements Initializable {
         checkoutButtonPane.toFront();
     }
 
-    public void openHistoryPane(){
+    public void openHistoryPane() {
         historyController.populateDateList();
         productPane.toFront();
         historyScreen.toFront();
@@ -341,7 +347,7 @@ public class MainController implements Initializable {
         numberOfGoods.setText("" + (int) goodsSum + " st");
         totalPrice.setText("" + Math.round(priceSum * 100D) / 100D + " kr");
 
-        if (goodsSum == 0){
+        if (goodsSum == 0) {
             greyoutCheckoutButton();
         } else
             showCheckoutButton();
@@ -407,6 +413,31 @@ public class MainController implements Initializable {
         sortListList();
     }
 
+    public void updatePreviouslyBought(){
+
+        //TA BORT ALLA TOMMA ORDERS SOM GÖR ALLT OCOOLT
+        idh.getOrders().removeIf(o -> o.getItems().size() == 0);
+
+
+        previouslyBoughtFlowPane.getChildren().clear();
+
+        previouslyBoughtFlowPane.setHgap(10);
+        previouslyBoughtFlowPane.setVgap(10);
+
+        //Make a list with the newest order first
+        List<Order> sortedOrderList = historyController.sortListNewestFirst();
+
+        if (idh.getOrders().size() != 0) {
+            Order lastOrder = sortedOrderList.get(0);
+
+            for (ShoppingItem sI : lastOrder.getItems()) {
+                previouslyBoughtFlowPane.getChildren().add(new ProductCard(sI, this));
+            }
+        }
+
+        previouslyBoughtScrollPane.setVvalue(0);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -419,6 +450,10 @@ public class MainController implements Initializable {
         checkoutScreen.toBack();
         middlePane.getChildren().add(historyScreen);
         historyScreen.toBack();
+
+        //Fill tidigare köpta varor
+        updatePreviouslyBought();
+
         fillListList();
         sortListList();
     }

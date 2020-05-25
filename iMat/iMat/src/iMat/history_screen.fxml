@@ -10,7 +10,7 @@
    <children>
       <ScrollPane hbarPolicy="NEVER" layoutX="52.0" layoutY="70.0" prefHeight="590.0" prefWidth="180.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="165.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="165.0">
                <children>
                   <FlowPane fx:id="dateFlowPane" prefHeight="172.0" prefWidth="165.0" />
                </children>
@@ -19,18 +19,21 @@
       </ScrollPane>
       <ScrollPane fx:id="productScrollPane" hbarPolicy="NEVER" layoutX="249.0" layoutY="70.0" prefHeight="590.0" prefWidth="500.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="485.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="485.0">
                <children>
                   <FlowPane fx:id="productFlowPane" prefHeight="169.0" prefWidth="485.0" />
                </children>
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Label fx:id="historikLabel" alignment="CENTER" layoutX="349.0" prefHeight="70.0" prefWidth="160.0" text="Historik" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="historikLabel" alignment="CENTER" layoutX="349.0" prefHeight="65.0" prefWidth="500.0" text="Historik" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label layoutX="264.0" layoutY="53.0" text="Välj ett datum i listan till vänster för att få upp de varor som köptes då." />
+      <Label layoutX="263.0" layoutY="52.0" text="Välj ett datum i listan till vänster för att få upp de varor som köptes då.">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
    </children>
 </fx:root>

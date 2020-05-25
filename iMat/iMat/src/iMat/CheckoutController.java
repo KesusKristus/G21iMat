@@ -494,6 +494,8 @@ public class CheckoutController extends AnchorPane {
         //Clear current shoppingCart
         idh.getShoppingCart().clear();
 
+        mainController.updatePreviouslyBought();
+
         mainController.clearFillSortListList();
 
         mainController.clearShoppingCart();
