@@ -89,9 +89,9 @@ public class HistoryController extends AnchorPane {
 
     }
 
-    public void populateProductList(Order o, Date date) {
+    public void populateProductList(Order o, String dateS) {
 
-        historikLabel.setText("Varor köpta: " + date.toString().substring(0, 16));
+        historikLabel.setText("Varor köpta: " + dateS);
 
         productFlowPane.getChildren().clear();
         productFlowPane.setVgap(5);
