@@ -2,6 +2,15 @@
     -fx-background-color: #EAF5F5;
 }
 
+.split-pane > .split-pane-divider {
+    -fx-padding: 0 0.05 0 0.05;
+}
+
 .error {
     -fx-border-color: #FF0000;
+}
+
+.savebtn:hover {
+    -fx-background-color: #EAF5F5;
+    -fx-cursor: hand;
 }

@@ -1,6 +1,5 @@
 package iMat;
 
-import com.sun.prism.Image;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
