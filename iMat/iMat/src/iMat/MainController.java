@@ -418,9 +418,8 @@ public class MainController implements Initializable {
 
     public void updatePreviouslyBought() {
 
-        //TA BORT ALLA TOMMA ORDERS SOM GÖR ALLT OCOOLT
+        //Remove empty orders - there should be none, but if there are
         idh.getOrders().removeIf(o -> o.getItems().size() == 0);
-
 
         previouslyBoughtFlowPane.getChildren().clear();
 
