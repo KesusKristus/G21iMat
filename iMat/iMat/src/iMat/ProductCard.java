@@ -93,7 +93,7 @@ public class ProductCard extends AnchorPane {
             }
 
             cardName.setText(product.getName());
-            cardPrice.setText("" + product.getPrice() + " kr/st");
+            cardPrice.setText("" + product.getPrice() + " " + product.getUnit());
 
 
             if (type == cardType.category){
@@ -129,7 +129,7 @@ public class ProductCard extends AnchorPane {
         this.parentController = parentController;
 
         cardName.setText(item.getProduct().getName());
-        cardPrice.setText( "" + item.getProduct().getPrice() + " kr/st" );
+        cardPrice.setText( "" + item.getProduct().getPrice() + " " + item.getProduct().getUnit() );
         cardImage.setImage(IMatDataHandler.getInstance().getFXImage(item.getProduct(), 90, 70));
         cardAmount.setText("" + (int) item.getAmount());
     }
@@ -152,7 +152,7 @@ public class ProductCard extends AnchorPane {
         this.parentController = parentController;
 
         cardName.setText(item.getProduct().getName());
-        cardPrice.setText( "" + item.getProduct().getPrice() + " kr/st" );
+        cardPrice.setText( "" + item.getProduct().getPrice() + " " + item.getProduct().getUnit() );
         cardImage.setImage(idh.getFXImage(item.getProduct(), 90, 70));
 
 

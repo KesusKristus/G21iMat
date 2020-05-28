@@ -304,7 +304,7 @@ public class MainController implements Initializable {
     public void productAdded(ProductCard card) {
         boolean exists = false;
         for (ProductCard p : cardList) {
-            if (card.equals(p)) {
+            if (card.getItem().getProduct().getProductId() == p.getItem().getProduct().getProductId()) {
                 exists = true;
             }
         }
@@ -337,6 +337,7 @@ public class MainController implements Initializable {
             shoppingCartFlowPane.getChildren().add(new ProductCard(card, this));
         }
         updateShoppingCartButton();
+        updatePreviouslyBought();
     }
 
     public void updateShoppingCartButton() {
