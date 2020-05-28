@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import org.w3c.dom.Text;
 import se.chalmers.cse.dat216.project.CreditCard;
 import se.chalmers.cse.dat216.project.Customer;
@@ -132,13 +134,12 @@ public class AccountScreen extends AnchorPane {
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean oldProertyValue, Boolean newPropertyValue) {
                 if (!newPropertyValue) {
                     if (validate(email_textfield.getText())) {
-                        System.out.println("korrekt email");
                         removeErrorClass(email_textfield);
                         validationErrors.remove("email");
                         c.setEmail(email_textfield.getText());
                     } else {
-                        System.out.println("inte korrekt email");
                         validationErrors.put("email","inte korrekt email");
+                        printNewError();
                         addErrorClass(email_textfield);
                     }
                 }
@@ -153,7 +154,7 @@ public class AccountScreen extends AnchorPane {
 
         konto_textfield.setOnKeyReleased(e -> {
             TextField target = ((TextField) e.getTarget());
-            if (target.getText().length() < 16) {
+            if (target.getText().length() <= 16) {
                 numericFieldValidation((TextField) e.getTarget());
             }else {
                 target.setText(target.getText().substring(0, 16));
@@ -169,17 +170,28 @@ public class AccountScreen extends AnchorPane {
                         validationErrors.remove("konto");
                         cc.setCardNumber(konto_textfield.getText());
                     } else {
-                        System.out.println("inte korrekt kontokod mmåste vara 16 siffror");
                         validationErrors.put("konto","inte korrekt kontonummer måste vara 16 siffror");
+                        printNewError();
                         addErrorClass(konto_textfield);
                     }
                 }
             }
         });
+        konto_textfield.setOnAction(actionEvent -> {
+            if (konto_textfield.getText().length() == 16) {
+                removeErrorClass(konto_textfield);
+                validationErrors.remove("konto");
+                cc.setCardNumber(konto_textfield.getText());
+            } else {
+                validationErrors.put("konto","inte korrekt kontonummer måste vara 16 siffror");
+                printNewError();
+                addErrorClass(konto_textfield);
+            }
+        });
 
         giltighet1_textfield.setOnKeyReleased(e -> {
             TextField target = ((TextField) e.getTarget());
-            if (target.getText().length() < 2) {
+            if (target.getText().length() <= 2) {
                 numericFieldValidation((TextField) e.getTarget());
             } else {
                 target.setText(target.getText().substring(0, 2));
@@ -196,17 +208,29 @@ public class AccountScreen extends AnchorPane {
                       validationErrors.remove("månad");
                         cc.setValidMonth(Integer.parseInt(giltighet1_textfield.getText()));
                     } else {
-                        System.out.println("inte korrekt månad måste vara 2 siffror");
                         validationErrors.put("månad","inte korrekt månad måste vara 2 siffror");
+                        printNewError();
                         addErrorClass(giltighet1_textfield);
                     }
                 }
             }
         });
+        giltighet1_textfield.setOnAction(actionEvent -> {
+            Integer månad = Integer.parseInt(giltighet1_textfield.getText());
+            if (månad < 13 && månad > 0 && giltighet1_textfield.getText().length() == 2) {
+                removeErrorClass(giltighet1_textfield);
+                validationErrors.remove("månad");
+                cc.setValidMonth(Integer.parseInt(giltighet1_textfield.getText()));
+            } else {
+                validationErrors.put("månad","inte korrekt månad måste vara 2 siffror");
+                printNewError();
+                addErrorClass(giltighet1_textfield);
+            }
+        });
 
         giltighet2_textfield.setOnKeyReleased(e -> {
             TextField target = ((TextField) e.getTarget());
-            if (target.getText().length() < 2) {
+            if (target.getText().length() <= 2) {
                 numericFieldValidation((TextField) e.getTarget());
             }else {
                 target.setText(target.getText().substring(0, 2));
@@ -222,17 +246,28 @@ public class AccountScreen extends AnchorPane {
                         validationErrors.remove("år");
                         cc.setValidYear(Integer.parseInt(giltighet2_textfield.getText()));
                     } else {
-                        System.out.println("inte korrekt år måste vara 2 siffror");
                         validationErrors.put("år","inte korrekt år måste vara 2 siffror");
+                        printNewError();
                         addErrorClass(giltighet2_textfield);
                     }
                 }
             }
         });
+        giltighet2_textfield.setOnAction(actionEvent -> {
+            if (giltighet2_textfield.getText().length() == 2) {
+                removeErrorClass(giltighet2_textfield);
+                validationErrors.remove("år");
+                cc.setValidYear(Integer.parseInt(giltighet2_textfield.getText()));
+            } else {
+                validationErrors.put("år","inte korrekt år måste vara 2 siffror");
+                printNewError();
+                addErrorClass(giltighet2_textfield);
+            }
+        });
 
         cvc_textfield.setOnKeyReleased(e -> {
             TextField target = ((TextField) e.getTarget());
-            if (target.getText().length() < 3) {
+            if (target.getText().length() <= 3) {
                 numericFieldValidation((TextField) e.getTarget());
             }else {
                 target.setText(target.getText().substring(0, 3));
@@ -248,16 +283,28 @@ public class AccountScreen extends AnchorPane {
                         validationErrors.remove("cvc");
                         cc.setVerificationCode(Integer.parseInt(cvc_textfield.getText()));
                     } else {
-                        System.out.println("inte korrekt cvc måste vara 3 siffror");
                         validationErrors.put("cvc","inte korrekt cvc måste vara 3 siffror");
+                        printNewError();
                         addErrorClass(cvc_textfield);
                     }
                 }
             }
         });
+        cvc_textfield.setOnAction(actionEvent -> {
+            if (cvc_textfield.getText().length() == 3) {
+                removeErrorClass(cvc_textfield);
+                validationErrors.remove("cvc");
+                cc.setVerificationCode(Integer.parseInt(cvc_textfield.getText()));
+            } else {
+                validationErrors.put("cvc","inte korrekt cvc måste vara 3 siffror");
+                printNewError();
+                addErrorClass(cvc_textfield);
+            }
+        });
+
         mobilnummer_textfield.setOnKeyReleased(e -> {
             TextField target = ((TextField) e.getTarget());
-            if (target.getText().length() < 10) {
+            if (target.getText().length() <= 10) {
                 numericFieldValidation((TextField) e.getTarget());
             } else {
                 target.setText(target.getText().substring(0, 10));
@@ -292,18 +339,25 @@ public class AccountScreen extends AnchorPane {
     @FXML
     public void onClickSpara() {
         if (validationErrors.size() == 0) {
-            error_label.setText("");
+            error_label.setTextAlignment(TextAlignment.CENTER);
+            error_label.setTextFill(Color.color(0, 1, 0));
+            error_label.setText("SPARAT!");
             setAllCustomerData();
             IMatDataHandler.getInstance().shutDown();
         } else {
-            String text = "";
-            for (Map.Entry<String, String> entry : validationErrors.entrySet()) {
-                System.out.println(entry.getKey() + " = " + entry.getValue());
-                text = entry.getValue();
-                break;
-            }
-            error_label.setText(text);
+            printNewError();
         }
+    }
+
+    public void printNewError() {
+        String text = "";
+        for (Map.Entry<String, String> entry : validationErrors.entrySet()) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+            text = entry.getValue();
+            break;
+        }
+        error_label.setTextFill(Color.color(1, 0, 0));
+        error_label.setText(text);
     }
 
     @FXML
@@ -316,7 +370,7 @@ public class AccountScreen extends AnchorPane {
         surname_textfield.setText(c.getLastName());
         adress1_textfield.setText(c.getAddress());
         email_textfield.setText(c.getEmail());
-        mobilnummer_textfield.setText(c.getPhoneNumber());
+        mobilnummer_textfield.setText(c.getMobilePhoneNumber());
         konto_textfield.setText(cc.getCardNumber());
         giltighet1_textfield.setText(String.valueOf(cc.getValidMonth()));
         giltighet2_textfield.setText(String.valueOf(cc.getValidYear()));
