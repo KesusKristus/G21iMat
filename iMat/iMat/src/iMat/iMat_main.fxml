@@ -102,7 +102,7 @@
          <children>
             <AnchorPane prefHeight="548.0" prefWidth="240.0">
                <children>
-                  <ScrollPane fx:id="shoppingCartPane" hbarPolicy="NEVER" layoutY="70.0" prefHeight="480.0" prefWidth="240.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS">
+                  <ScrollPane fx:id="shoppingCartScrollPane" hbarPolicy="NEVER" layoutY="70.0" prefHeight="480.0" prefWidth="240.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS">
                      <content>
                         <FlowPane fx:id="shoppingCartFlowPane" prefHeight="200.0" prefWidth="225.0" />
                      </content>

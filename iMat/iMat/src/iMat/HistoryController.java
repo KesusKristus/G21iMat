@@ -1,5 +1,6 @@
 package iMat;
 
+import iMat.Categories.CategoriesController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -35,9 +36,12 @@ public class HistoryController extends AnchorPane {
 
     MainController mainController;
 
-    public HistoryController(MainController mainController) {
+    CategoriesController categoriesController;
+
+    public HistoryController(MainController mainController, CategoriesController categoriesController) {
 
         this.mainController = mainController;
+        this.categoriesController = categoriesController;
 
         FXMLLoader fxmlLoader;
         fxmlLoader = new FXMLLoader(getClass().getResource("history_screen.fxml"));
@@ -98,7 +102,7 @@ public class HistoryController extends AnchorPane {
         productScrollPane.setVvalue(0);
 
         for (ShoppingItem sI : o.getItems()) {
-            productFlowPane.getChildren().add(ProductCard.createProductCardCategory(sI));
+            productFlowPane.getChildren().add(ProductCard.createProductCardCategory(categoriesController.findShoppingItem(sI.getProduct().getProductId())));
         }
 
 

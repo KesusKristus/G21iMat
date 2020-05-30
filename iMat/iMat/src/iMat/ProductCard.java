@@ -48,7 +48,7 @@ public class ProductCard extends AnchorPane {
             productImage = idh.getFXImage(item.getProduct(), 100, 80);
         } else {
             fxmlLoader = new FXMLLoader(getClass().getResource("product_card_cart.fxml"));
-            productImage = idh.getFXImage(item.getProduct(), 90, 90);
+            productImage = idh.getFXImage(item.getProduct(), 90, 70);
         }
 
         fxmlLoader.setRoot(this);

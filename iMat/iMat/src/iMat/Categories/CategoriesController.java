@@ -198,7 +198,7 @@ public class CategoriesController {
     }
 
     //Finds and returns a ShoppingItem from the id number of a product
-    private ShoppingItem findShoppingItem(int idNumber) {
+    public ShoppingItem findShoppingItem(int idNumber) {
 
         for (ShoppingItem sI : allShoppingItemList) {
             if (sI.getProduct().getProductId() == idNumber)

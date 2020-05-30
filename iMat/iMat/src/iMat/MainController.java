@@ -1,12 +1,9 @@
 package iMat;
 
 import iMat.Categories.CategoriesController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -16,13 +13,7 @@ import javafx.scene.layout.Pane;
 import se.chalmers.cse.dat216.project.*;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
 
 public class MainController implements Initializable {
 
@@ -30,7 +21,7 @@ public class MainController implements Initializable {
     @FXML
     AnchorPane startScreen;
     @FXML
-    ScrollPane shoppingCartPane;
+    ScrollPane shoppingCartScrollPane;
 
     @FXML
     ScrollPane productScrollPane;
@@ -89,11 +80,11 @@ public class MainController implements Initializable {
     @FXML
     AnchorPane checkoutScreen = checkoutController;
 
-    private HistoryController historyController = new HistoryController(this);
+    private CategoriesController categoriesController = new CategoriesController();
+
+    private HistoryController historyController = new HistoryController(this, categoriesController);
     @FXML
     AnchorPane historyScreen = historyController;
-
-    private CategoriesController categoriesController = new CategoriesController();
 
     private IMatDataHandler idh = IMatDataHandler.getInstance();
 
@@ -103,8 +94,12 @@ public class MainController implements Initializable {
         @Override
         public void shoppingCartChanged(CartEvent cartEvent) {
             updateShoppingCart();
+            updateProducts();
+            updateShoppingCartButton();
         }
     };
+
+    private List<ShoppingItem> currentProductsOnShow = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -156,17 +151,28 @@ public class MainController implements Initializable {
         for (ShoppingItem sI : sIList) {
             productFlowPane.getChildren().add(ProductCard.createProductCardCategory(sI));
         }
+        currentProductsOnShow = sIList;
+
+        //Show the home button / update whether the checkout button is greyed out or not
+        updateButtonStates();
+    }
+
+    private void updateProducts() {
+        productFlowPane.getChildren().clear();
+
+        for (ShoppingItem sI : currentProductsOnShow) {
+            productFlowPane.getChildren().add(ProductCard.createProductCardCategory(sI));
+        }
     }
 
     private void updateShoppingCart() {
         shoppingCartFlowPane.getChildren().clear();
 
-        List<ShoppingItem> reversedCart = shoppingCart.getItems();
-        Collections.reverse(reversedCart);
-
-        for (ShoppingItem sI : reversedCart) {
+        for (ShoppingItem sI : shoppingCart.getItems()) {
             shoppingCartFlowPane.getChildren().add(ProductCard.createProductCardCart(sI));
         }
+
+        shoppingCartScrollPane.setVvalue(1);
     }
 
     private void updatePreviouslyBought() {
@@ -185,7 +191,7 @@ public class MainController implements Initializable {
             Order lastOrder = sortedOrderList.get(0);
 
             for (ShoppingItem sI : lastOrder.getItems()) {
-                previouslyBoughtFlowPane.getChildren().add(ProductCard.createProductCardCategory(sI));
+                previouslyBoughtFlowPane.getChildren().add(ProductCard.createProductCardCategory(categoriesController.findShoppingItem(sI.getProduct().getProductId())));
             }
         } else
             previouslyBoughtLabel.setText("När ett köp utförts visas varorna här");
@@ -196,9 +202,33 @@ public class MainController implements Initializable {
 
 
 
+    public void updateShoppingCartButton() {
+
+        numberOfGoods.setText("" + (int) shoppingCart.getItems().size() + " st");
+        numberOfGoodsGREY.setText("" + (int) shoppingCart.getItems().size() + " st");
+        totalPrice.setText("" + Math.round(shoppingCart.getTotal() * 100D) / 100D + " kr");
+        totalPriceGREY.setText("" + Math.round(shoppingCart.getTotal() * 100D) / 100D + " kr");
+
+        if (shoppingCart.getItems().size() == 0) {
+            showCheckoutButton(false);
+        } else
+            showCheckoutButton(true);
+    }
+
+    void showCheckoutButton(boolean shouldItShow) {
+        if (shouldItShow){
+            checkoutButtonPane.toFront();
+        } else {
+            checkoutGreyoutPane.toFront();
+        }
+
+
+    }
+
     //Should always be called when leaving the homepage/startpage
-    void showHomeButton() {
+    void updateButtonStates() {
         homePane.toFront();
+        updateShoppingCartButton();
     }
 
     public void openHistoryPage() {
@@ -207,7 +237,7 @@ public class MainController implements Initializable {
         historyScreen.toFront();
 
         //Show the home button
-        showHomeButton();
+        updateButtonStates();
     }
 
     public void openHomePage(){
@@ -216,24 +246,44 @@ public class MainController implements Initializable {
 
         startScreen.toFront();
 
-        //updateShoppingCartButton();
+        updatePreviouslyBought();
+        updateShoppingCartButton();
     }
 
+    void performSearch() {
+
+        String searchString = searchField.getText();
+
+        if (searchString.length() != 0) {
+            populateSearchScreen(searchString);
+        }
+
+        searchField.setText("");
+        homePane.requestFocus();
+    }
+
+    public void populateSearchScreen(String searchString) {
+        productPane.toFront();
+
+        //update title
+        categoryTitle.setText("Sökresultat för '" + searchString + "'");
+
+        populateProducts("Sökresultat för '" + searchString + "'", categoriesController.searchShoppingItems(searchString));
+    }
 
     @FXML
     void onClickHEM() {
         openHomePage();
     }
 
-
     //Perform search if the search text field is in focus and enter is pressed or if the search button is presesd
     @FXML
     void onEnter(ActionEvent ae) {
-        //performSearch();
+        performSearch();
     }
     @FXML
     void onClickSök() {
-        //performSearch();
+        performSearch();
     }
 
     @FXML
@@ -244,10 +294,10 @@ public class MainController implements Initializable {
         productPane.toBack();
         checkoutScreen.toFront();
 
-        //greyoutCheckoutButton();
-
         //Visa hemknappen
-        showHomeButton();
+        updateButtonStates();
+
+        showCheckoutButton(false);
     }
 
     @FXML
@@ -255,10 +305,8 @@ public class MainController implements Initializable {
         productPane.toBack();
         accountScreen.toFront();
 
-        //updateShoppingCartButton();
-
-        //Visa hemknappen
-        showHomeButton();
+        //Show the home button / update whether the checkout button is greyed out or not
+        updateButtonStates();
     }
 
     @FXML
@@ -266,107 +314,48 @@ public class MainController implements Initializable {
         productPane.toBack();
         helpPane.toFront();
 
-        //updateShoppingCartButton();
-
-        //Visa hemknappen
-        showHomeButton();
+        //Show the home button / update whether the checkout button is greyed out or not
+        updateButtonStates();
     }
 
     @FXML
     void onClickDRYCK() {
-        /*populateCategoryScreen2(listList.get(0), "Dryck");
-
-        updateShoppingCartButton();*/
-
         populateProducts("Dryck", categoriesController.getCategoryList(CategoriesController.Categories.DRYCK));
-
-        //Visa hemknappen
-        showHomeButton();
     }
 
     @FXML
     void onClickFRUKTBÄR() {
-        /*populateCategoryScreen2(listList.get(1), "Frukt & Bär");
-
-        updateShoppingCartButton();*/
-
         populateProducts("Frukt & Bär", categoriesController.getCategoryList(CategoriesController.Categories.FRUKT));
-
-        //Visa hemknappen
-        showHomeButton();
     }
 
     @FXML
     void onClickGRÖNSAKER() {
-        /*populateCategoryScreen2(listList.get(2), "Grönsaker");
-
-        updateShoppingCartButton();*/
-
         populateProducts("Grönsaker",categoriesController.getCategoryList(CategoriesController.Categories.GRÖNT));
-
-        //Visa hemknappen
-        showHomeButton();
     }
 
     @FXML
     void onClickKÖTTFISK() {
-        /*populateCategoryScreen2(listList.get(3), "Kött & Fisk");
-
-        updateShoppingCartButton();*/
-
         populateProducts("Kött & Fisk",categoriesController.getCategoryList(CategoriesController.Categories.KÖTT));
-
-        //Visa hemknappen
-        showHomeButton();
     }
 
     @FXML
     void onClickMEJERI() {
-        /*populateCategoryScreen2(listList.get(4), "Mejeri");
-
-        updateShoppingCartButton();*/
-
         populateProducts("Mejeri",categoriesController.getCategoryList(CategoriesController.Categories.MEJERI));
-
-        //Visa hemknappen
-        showHomeButton();
     }
 
     @FXML
     void onClickPOTATISRIS() {
-        /*populateCategoryScreen2(listList.get(5), "Potatis & Ris");
-
-        updateShoppingCartButton();*/
-
         populateProducts("Potatis & Ris",categoriesController.getCategoryList(CategoriesController.Categories.POTATIS));
-
-        //Visa hemknappen
-        showHomeButton();
     }
 
     @FXML
     void onClickSKAFFERI() {
-        /*populateCategoryScreen2(listList.get(6), "Skafferi");
-
-        updateShoppingCartButton();*/
-
         populateProducts("Skafferi",categoriesController.getCategoryList(CategoriesController.Categories.SKAFFERI));
-
-        //Visa hemknappen
-        showHomeButton();
     }
 
     @FXML
     void onClickSÖTSAKERSNACKS() {
-        /*populateCategoryScreen2(listList.get(7), "Sötsaker & Snacks");
-
-        updateShoppingCartButton();*/
-
         populateProducts("Sötsaker & Snacks",categoriesController.getCategoryList(CategoriesController.Categories.SÖTT));
-
-        //Visa hemknappen
-        showHomeButton();
-
     }
 
     //private java.util.List<ShoppingItem> shoppingCartList = new ArrayList<ShoppingItem>();
@@ -386,17 +375,7 @@ public class MainController implements Initializable {
 
 
 
-    void performSearch() {
 
-        String searchString = searchField.getText();
-
-        if (searchString.length() != 0) {
-            //populateSearchScreen(searchString);
-        }
-
-        searchField.setText("");
-        homePane.requestFocus();
-    }
 
 
 
@@ -423,29 +402,7 @@ public class MainController implements Initializable {
 
 
 
-    public void populateSearchScreen(String searchString) {
-        productPane.toFront();
-        productFlowPane.setHgap(10);
-        productFlowPane.setVgap(10);
 
-        productScrollPane.setVvalue(0);
-
-        //update title
-        categoryTitle.setText("Sökresultat för '" + searchString + "'");
-
-        productFlowPane.getChildren().clear();
-
-        List<Product> products = idh.findProducts(searchString);
-
-        for (Product p : products) {
-            productFlowPane.getChildren().add(new ProductCard(p, ProductCard.cardType.category, this));
-        }
-
-        updateShoppingCartButton();
-
-        //Visa hemknappen
-        showHomeButton();
-    }
 
     public void populateCategoryScreen2(List<ProductCard> cards, String title) {
         productPane.toFront();
