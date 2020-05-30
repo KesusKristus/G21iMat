@@ -1,6 +1,8 @@
 package iMat;
 
 import iMat.Categories.CategoriesController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +19,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class MainController implements Initializable {
 
@@ -105,15 +110,29 @@ public class MainController implements Initializable {
         return listList;
     }
 
+    //Sök ifall enter eller sökknappen trycks
+    @FXML
+    void onClickSök() {
+        performSearch();
+    }
+
     //När enter trycks från sökrutan
     @FXML
     void onEnter(ActionEvent ae) {
+        performSearch();
+    }
+
+    void performSearch() {
 
         String searchString = searchField.getText();
 
-        populateSearchScreen(idh.findProducts(searchString), "Sökresultat för '" + searchString + "'");
-    }
+        if (searchString.length() != 0) {
+            populateSearchScreen(searchString);
+        }
 
+        searchField.setText("");
+        homePane.requestFocus();
+    }
 
     //Ska kallas då "startsidan" lämnas
     void showHomeButton() {
@@ -273,20 +292,28 @@ public class MainController implements Initializable {
         showHomeButton();
     }
 
-    public void populateSearchScreen(List<Product> products, String title) {
+    public void populateSearchScreen(String searchString) {
         productPane.toFront();
         productFlowPane.setHgap(10);
         productFlowPane.setVgap(10);
 
         productScrollPane.setVvalue(0);
 
-        categoryTitle.setText(title);
-        //this.products = products;
+        //update title
+        categoryTitle.setText("Sökresultat för '" + searchString + "'");
+
         productFlowPane.getChildren().clear();
+
+        List<Product> products = idh.findProducts(searchString);
 
         for (Product p : products) {
             productFlowPane.getChildren().add(new ProductCard(p, ProductCard.cardType.category, this));
         }
+
+        updateShoppingCartButton();
+
+        //Visa hemknappen
+        showHomeButton();
     }
 
     public void populateCategoryScreen2(List<ProductCard> cards, String title) {
@@ -341,6 +368,7 @@ public class MainController implements Initializable {
     }
 
     public void updateShoppingCartButton() {
+
         double goodsSum = 0;
         double priceSum = 0;
         for (ProductCard p : cardList) {

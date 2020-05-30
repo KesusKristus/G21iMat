@@ -10,6 +10,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.CubicCurve?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iMat.MainController">
@@ -112,7 +115,7 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="24.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="24.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/kundvagn.png" />
                      </image>
@@ -304,15 +307,19 @@
             <DropShadow color="#00000054" />
          </effect>
          <children>
-            <TextField fx:id="searchField" layoutX="390.0" layoutY="13.0" onAction="#onEnter" prefHeight="34.0" prefWidth="500.0" promptText="Sök" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="13.0">
+            <TextField fx:id="searchField" alignment="CENTER" layoutX="390.0" layoutY="13.0" onAction="#onEnter" prefHeight="34.0" prefWidth="492.0" promptText="Sök" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="13.0">
                <font>
                   <Font size="15.0" />
                </font></TextField>
-            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="357.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Images/sök.png" />
-               </image>
-            </ImageView>
+            <Pane layoutX="860.0" layoutY="15.0" onMouseClicked="#onClickSök" prefHeight="30.0" prefWidth="30.0" styleClass="searchButton" stylesheets="@Categories/CSS_Categories.css">
+               <effect>
+                  <DropShadow color="#00000053" />
+               </effect>
+               <children>
+                  <Line endX="5.0" endY="5.0" layoutX="19.0" layoutY="20.0" strokeWidth="2.0" />
+                  <Circle fill="#1f93ff00" layoutX="13.0" layoutY="13.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
+               </children>
+            </Pane>
             <Pane layoutX="1169.0" layoutY="15.0" onMouseClicked="#onClickKONTO" prefHeight="30.0" prefWidth="95.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css" AnchorPane.rightAnchor="15.0">
                <children>
                   <Label alignment="CENTER" layoutX="20.0" prefHeight="30.0" prefWidth="75.0" text="Konto">
@@ -320,11 +327,9 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                     <image>
-                        <Image url="@Images/konto.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
+                  <CubicCurve controlX2="20.0" controlY1="-10.0" controlY2="-10.0" endX="20.0" fill="#1f93ff00" layoutX="8.0" layoutY="26.0" stroke="BLACK" strokeWidth="2.0" />
+                  <Circle fill="#1f93ff00" layoutX="18.0" layoutY="12.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
                </children>
                <effect>
                   <DropShadow color="#00000054" />
@@ -337,11 +342,11 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-                     <image>
-                        <Image url="@Images/hjälp.png" />
-                     </image>
-                  </ImageView>
+                  <Label layoutX="13.0" layoutY="-3.0" text="?">
+                     <font>
+                        <Font name="Arial" size="32.0" />
+                     </font>
+                  </Label>
                </children>
                <effect>
                   <DropShadow color="#00000053" />
@@ -349,7 +354,7 @@
             </Pane>
             <StackPane prefHeight="60.0" prefWidth="240.0">
                <children>
-                  <AnchorPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane fx:id="homePane" focusTraversable="true" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Pane layoutX="40.0" layoutY="5.0" onMouseClicked="#onClickHEM" prefHeight="50.0" prefWidth="160.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
                            <children>
