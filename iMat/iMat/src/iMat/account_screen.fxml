@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <fx:root fx:id="account_pane" prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: #EAF5F5;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -97,11 +98,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/historik.png" />
                      </image>
                   </ImageView>
+                  <Circle fill="#1f93ff00" layoutX="20.0" layoutY="15.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" />
                </children>
                <effect>
                   <DropShadow color="#00000054" />
