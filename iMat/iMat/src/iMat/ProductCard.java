@@ -3,38 +3,104 @@ package iMat;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
+import se.chalmers.cse.dat216.project.ShoppingCart;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
-import java.util.List;
 
 public class ProductCard extends AnchorPane {
-    private ShoppingItem item = new ShoppingItem(null, 0);
+    private ShoppingItem shoppingItem = new ShoppingItem(null, 0);
+    private Product prod;
+    Image productImage;
     private MainController parentController;
     private ProductCard parentCard;
     private IMatDataHandler idh = IMatDataHandler.getInstance();
+    private ShoppingCart cart = idh.getShoppingCart();
 
-    @FXML ImageView cardImage;
-    @FXML Label cardName;
-    @FXML Label cardPrice;
-    @FXML Pane plusButton;
-    @FXML Pane minusButton;
-    @FXML Label cardAmount;
+    @FXML
+    ImageView cardImage;
+    @FXML
+    Label cardName;
+    @FXML
+    Label cardPrice;
+    /*@FXML
+    Pane plusButton;
+    @FXML
+    Pane minusButton;*/
+    @FXML
+    Label cardAmount;
 
+    private ProductCard(ShoppingItem item, boolean isCategory) {
 
+        shoppingItem = item;
 
-    enum cardType{
-        category,
-        cart
+        prod = item.getProduct();
+
+        FXMLLoader fxmlLoader;
+
+        if (isCategory) {
+            fxmlLoader = new FXMLLoader(getClass().getResource("product_card.fxml"));
+            productImage = idh.getFXImage(item.getProduct(), 100, 80);
+        } else {
+            fxmlLoader = new FXMLLoader(getClass().getResource("product_card_cart.fxml"));
+            productImage = idh.getFXImage(item.getProduct(), 90, 90);
+        }
+
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
+        //Set up card
+        cardImage.setImage(productImage);
+        cardName.setText(prod.getName());
+        cardPrice.setText(prod.getPrice() + " " + prod.getUnit());
+        cardAmount.setText(Integer.toString((int) item.getAmount()));
     }
 
-    @FXML public void plusButtonPressed(){
-        item.setAmount(item.getAmount() + 1);
+    public static ProductCard createProductCardCategory(ShoppingItem item) {
+        //Use this when creating ProductCards for other places than the Shopping cart
+        return new ProductCard(item, true);
+    }
+
+    public static ProductCard createProductCardCart(ShoppingItem item) {
+        //Use this when creating ProductCards for the Shopping cart
+        return new ProductCard(item, false);
+    }
+
+    private void updateCard(){
+        cardAmount.setText(Integer.toString((int)shoppingItem.getAmount()));
+    }
+
+    @FXML
+    public void plusButtonPressed() {
+
+        if (!cart.getItems().contains(shoppingItem)) {
+            cart.addItem(shoppingItem);
+        }
+
+        shoppingItem.setAmount(shoppingItem.getAmount() + 1);
+
+        cart.fireShoppingCartChanged(shoppingItem, false);
+
+        updateCard();
+
+        /*if (!cart.getItems().contains(shoppingItem)){
+            cart.addItem(shoppingItem);
+        }*/
+
+
+
+        /*item.setAmount(item.getAmount() + 1);
         parentController.productAdded(this);
         parentController.updateShoppingCart();
 
@@ -42,12 +108,35 @@ public class ProductCard extends AnchorPane {
 
         if(parentCard != null){
             updateParentCard();
-        }
+        }*/
 
     }
 
-    @FXML public void minusButtonPressed(){
-        if((int) item.getAmount() > 0) {
+    @FXML
+    public void minusButtonPressed() {
+
+        if (cart.getItems().contains(shoppingItem)) {
+
+            if (shoppingItem.getAmount() > 1) {
+                shoppingItem.setAmount(shoppingItem.getAmount() - 1);
+            } else if (shoppingItem.getAmount() == 1){
+                cart.removeItem(shoppingItem);
+                shoppingItem.setAmount(0);
+            }
+
+            cart.fireShoppingCartChanged(shoppingItem, false);
+
+            updateCard();
+
+            /*if (shoppingItem.getAmount() == 1){
+                cart.removeItem(shoppingItem);
+            }*/
+
+
+            /*shoppingItem.setAmount(shoppingItem.getAmount() + 1);*/
+        }
+
+        /*if((int) item.getAmount() > 0) {
             item.setAmount(item.getAmount() - 1);
 
             if ((int) item.getAmount() == 0) {    //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
@@ -60,9 +149,10 @@ public class ProductCard extends AnchorPane {
             if (parentCard != null) {
                 updateParentCard();
             }
-        }
+        }*/
     }
 
+    /*
     private void updateAmount(){
         cardAmount.setText("" + (int)item.getAmount());
     }
@@ -181,5 +271,5 @@ public class ProductCard extends AnchorPane {
             return true;
         }
         return false;
-    }
+    }*/
 }

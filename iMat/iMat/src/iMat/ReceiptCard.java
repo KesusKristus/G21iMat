@@ -21,7 +21,7 @@ public class ReceiptCard extends AnchorPane {
 
     public ReceiptCard(ShoppingItem shoppingItem){
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("receipt_Card.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("receipt_card.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

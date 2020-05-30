@@ -309,7 +309,7 @@ public class CheckoutController extends AnchorPane {
 
             loadKvitto();
 
-            mainController.greyoutCheckoutButton();
+            //mainController.greyoutCheckoutButton();
 
             //Change to kvitto pane
             if (currentStep == 2)
@@ -494,13 +494,13 @@ public class CheckoutController extends AnchorPane {
         //Clear current shoppingCart
         idh.getShoppingCart().clear();
 
-        mainController.updatePreviouslyBought();
+        /*mainController.updatePreviouslyBought();
 
         mainController.clearFillSortListList();
 
         mainController.clearShoppingCart();
         mainController.updateShoppingCart();
-        mainController.updateShoppingCartButton();
+        mainController.updateShoppingCartButton();*/
     }
 
     private void updateCheckoutInfo() {
