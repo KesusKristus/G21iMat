@@ -15,8 +15,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 public class CheckoutController extends AnchorPane {
+
+    // KOLLA HÄR PÅ EGEN RISK ------------------------------------------------------------------------
 
     //Kassans fxml
     @FXML
@@ -64,11 +67,27 @@ public class CheckoutController extends AnchorPane {
     @FXML
     AnchorPane fakturaInfoPane;
 
+
+    @FXML
+    AnchorPane gitighetstidPane;
+    @FXML
+    AnchorPane gitighetstidPaneError;
+
+    @FXML
+    Label kontonummerError;
+    @FXML
+    Label giltighetstidError;
+    @FXML
+    Label cvcError;
+    @FXML
+    Label mobilnummerError;
+
+
     /*@FXML
     Pane nästaSteg1Pane; //betalningsuppgifter*/
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    //FRAKTUPPGIFTER ///////////////////////////////////
+    //LEVERANSUPPGIFTER ///////////////////////////////////
     @FXML
     TextField leveransAdressText;
     @FXML
@@ -82,11 +101,21 @@ public class CheckoutController extends AnchorPane {
     @FXML
     ComboBox leveransTidCombo;
 
-    /*@FXML
-    Pane föregåendeSteg2Pane;
+    @FXML
+    AnchorPane leveransDatumPane;
+    @FXML
+    AnchorPane leveransDatumPaneError;
 
     @FXML
-    Pane bekräftaKöpPane;*/
+    Label adressError;
+    @FXML
+    Label postortError;
+    @FXML
+    Label postnummerError;
+    @FXML
+    Label leveranstidError;
+    @FXML
+    Label leveransdatumError;
 
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -104,10 +133,6 @@ public class CheckoutController extends AnchorPane {
     Label orderInfoLabel;
 
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    //ERRORMEDDELANDEN
-    @FXML
-    Label checkoutErrorLabel;
 
 
     private final IMatDataHandler idh = IMatDataHandler.getInstance();
@@ -160,9 +185,9 @@ public class CheckoutController extends AnchorPane {
 
         updateCheckoutInfo();
 
+        kvittoScrollPane.setVvalue(0);
 
     }
-
 
     private void updateCheckout() {
 
@@ -226,36 +251,54 @@ public class CheckoutController extends AnchorPane {
                 if (kontonummerText.getText().length() != 16) {
                     somethingIsWrong = true;
 
-                    checkoutErrorLabel.setText("OGILTIGT KORTNUMMER");
-
-                    break;
-
+                    kontonummerError.setText("OGILTIGT KORTNUMMER");
+                    kontonummerText.setStyle("-fx-border-color: red");
+                } else {
+                    kontonummerError.setText("");
+                    kontonummerText.setStyle("-fx-border-color: #BABABA");
                 }
 
-                if (((giltighetMMText.getText().length() != 2) && (giltighetMMText.getText().length() != 1)) || (Integer.parseInt(giltighetMMText.getText()) > 12 || Integer.parseInt(giltighetMMText.getText()) < 0)) {
+                boolean mmWrong = false, ååWrong = false;
 
+                if (((giltighetMMText.getText().length() != 2) && (giltighetMMText.getText().length() != 1)) || (Integer.parseInt(giltighetMMText.getText()) > 12 || Integer.parseInt(giltighetMMText.getText()) < 0)) {
+                    mmWrong = true;
                     somethingIsWrong = true;
 
-                    checkoutErrorLabel.setText("OGILTIG GILTIGHETSTID: MÅNAD");
-
-                    break;
+                    gitighetstidPaneError.toFront();
+                    giltighetstidError.setText("OGILTIG GILTIGHETSTID");
+                    giltighetMMText.setStyle("-fx-border-color: red");
                 }
 
                 if ((giltighetÅÅText.getText().length() != 2) || (Integer.parseInt(giltighetÅÅText.getText()) > 99 || Integer.parseInt(giltighetÅÅText.getText()) < 0)) {
-
+                    ååWrong = true;
                     somethingIsWrong = true;
 
-                    checkoutErrorLabel.setText("OGILTIG GILTIGHETSTID: ÅR");
+                    gitighetstidPaneError.toFront();
+                    giltighetstidError.setText("OGILTIG GILTIGHETSTID");
+                    giltighetÅÅText.setStyle("-fx-border-color: red");
+                }
 
-                    break;
+                if (!mmWrong) {
+                    giltighetMMText.setStyle("-fx-border-color: #BABABA");
+                }
+
+                if (!ååWrong) {
+                    giltighetÅÅText.setStyle("-fx-border-color: #BABABA");
+                }
+
+                if (!mmWrong && !ååWrong) {
+                    gitighetstidPane.toFront();
+                    giltighetstidError.setText("");
                 }
 
                 if (cvcText.getText().length() != 3) {
                     somethingIsWrong = true;
 
-                    checkoutErrorLabel.setText("OGILTIG CVC-KOD");
-
-                    break;
+                    cvcError.setText("OGILTIGT CVC");
+                    cvcText.setStyle("-fx-border-color: red");
+                } else {
+                    cvcError.setText("");
+                    cvcText.setStyle("-fx-border-color: #BABABA");
                 }
 
                 break;
@@ -265,9 +308,11 @@ public class CheckoutController extends AnchorPane {
                 if ((mobilnummerText.getText().length() != 10) || (mobilnummerText.getCharacters().charAt(0) != '0' && mobilnummerText.getCharacters().charAt(1) != '7')) {
                     somethingIsWrong = true;
 
-                    checkoutErrorLabel.setText("OGILTIGT MOBILNUMMER");
-
-                    break;
+                    mobilnummerError.setText("OGILTIGT MOBILNUMMER");
+                    mobilnummerText.setStyle("-fx-border-color: red");
+                } else {
+                    mobilnummerError.setText("");
+                    mobilnummerText.setStyle("-fx-border-color: #BABABA");
                 }
                 break;
 
@@ -279,7 +324,16 @@ public class CheckoutController extends AnchorPane {
         }
 
         if (!somethingIsWrong) {
-            checkoutErrorLabel.setText("");
+            mobilnummerError.setText("");
+            mobilnummerText.setStyle("-fx-border-color: #BABABA");
+            cvcError.setText("");
+            cvcText.setStyle("-fx-border-color: #BABABA");
+            giltighetstidError.setText("");
+            giltighetMMText.setStyle("-fx-border-color: #BABABA");
+            giltighetÅÅText.setStyle("-fx-border-color: #BABABA");
+            kontonummerError.setText("");
+            kontonummerText.setStyle("-fx-border-color: #BABABA");
+
 
             if (currentStep == 1)
                 currentStep = 2;
@@ -291,7 +345,28 @@ public class CheckoutController extends AnchorPane {
         if (currentStep == 2)
             currentStep = 1;
 
-        checkoutErrorLabel.setText("");
+        postnummerText.setStyle("-fx-border-color: #BABABA");
+        postnummerError.setText("");
+        postortText.setStyle("-fx-border-color: #BABABA");
+        postortText.setText("");
+        leveransAdressText.setStyle("-fx-border-color: #BABABA");
+        leveransAdressText.setText("");
+        leveransMånadText.setStyle("-fx-border-color: #BABABA");
+        leveransMånadText.setText("");
+        leveransDagText.setStyle("-fx-border-color: #BABABA");
+        leveransDagText.setText("");
+        leveransTidCombo.setStyle("-fx-border-color: #BABABA");
+        leveranstidError.setText("");
+
+        kontonummerText.setStyle("-fx-border-color: #BABABA");
+        kontonummerError.setText("");
+        giltighetÅÅText.setStyle("-fx-border-color: #BABABA");
+        giltighetMMText.setStyle("-fx-border-color: #BABABA");
+        giltighetstidError.setText("");
+        cvcText.setStyle("-fx-border-color: #BABABA");
+        cvcError.setText("");
+        mobilnummerText.setStyle("-fx-border-color: #BABABA");
+        mobilnummerError.setText("");
 
         updateCheckout();
     }
@@ -305,7 +380,19 @@ public class CheckoutController extends AnchorPane {
         boolean somethingIsWrong = felkontrollTillKvittoSteg();
 
         if (!somethingIsWrong) {
-            checkoutErrorLabel.setText("");
+
+            postnummerText.setStyle("-fx-border-color: #BABABA");
+            postnummerError.setText("");
+            postortText.setStyle("-fx-border-color: #BABABA");
+            postortText.setText("");
+            leveransAdressText.setStyle("-fx-border-color: #BABABA");
+            leveransAdressText.setText("");
+            leveransMånadText.setStyle("-fx-border-color: #BABABA");
+            leveransMånadText.setText("");
+            leveransDagText.setStyle("-fx-border-color: #BABABA");
+            leveransDagText.setText("");
+            leveransTidCombo.setStyle("-fx-border-color: #BABABA");
+            leveranstidError.setText("");
 
             loadKvitto();
 
@@ -318,91 +405,125 @@ public class CheckoutController extends AnchorPane {
         }
     }
 
-    private boolean felkontrollTillKvittoSteg(){
+    private boolean felkontrollTillKvittoSteg() {
 
-        if (leveransAdressText.getText().length() == 0){
+        boolean somethingIsWrong = false;
 
-            checkoutErrorLabel.setText("ANGE ADRESS");
-            return true;
-
+        if (leveransAdressText.getText().length() == 0) {
+            adressError.setText("ANGE ADRESS");
+            leveransAdressText.setStyle("-fx-border-color: red");
+            somethingIsWrong = true;
+        } else {
+            adressError.setText("");
+            leveransAdressText.setStyle("-fx-border-color: #BABABA");
         }
-        if (postortText.getText().length() == 0){
 
-            checkoutErrorLabel.setText("ANGE POSTORT");
-            return true;
 
+        if (postortText.getText().length() == 0) {
+            postortError.setText("ANGE POSTORT");
+            postortText.setStyle("-fx-border-color: red");
+            somethingIsWrong = true;
+        } else {
+            postortError.setText("");
+            postortText.setStyle("-fx-border-color: #BABABA");
         }
-        if (postnummerText.getText().length() == 0){
 
-            checkoutErrorLabel.setText("ANGE POSTNUMMER");
-            return true;
+        boolean postnummerIsWrong = false;
 
+        if (postnummerText.getText().length() == 0) {
+            postnummerError.setText("ANGE POSTNUMMER");
+            postnummerText.setStyle("-fx-border-color: red");
+            somethingIsWrong = true;
+            postnummerIsWrong = true;
         }
         if (postnummerText.getText().length() != 5) {
-
-            checkoutErrorLabel.setText("OGILTIGT POSTNUMMER");
-            return true;
-
+            postnummerError.setText("OGILTIGT POSTNUMMER");
+            postnummerText.setStyle("-fx-border-color: red");
+            somethingIsWrong = true;
+            postnummerIsWrong = true;
         }
 
-        if (leveransDagText.getText().length() == 0){
-
-            checkoutErrorLabel.setText("VÄLJ LEVERANSDAG");
-            return true;
+        if (!postnummerIsWrong){
+            postnummerError.setText("");
+            postnummerText.setStyle("-fx-border-color: #BABABA");
         }
 
-        if (leveransMånadText.getText().length() == 0){
+        leveransdatumError.setText("");
+        leveransDagText.setStyle("-fx-border-color: #BABABA");
+        leveransMånadText.setStyle("-fx-border-color: #BABABA");
+        leveransDatumPane.toFront();
 
-            checkoutErrorLabel.setText("VÄLJ LEVERANSMÅNAD");
-            return true;
-        }
+        if (leveransMånadText.getText().length() != 0) {
 
-        if ((Integer.parseInt(leveransMånadText.getText()) > 12) || (Integer.parseInt(leveransMånadText.getText()) < 0)) {
-            checkoutErrorLabel.setText("OGILTIGT LEVERANSDATUM: MÅNAD");
+            if ((Integer.parseInt(leveransMånadText.getText()) > 12) || (Integer.parseInt(leveransMånadText.getText()) < 0)) {
+                leveransdatumError.setText("OGILTIG LEVERANSDATUM");
+                leveransMånadText.setStyle("-fx-border-color: red");
+                leveransDatumPaneError.toFront();
+                somethingIsWrong = true;
+            } else {
 
-            return true;
-        } else {
-            //Kolla så att dagen stämmer med månaden
-            switch (Integer.parseInt(leveransMånadText.getText())) {
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12:
-                    if ((Integer.parseInt(leveransDagText.getText()) > 31) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
-                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
-                        return true;
-                    }
-                    break;
-                case 2:
-                    if ((Integer.parseInt(leveransDagText.getText()) > 29) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
-
-                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
-                        return true;
-                    }
-                    break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    if ((Integer.parseInt(leveransDagText.getText()) > 30) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
-
-                        checkoutErrorLabel.setText("OGILTIG LEVERANSDATUM: DAG");
-                        return true;
-                    }
-                    break;
+                //Kolla så att dagen stämmer med månaden
+                switch (Integer.parseInt(leveransMånadText.getText())) {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12:
+                        if ((Integer.parseInt(leveransDagText.getText()) > 31) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
+                            leveransdatumError.setText("OGILTIG LEVERANSDATUM");
+                            leveransDagText.setStyle("-fx-border-color: red");
+                            leveransDatumPaneError.toFront();
+                            somethingIsWrong = true;
+                        }
+                        break;
+                    case 2:
+                        if ((Integer.parseInt(leveransDagText.getText()) > 29) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
+                            leveransdatumError.setText("OGILTIG LEVERANSDATUM");
+                            leveransDagText.setStyle("-fx-border-color: red");
+                            leveransDatumPaneError.toFront();
+                            somethingIsWrong = true;
+                        }
+                        break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        if ((Integer.parseInt(leveransDagText.getText()) > 30) || (Integer.parseInt(leveransDagText.getText()) < 0)) {
+                            leveransdatumError.setText("OGILTIG LEVERANSDATUM");
+                            leveransDagText.setStyle("-fx-border-color: red");
+                            leveransDatumPaneError.toFront();
+                            somethingIsWrong = true;
+                        }
+                        break;
+                }
             }
+        } else {
+            leveransdatumError.setText("OGILTIG LEVERANSDATUM");
+            leveransMånadText.setStyle("-fx-border-color: red");
+            leveransDatumPaneError.toFront();
+            somethingIsWrong = true;
         }
+
+        if (leveransDagText.getText().length() == 0) {
+            leveransdatumError.setText("OGILTIG LEVERANSDATUM");
+            leveransDagText.setStyle("-fx-border-color: red");
+            leveransDatumPaneError.toFront();
+            somethingIsWrong = true;
+        }
+
+
+        leveranstidError.setText("");
+        leveransTidCombo.setStyle("-fx-border-color: #BABABA");
 
         if (leveransTidCombo.getSelectionModel().isEmpty()) {
-
-            checkoutErrorLabel.setText("VÄLJ LEVERANSTID");
-            return true;
+            leveranstidError.setText("VÄLJ LEVERANSTID");
+            leveransTidCombo.setStyle("-fx-border-color: red");
+            somethingIsWrong = true;
         }
 
-        return false;
+        return somethingIsWrong;
     }
 
     private String getMonthString() {

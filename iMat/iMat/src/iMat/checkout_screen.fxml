@@ -129,146 +129,6 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="betalningsUppgifterPane" prefHeight="420.0" prefWidth="665.0" style="-fx-background-color: #FFFFFF;">
-                     <children>
-                        <Label layoutX="21.0" layoutY="14.0" prefHeight="30.0" prefWidth="209.0" text="Välj betalningsmetod:">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Pane fx:id="bankkortPane" layoutX="20.0" layoutY="50.0" onMouseClicked="#onClickBANKKORT" prefHeight="45.0" prefWidth="95.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="95.0" text="Bankkort">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <effect>
-                              <DropShadow color="#00000055" />
-                           </effect>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Pane>
-                        <Pane fx:id="swishPane" layoutX="130.0" layoutY="50.0" onMouseClicked="#onClickSWISH" prefHeight="45.0" prefWidth="95.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="95.0" text="Swish">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <effect>
-                              <DropShadow color="#00000055" />
-                           </effect>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Pane>
-                        <Pane fx:id="fakturaPane" layoutX="240.0" layoutY="50.0" onMouseClicked="#onClickFAKTURA" prefHeight="45.0" prefWidth="95.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="95.0" text="Faktura">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <effect>
-                              <DropShadow color="#00000055" />
-                           </effect>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Pane>
-                        <Label alignment="CENTER" layoutX="383.0" layoutY="29.0" prefHeight="40.0" prefWidth="250.0" text="Det är säkert att handla hos oss" underline="true" wrapText="true">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="383.0" layoutY="60.0" prefHeight="88.0" prefWidth="250.0" text="Här hos iMat så ligger våra kunders säkerhet i högsta prioritet. Därför behöver du aldrig känna dig otrygg när du handlar hos oss." textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <StackPane layoutX="20.0" layoutY="110.0" prefHeight="300.0" prefWidth="358.0">
-                           <children>
-                              <AnchorPane fx:id="fakturaInfoPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-                                 <children>
-                                    <Label layoutY="30.0" text="Faktura:" underline="true">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="35.0" layoutY="121.0" prefHeight="58.0" prefWidth="289.0" text="Fakturan kommer med din order till leveransadressen" wrapText="true">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane fx:id="swishInfoPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-                                 <children>
-                                    <Label layoutY="30.0" text="Swish:" underline="true">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="90.0" text="Mobilnummer:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="mobilnummerText" layoutX="150.0" layoutY="88.0" prefHeight="25.0" prefWidth="180.0" promptText="XXX XXX XX XX" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane fx:id="bankkortInfoPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
-                                 <children>
-                                    <Label layoutY="30.0" text="Bankkort:" underline="true">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="90.0" text="Kontonummer:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="150.0" text="Giltighetstid:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="210.0" text="CVC:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="kontonummerText" layoutX="150.0" layoutY="88.0" prefHeight="25.0" prefWidth="180.0" promptText="XXXX-XXXX-XXXX-XXXX" />
-                                    <TextField fx:id="giltighetMMText" layoutX="150.0" layoutY="148.0" prefHeight="25.0" prefWidth="43.0" promptText="MM" />
-                                    <TextField fx:id="giltighetÅÅText" layoutX="202.0" layoutY="148.0" prefHeight="25.0" prefWidth="43.0" promptText="ÅÅ" />
-                                    <TextField fx:id="cvcText" layoutX="149.0" layoutY="208.0" prefHeight="25.0" prefWidth="43.0" promptText="XXX" />
-                                    <Label layoutX="155.0" layoutY="174.0" text="MM" />
-                                    <Label layoutX="208.0" layoutY="174.0" text="ÅÅ" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </StackPane>
-                        <Pane fx:id="nästaSteg1Pane" layoutX="475.0" layoutY="350.0" onMouseClicked="#onClickNÄSTASTEGTILLFRAKT" prefHeight="45.0" prefWidth="160.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="134.0" text="Nästa steg">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Polygon fill="#99b9b9" layoutX="170.0" layoutY="5.0" points="-44.0, 30.0, -22.0, 17.0, -44.0, 5.0" strokeType="INSIDE" />
-                           </children>
-                           <effect>
-                              <DropShadow color="#00000055" />
-                           </effect>
-                        </Pane>
-                     </children>
-                  </Pane>
                   <Pane fx:id="fraktUppgifterPane" layoutX="10.0" layoutY="10.0" prefHeight="420.0" prefWidth="665.0" style="-fx-background-color: #FFFFFF;">
                      <children>
                         <Label layoutX="21.0" layoutY="14.0" prefHeight="30.0" prefWidth="209.0" text="Fyll i leveransdetaljer:">
@@ -347,13 +207,186 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="176.0" layoutY="253.0" text="DD" />
-                        <Label layoutX="241.0" layoutY="253.0" text="MM" />
+                        <StackPane layoutX="170.0" layoutY="255.0" prefHeight="20.0" prefWidth="150.0">
+                           <children>
+                              <AnchorPane fx:id="leveransDatumPane" prefHeight="20.0" prefWidth="150.0">
+                                 <children>
+                                    <Label layoutX="5.0" text="DD" />
+                                    <Label layoutX="71.0" text="MM" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="leveransDatumPaneError" prefHeight="20.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;">
+                                 <children>
+                                    <Label fx:id="leveransdatumError" layoutX="5.0" textFill="RED" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </StackPane>
                         <Label alignment="CENTER" layoutX="210.0" layoutY="225.0" prefHeight="30.0" prefWidth="25.0" text="/">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
+                        <Label fx:id="adressError" layoutX="175.0" layoutY="105.0" textFill="RED" />
+                        <Label fx:id="postortError" layoutX="175.0" layoutY="155.0" textFill="RED" />
+                        <Label fx:id="postnummerError" layoutX="175.0" layoutY="205.0" textFill="RED" />
+                        <Label fx:id="leveranstidError" layoutX="175.0" layoutY="305.0" textFill="RED" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="betalningsUppgifterPane" prefHeight="420.0" prefWidth="665.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Label layoutX="21.0" layoutY="14.0" prefHeight="30.0" prefWidth="209.0" text="Välj betalningsmetod:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Pane fx:id="bankkortPane" layoutX="20.0" layoutY="50.0" onMouseClicked="#onClickBANKKORT" prefHeight="45.0" prefWidth="95.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="95.0" text="Bankkort">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Pane>
+                        <Pane fx:id="swishPane" layoutX="130.0" layoutY="50.0" onMouseClicked="#onClickSWISH" prefHeight="45.0" prefWidth="95.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="95.0" text="Swish">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Pane>
+                        <Pane fx:id="fakturaPane" layoutX="240.0" layoutY="50.0" onMouseClicked="#onClickFAKTURA" prefHeight="45.0" prefWidth="95.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="95.0" text="Faktura">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Pane>
+                        <Label alignment="CENTER" layoutX="383.0" layoutY="29.0" prefHeight="40.0" prefWidth="250.0" text="Det är säkert att handla hos oss" underline="true" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="383.0" layoutY="60.0" prefHeight="88.0" prefWidth="250.0" text="Här hos iMat så ligger våra kunders säkerhet i högsta prioritet. Därför behöver du aldrig känna dig otrygg när du handlar hos oss." textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <StackPane layoutX="20.0" layoutY="110.0" prefHeight="300.0" prefWidth="358.0">
+                           <children>
+                              <AnchorPane fx:id="fakturaInfoPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                                 <children>
+                                    <Label layoutY="30.0" text="Faktura:" underline="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="35.0" layoutY="121.0" prefHeight="58.0" prefWidth="289.0" text="Fakturan kommer med din order till leveransadressen" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="bankkortInfoPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                                 <children>
+                                    <Label layoutY="30.0" text="Bankkort:" underline="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="90.0" text="Kontonummer:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="150.0" text="Giltighetstid:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="210.0" text="CVC:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="kontonummerText" layoutX="150.0" layoutY="88.0" prefHeight="25.0" prefWidth="180.0" promptText="XXXX-XXXX-XXXX-XXXX" />
+                                    <TextField fx:id="giltighetMMText" layoutX="150.0" layoutY="148.0" prefHeight="25.0" prefWidth="43.0" promptText="MM" />
+                                    <TextField fx:id="giltighetÅÅText" layoutX="202.0" layoutY="148.0" prefHeight="25.0" prefWidth="43.0" promptText="ÅÅ" />
+                                    <TextField fx:id="cvcText" layoutX="149.0" layoutY="208.0" prefHeight="25.0" prefWidth="43.0" promptText="XXX" />
+                                    <StackPane layoutX="150.0" layoutY="175.0" prefHeight="20.0" prefWidth="150.0">
+                                       <children>
+                                          <AnchorPane fx:id="gitighetstidPane" prefHeight="20.0" prefWidth="150.0">
+                                             <children>
+                                                <Label layoutX="8.0" text="MM" />
+                                                <Label layoutX="61.0" text="ÅÅ" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane fx:id="gitighetstidPaneError" prefHeight="20.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;">
+                                             <children>
+                                                <Label fx:id="giltighetstidError" layoutX="5.0" textFill="RED" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </StackPane>
+                                    <Label fx:id="kontonummerError" layoutX="155.0" layoutY="115.0" textFill="RED" />
+                                    <Label fx:id="cvcError" layoutX="155.0" layoutY="235.0" textFill="RED" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="swishInfoPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+                                 <children>
+                                    <Label layoutY="30.0" text="Swish:" underline="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="90.0" text="Mobilnummer:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="225.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="mobilnummerText" layoutX="150.0" layoutY="88.0" prefHeight="25.0" prefWidth="180.0" promptText="XXX XXX XX XX" />
+                                    <Label fx:id="mobilnummerError" layoutX="155.0" layoutY="115.0" textFill="RED" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </StackPane>
+                        <Pane fx:id="nästaSteg1Pane" layoutX="475.0" layoutY="350.0" onMouseClicked="#onClickNÄSTASTEGTILLFRAKT" prefHeight="45.0" prefWidth="160.0" styleClass="homebutton" stylesheets="@Categories/CSS_Categories.css">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="134.0" text="Nästa steg">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Polygon fill="#99b9b9" layoutX="170.0" layoutY="5.0" points="-44.0, 30.0, -22.0, 17.0, -44.0, 5.0" strokeType="INSIDE" />
+                           </children>
+                           <effect>
+                              <DropShadow color="#00000055" />
+                           </effect>
+                        </Pane>
                      </children>
                   </Pane>
                </children>
@@ -363,10 +396,5 @@
             </StackPane>
          </children>
       </AnchorPane>
-      <Label fx:id="checkoutErrorLabel" alignment="CENTER_RIGHT" layoutY="90.0" prefHeight="36.0" prefWidth="250.0" textFill="RED" AnchorPane.bottomAnchor="84.0" AnchorPane.rightAnchor="97.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
    </children>
 </fx:root>
