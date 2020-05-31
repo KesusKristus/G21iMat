@@ -14,13 +14,6 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 import java.io.IOException;
 
 public class ProductCard extends AnchorPane {
-    private ShoppingItem shoppingItem = new ShoppingItem(null, 0);
-    private Product prod;
-    Image productImage;
-    private MainController parentController;
-    private ProductCard parentCard;
-    private IMatDataHandler idh = IMatDataHandler.getInstance();
-    private ShoppingCart cart = idh.getShoppingCart();
 
     @FXML
     ImageView cardImage;
@@ -34,7 +27,17 @@ public class ProductCard extends AnchorPane {
     Pane minusButton;*/
     @FXML
     Label cardAmount;
+    @FXML
+    Label historyAmount;
 
+    private ShoppingItem shoppingItem = new ShoppingItem(null, 0);
+
+    private final IMatDataHandler idh = IMatDataHandler.getInstance();
+    private final ShoppingCart cart = idh.getShoppingCart();
+    private final Product prod;
+    private final Image productImage;
+
+    //For normal cards and the shopping cart
     private ProductCard(ShoppingItem item, boolean isCategory) {
 
         shoppingItem = item;
@@ -45,10 +48,10 @@ public class ProductCard extends AnchorPane {
 
         if (isCategory) {
             fxmlLoader = new FXMLLoader(getClass().getResource("product_card.fxml"));
-            productImage = idh.getFXImage(item.getProduct(), 100, 80);
+            productImage = idh.getFXImage(prod, 100, 80);
         } else {
             fxmlLoader = new FXMLLoader(getClass().getResource("product_card_cart.fxml"));
-            productImage = idh.getFXImage(item.getProduct(), 90, 70);
+            productImage = idh.getFXImage(prod, 90, 70);
         }
 
         fxmlLoader.setRoot(this);
@@ -65,6 +68,38 @@ public class ProductCard extends AnchorPane {
         cardName.setText(prod.getName());
         cardPrice.setText(prod.getPrice() + " " + prod.getUnit());
         cardAmount.setText(Integer.toString((int) item.getAmount()));
+
+    }
+
+    //For the history and previously bought cards
+    private ProductCard(ShoppingItem item, double amount) {
+
+        shoppingItem = item;
+
+        prod = item.getProduct();
+
+        productImage = idh.getFXImage(prod, 100, 70);
+
+        FXMLLoader fxmlLoader;
+
+        fxmlLoader = new FXMLLoader(getClass().getResource("product_card_history.fxml"));
+
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
+        //Set up card
+        cardImage.setImage(productImage);
+        cardName.setText(prod.getName());
+        cardPrice.setText(prod.getPrice() + " " + prod.getUnit());
+        cardAmount.setText(Integer.toString((int) item.getAmount()));
+
+        historyAmount.setText("Senast köpt antal: " + (int)amount + " st");
     }
 
     public static ProductCard createProductCardCategory(ShoppingItem item) {
@@ -77,8 +112,13 @@ public class ProductCard extends AnchorPane {
         return new ProductCard(item, false);
     }
 
-    private void updateCard(){
-        cardAmount.setText(Integer.toString((int)shoppingItem.getAmount()));
+    public static ProductCard createProductCardHistory(ShoppingItem item, double amount) {
+        //Use this when creating ProductCards for the history and previously bought
+        return new ProductCard(item, amount);
+    }
+
+    private void updateCard() {
+        cardAmount.setText(Integer.toString((int) shoppingItem.getAmount()));
     }
 
     @FXML
@@ -119,7 +159,7 @@ public class ProductCard extends AnchorPane {
 
             if (shoppingItem.getAmount() > 1) {
                 shoppingItem.setAmount(shoppingItem.getAmount() - 1);
-            } else if (shoppingItem.getAmount() == 1){
+            } else if (shoppingItem.getAmount() == 1) {
                 cart.removeItem(shoppingItem);
                 shoppingItem.setAmount(0);
             }

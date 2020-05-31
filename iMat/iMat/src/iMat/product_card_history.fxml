@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="200.0" prefWidth="155.0" style="-fx-background-color: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fx:id="cardImage" fitHeight="70.0" fitWidth="100.0" layoutX="28.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+        <Label fx:id="cardName" alignment="CENTER" layoutX="9.0" layoutY="100.0" prefHeight="60.0" prefWidth="94.0" text="Ekologisk blandfärs" textAlignment="CENTER" wrapText="true">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="cardPrice" alignment="CENTER" layoutX="1.0" layoutY="159.0" prefHeight="30.0" prefWidth="110.0" text="Pris">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <Pane layoutX="111.0" layoutY="97.0" prefHeight="94.0" prefWidth="34.0" styleClass="buyButtonBackground" stylesheets="@Categories/CSS_Categories.css">
+            <children>
+                <Pane fx:id="plusButton" layoutX="3.0" layoutY="3.0" onMouseClicked="#plusButtonPressed" prefHeight="28.0" prefWidth="28.0" styleClass="buyButtonINC" stylesheets="@Categories/CSS_Categories.css">
+                    <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="4.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/plus.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Label fx:id="cardAmount" alignment="CENTER" layoutX="2.0" layoutY="32.0" prefHeight="30.0" prefWidth="30.0" text="12" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Pane fx:id="minusButton" layoutX="3.0" layoutY="63.0" onMouseClicked="#minusButtonPressed" prefHeight="28.0" prefWidth="28.0" styleClass="buyButtonDEC" stylesheets="@Categories/CSS_Categories.css">
+                    <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="4.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Images/minus.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+      <Pane layoutY="5.0" prefHeight="30.0" prefWidth="155.0" style="-fx-background-color: #EAF5F5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label fx:id="historyAmount" alignment="CENTER" layoutY="5.0" prefWidth="155.0" text="Senast köpt antal: 5 st" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#00000055" />
+         </effect>
+      </Pane>
+    </children>
+</fx:root>

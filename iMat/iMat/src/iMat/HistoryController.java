@@ -102,7 +102,7 @@ public class HistoryController extends AnchorPane {
         productScrollPane.setVvalue(0);
 
         for (ShoppingItem sI : o.getItems()) {
-            productFlowPane.getChildren().add(ProductCard.createProductCardCategory(categoriesController.findShoppingItem(sI.getProduct().getProductId())));
+            productFlowPane.getChildren().add(ProductCard.createProductCardHistory(categoriesController.findShoppingItem(sI.getProduct().getProductId()), sI.getAmount()));
         }
 
 

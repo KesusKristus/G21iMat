@@ -191,7 +191,7 @@ public class MainController implements Initializable {
             Order lastOrder = sortedOrderList.get(0);
 
             for (ShoppingItem sI : lastOrder.getItems()) {
-                previouslyBoughtFlowPane.getChildren().add(ProductCard.createProductCardCategory(categoriesController.findShoppingItem(sI.getProduct().getProductId())));
+                previouslyBoughtFlowPane.getChildren().add(ProductCard.createProductCardHistory(categoriesController.findShoppingItem(sI.getProduct().getProductId()), sI.getAmount()));
             }
         } else
             previouslyBoughtLabel.setText("När ett köp utförts visas varorna här");
