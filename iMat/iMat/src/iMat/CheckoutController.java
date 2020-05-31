@@ -348,13 +348,12 @@ public class CheckoutController extends AnchorPane {
         postnummerText.setStyle("-fx-border-color: #BABABA");
         postnummerError.setText("");
         postortText.setStyle("-fx-border-color: #BABABA");
-        postortText.setText("");
+        postortError.setText("");
         leveransAdressText.setStyle("-fx-border-color: #BABABA");
-        leveransAdressText.setText("");
+        adressError.setText("");
         leveransMånadText.setStyle("-fx-border-color: #BABABA");
-        leveransMånadText.setText("");
         leveransDagText.setStyle("-fx-border-color: #BABABA");
-        leveransDagText.setText("");
+        leveransdatumError.setText("");
         leveransTidCombo.setStyle("-fx-border-color: #BABABA");
         leveranstidError.setText("");
 
@@ -384,13 +383,12 @@ public class CheckoutController extends AnchorPane {
             postnummerText.setStyle("-fx-border-color: #BABABA");
             postnummerError.setText("");
             postortText.setStyle("-fx-border-color: #BABABA");
-            postortText.setText("");
+            postortError.setText("");
             leveransAdressText.setStyle("-fx-border-color: #BABABA");
-            leveransAdressText.setText("");
+            adressError.setText("");
             leveransMånadText.setStyle("-fx-border-color: #BABABA");
-            leveransMånadText.setText("");
             leveransDagText.setStyle("-fx-border-color: #BABABA");
-            leveransDagText.setText("");
+            leveransdatumError.setText("");
             leveransTidCombo.setStyle("-fx-border-color: #BABABA");
             leveranstidError.setText("");
 
