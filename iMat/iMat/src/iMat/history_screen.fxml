@@ -2,8 +2,11 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <fx:root fx:id="historyPane" prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: #EAF5F5;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -17,7 +20,7 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <ScrollPane fx:id="productScrollPane" hbarPolicy="NEVER" layoutX="249.0" layoutY="70.0" prefHeight="590.0" prefWidth="500.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0">
+      <ScrollPane fx:id="productScrollPane" hbarPolicy="NEVER" layoutX="249.0" layoutY="70.0" prefHeight="530.0" prefWidth="500.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="60.0">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="485.0">
                <children>
@@ -35,5 +38,41 @@
          <font>
             <Font size="15.0" />
          </font></Label>
+      <StackPane layoutX="249.0" layoutY="612.0" prefHeight="30.0" prefWidth="500.0">
+         <children>
+            <AnchorPane fx:id="buttonPaneGREY" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Pane prefHeight="30.0" prefWidth="500.0" style="-fx-background-color: #909090;">
+                     <effect>
+                        <DropShadow color="#00000054" />
+                     </effect>
+                     <children>
+                        <Label alignment="CENTER" layoutX="100.0" prefHeight="30.0" prefWidth="300.0" text="Lägg till hela köpet i kundvagnen" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="buttonPane" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Pane onMouseClicked="#onClickADDALL" prefHeight="30.0" prefWidth="500.0" styleClass="searchButton" stylesheets="@Categories/CSS_Categories.css">
+                     <children>
+                        <Label alignment="CENTER" layoutX="100.0" prefHeight="30.0" prefWidth="300.0" text="Lägg till hela köpet i kundvagnen">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <effect>
+                        <DropShadow color="#00000054" />
+                     </effect>
+                  </Pane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
    </children>
 </fx:root>

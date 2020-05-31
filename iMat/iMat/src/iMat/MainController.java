@@ -171,8 +171,6 @@ public class MainController implements Initializable {
         for (ShoppingItem sI : shoppingCart.getItems()) {
             shoppingCartFlowPane.getChildren().add(ProductCard.createProductCardCart(sI));
         }
-
-        shoppingCartScrollPane.setVvalue(1);
     }
 
     private void updatePreviouslyBought() {
@@ -204,8 +202,14 @@ public class MainController implements Initializable {
 
     public void updateShoppingCartButton() {
 
-        numberOfGoods.setText("" + (int) shoppingCart.getItems().size() + " st");
-        numberOfGoodsGREY.setText("" + (int) shoppingCart.getItems().size() + " st");
+        int nGoods = 0;
+
+        for (ShoppingItem sI : shoppingCart.getItems()){
+            nGoods += sI.getAmount();
+        }
+
+        numberOfGoods.setText("" + (int) nGoods + " st");
+        numberOfGoodsGREY.setText("" + (int) nGoods + " st");
         totalPrice.setText("" + Math.round(shoppingCart.getTotal() * 100D) / 100D + " kr");
         totalPriceGREY.setText("" + Math.round(shoppingCart.getTotal() * 100D) / 100D + " kr");
 

@@ -133,23 +133,6 @@ public class ProductCard extends AnchorPane {
         cart.fireShoppingCartChanged(shoppingItem, false);
 
         updateCard();
-
-        /*if (!cart.getItems().contains(shoppingItem)){
-            cart.addItem(shoppingItem);
-        }*/
-
-
-
-        /*item.setAmount(item.getAmount() + 1);
-        parentController.productAdded(this);
-        parentController.updateShoppingCart();
-
-        updateAmount();
-
-        if(parentCard != null){
-            updateParentCard();
-        }*/
-
     }
 
     @FXML
@@ -167,29 +150,7 @@ public class ProductCard extends AnchorPane {
             cart.fireShoppingCartChanged(shoppingItem, false);
 
             updateCard();
-
-            /*if (shoppingItem.getAmount() == 1){
-                cart.removeItem(shoppingItem);
-            }*/
-
-
-            /*shoppingItem.setAmount(shoppingItem.getAmount() + 1);*/
         }
-
-        /*if((int) item.getAmount() > 0) {
-            item.setAmount(item.getAmount() - 1);
-
-            if ((int) item.getAmount() == 0) {    //Amount är en double, detta måste lösas för varor som kan vara ex 0,5kg om det finns.
-                parentController.productDeleted(this);
-            }
-
-            updateAmount(); //Kan gå under noll
-            parentController.updateShoppingCart();
-
-            if (parentCard != null) {
-                updateParentCard();
-            }
-        }*/
     }
 
     /*

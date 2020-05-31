@@ -7,16 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Order;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ShoppingItem;
+import se.chalmers.cse.dat216.project.*;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class HistoryController extends AnchorPane {
 
@@ -32,11 +26,19 @@ public class HistoryController extends AnchorPane {
     @FXML
     Label historikLabel;
 
+    @FXML
+    AnchorPane buttonPane;
+    @FXML
+    AnchorPane buttonPaneGREY;
+
     IMatDataHandler idh = IMatDataHandler.getInstance();
+    ShoppingCart cart = idh.getShoppingCart();
 
     MainController mainController;
 
     CategoriesController categoriesController;
+
+    List<ShoppingItem> currentProductList = new ArrayList<>();
 
     public HistoryController(MainController mainController, CategoriesController categoriesController) {
 
@@ -67,12 +69,14 @@ public class HistoryController extends AnchorPane {
 
             for (Order o : sortedList) {
                 //Only add the order to the history if there were any items bought
-                if (o.getItems().size() != 0){
+                if (o.getItems().size() != 0) {
                     dateFlowPane.getChildren().add(new HistoryCardController(this, o));
                 }
 
             }
         }
+
+        buttonPaneGREY.toFront();
     }
 
     public List<Order> sortListNewestFirst() {
@@ -94,6 +98,8 @@ public class HistoryController extends AnchorPane {
 
     public void populateProductList(Order o, String dateS) {
 
+        currentProductList = o.getItems();
+
         historikLabel.setText("Varor köpta: " + dateS);
 
         productFlowPane.getChildren().clear();
@@ -101,11 +107,31 @@ public class HistoryController extends AnchorPane {
         productFlowPane.setHgap(5);
         productScrollPane.setVvalue(0);
 
-        for (ShoppingItem sI : o.getItems()) {
+        for (ShoppingItem sI : currentProductList) {
             productFlowPane.getChildren().add(ProductCard.createProductCardHistory(categoriesController.findShoppingItem(sI.getProduct().getProductId()), sI.getAmount()));
         }
 
+        buttonPane.toFront();
+    }
 
+    private void addOrderToCart() {
+
+        for (ShoppingItem sI : currentProductList){
+            if (!cart.getItems().contains(sI)) {
+                cart.addItem(sI);
+            }
+
+            sI.setAmount(sI.getAmount());
+
+            cart.fireShoppingCartChanged(sI, false);
+        }
+
+    }
+
+
+    @FXML
+    public void onClickADDALL() {
+        addOrderToCart();
     }
 
 

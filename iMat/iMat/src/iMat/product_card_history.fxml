@@ -48,9 +48,9 @@
                 </Pane>
             </children>
         </Pane>
-      <Pane layoutY="5.0" prefHeight="30.0" prefWidth="155.0" style="-fx-background-color: #EAF5F5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Pane layoutY="5.0" prefHeight="22.0" prefWidth="155.0" style="-fx-background-color: #EAF5F5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label fx:id="historyAmount" alignment="CENTER" layoutY="5.0" prefWidth="155.0" text="Senast köpt antal: 5 st" textAlignment="CENTER">
+            <Label fx:id="historyAmount" alignment="CENTER" layoutY="1.0" prefWidth="155.0" text="Senast köpt antal: 5 st" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
