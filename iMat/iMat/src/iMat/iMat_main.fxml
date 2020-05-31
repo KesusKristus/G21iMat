@@ -21,32 +21,23 @@
          <children>
             <StackPane fx:id="middlePane" layoutX="300.0" layoutY="255.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane fx:id="startScreen" prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: EAF5F5;">
+                  <AnchorPane fx:id="productPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF5F5;">
                      <children>
-                        <Pane onMouseClicked="#onClickHJÄLP" prefHeight="180.0" prefWidth="685.0" styleClass="helpFeature" stylesheets="@Categories/CSS_Categories.css" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="31.0">
-                           <children>
-                              <Label alignment="CENTER" layoutX="118.0" prefHeight="180.0" prefWidth="429.0" text="Så handlar du på iMat" textFill="WHITE">
-                                 <font>
-                                    <Font size="40.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Label fx:id="previouslyBoughtLabel" alignment="CENTER" layoutX="232.0" layoutY="216.0" prefHeight="50.0" prefWidth="337.0" text="Senast köpta varor">
+                        <Label fx:id="categoryTitle" alignment="CENTER" layoutX="258.0" layoutY="34.0" prefHeight="60.0" prefWidth="309.0" text="Label" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
                            <font>
-                              <Font size="36.0" />
+                              <Font size="30.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="previouslyBoughtScrollPane" hbarPolicy="NEVER" layoutX="68.0" layoutY="269.0" prefHeight="388.0" prefWidth="665.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="67.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
+                        <ScrollPane fx:id="productScrollPane" hbarPolicy="NEVER" layoutX="68.0" layoutY="70.0" prefHeight="590.0" prefWidth="665.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="70.0">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF5F5;">
                                  <children>
-                                    <FlowPane fx:id="previouslyBoughtFlowPane" prefHeight="216.0" prefWidth="650.0" />
+                                    <FlowPane fx:id="productFlowPane" prefHeight="500.0" prefWidth="650.0" />
                                  </children>
                               </AnchorPane>
-                          </content>
+                           </content>
                            <effect>
-                              <DropShadow color="#00000053" />
+                              <DropShadow color="#00000055" />
                            </effect>
                         </ScrollPane>
                      </children>
@@ -74,23 +65,32 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="productPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF5F5;">
+                  <AnchorPane fx:id="startScreen" prefHeight="660.0" prefWidth="800.0" style="-fx-background-color: EAF5F5;">
                      <children>
-                        <Label fx:id="categoryTitle" alignment="CENTER" layoutX="258.0" layoutY="34.0" prefHeight="60.0" prefWidth="309.0" text="Label" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0">
+                        <Pane onMouseClicked="#onClickHJÄLP" prefHeight="180.0" prefWidth="685.0" styleClass="helpFeature" stylesheets="@Categories/CSS_Categories.css" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="31.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="118.0" prefHeight="180.0" prefWidth="429.0" text="Så handlar du på iMat" textFill="WHITE">
+                                 <font>
+                                    <Font size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Label fx:id="previouslyBoughtLabel" alignment="CENTER" layoutX="232.0" layoutY="216.0" prefHeight="50.0" prefWidth="337.0" text="Senast köpta varor" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0">
                            <font>
-                              <Font size="30.0" />
+                              <Font size="36.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="productScrollPane" hbarPolicy="NEVER" layoutX="68.0" layoutY="70.0" prefHeight="590.0" prefWidth="665.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="70.0">
-                           <content>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAF5F5;">
+                        <ScrollPane fx:id="previouslyBoughtScrollPane" hbarPolicy="NEVER" layoutX="68.0" layoutY="269.0" prefHeight="388.0" prefWidth="665.0" styleClass="scrollBackground" stylesheets="@Categories/CSS_Categories.css" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="67.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
                                  <children>
-                                    <FlowPane fx:id="productFlowPane" prefHeight="500.0" prefWidth="650.0" />
+                                    <FlowPane fx:id="previouslyBoughtFlowPane" prefHeight="216.0" prefWidth="650.0" />
                                  </children>
                               </AnchorPane>
-                           </content>
+                          </content>
                            <effect>
-                              <DropShadow color="#00000055" />
+                              <DropShadow color="#00000053" />
                            </effect>
                         </ScrollPane>
                      </children>
