@@ -1,5 +1,6 @@
 package iMat;
 
+import iMat.Categories.CategoriesController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -30,12 +31,16 @@ public class ProductCard extends AnchorPane {
     @FXML
     Label historyAmount;
 
-    private ShoppingItem shoppingItem = new ShoppingItem(null, 0);
+    private ShoppingItem shoppingItem;
 
     private final IMatDataHandler idh = IMatDataHandler.getInstance();
     private final ShoppingCart cart = idh.getShoppingCart();
     private final Product prod;
     private final Image productImage;
+    private CategoriesController categoriesController;
+
+
+    private int amount = -1;
 
     //For normal cards and the shopping cart
     private ProductCard(ShoppingItem item, boolean isCategory) {
@@ -72,9 +77,11 @@ public class ProductCard extends AnchorPane {
     }
 
     //For the history and previously bought cards
-    private ProductCard(ShoppingItem item, double amount) {
+    private ProductCard(ShoppingItem item, double oldAmount, CategoriesController categoriesController) {
 
-        shoppingItem = item;
+        this.categoriesController = categoriesController;
+
+        shoppingItem = categoriesController.findShoppingItem(item.getProduct().getProductId());
 
         prod = item.getProduct();
 
@@ -97,9 +104,11 @@ public class ProductCard extends AnchorPane {
         cardImage.setImage(productImage);
         cardName.setText(prod.getName());
         cardPrice.setText(prod.getPrice() + " " + prod.getUnit());
-        cardAmount.setText(Integer.toString((int) item.getAmount()));
+        cardAmount.setText(Integer.toString((int)shoppingItem.getAmount()));
 
-        historyAmount.setText("Senast köpt antal: " + (int)amount + " st");
+        this.amount = (int)oldAmount;
+
+        historyAmount.setText("Senast köpt antal: " + this.amount + " st");
     }
 
     public static ProductCard createProductCardCategory(ShoppingItem item) {
@@ -112,9 +121,9 @@ public class ProductCard extends AnchorPane {
         return new ProductCard(item, false);
     }
 
-    public static ProductCard createProductCardHistory(ShoppingItem item, double amount) {
+    public static ProductCard createProductCardHistory(ShoppingItem item, double oldAmount, CategoriesController categoriesController) {
         //Use this when creating ProductCards for the history and previously bought
-        return new ProductCard(item, amount);
+        return new ProductCard(item, oldAmount, categoriesController);
     }
 
     private void updateCard() {

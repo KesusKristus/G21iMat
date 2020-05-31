@@ -96,6 +96,7 @@ public class MainController implements Initializable {
             updateShoppingCart();
             updateProducts();
             updateShoppingCartButton();
+            historyController.updateProductListHistory();
         }
     };
 
@@ -115,9 +116,6 @@ public class MainController implements Initializable {
 
         //Show previously bought products
         updatePreviouslyBought();
-
-        //fillListList();
-        //sortListList();
     }
 
     private void setupFX() {
@@ -189,7 +187,7 @@ public class MainController implements Initializable {
             Order lastOrder = sortedOrderList.get(0);
 
             for (ShoppingItem sI : lastOrder.getItems()) {
-                previouslyBoughtFlowPane.getChildren().add(ProductCard.createProductCardHistory(categoriesController.findShoppingItem(sI.getProduct().getProductId()), sI.getAmount()));
+                previouslyBoughtFlowPane.getChildren().add(ProductCard.createProductCardHistory(categoriesController.findShoppingItem(sI.getProduct().getProductId()), sI.getAmount(), categoriesController));
             }
         } else
             previouslyBoughtLabel.setText("När ett köp utförts visas varorna här");
@@ -362,209 +360,7 @@ public class MainController implements Initializable {
         populateProducts("Sötsaker & Snacks",categoriesController.getCategoryList(CategoriesController.Categories.SÖTT));
     }
 
-    //private java.util.List<ShoppingItem> shoppingCartList = new ArrayList<ShoppingItem>();
-    //private ShoppingCart shoppingCart = idh.getShoppingCart();
-    //private java.util.List<ProductCard> cardList = new ArrayList<ProductCard>();
-    //private java.util.List<java.util.List<ProductCard>> listList = new ArrayList<java.util.List<ProductCard>>();
-
-    /*public List<ProductCard> getCardList() {
-        return cardList;
-    }
-
-    public List<List<ProductCard>> getListList() {
-        return listList;
-    }*/
-
-    /*
-
-
-
-
-
-
-
-    public void greyoutCheckoutButton() {
-
-        double goodsSum = 0;
-        double priceSum = 0;
-        for (ProductCard p : cardList) {
-            goodsSum += p.getItem().getAmount();
-            priceSum += p.getItem().getTotal();
-        }
-
-        numberOfGoodsGREY.setText("" + (int) goodsSum + " st");
-        totalPriceGREY.setText("" + Math.round(priceSum * 100D) / 100D + " kr");
-
-        checkoutGreyoutPane.toFront();
-    }
-
-    void showCheckoutButton() {
-        checkoutButtonPane.toFront();
-    }
-
-    //Återvänd till startsidan
-
-
-
-
-
-    public void populateCategoryScreen2(List<ProductCard> cards, String title) {
-        productPane.toFront();
-        productFlowPane.setHgap(10);
-        productFlowPane.setVgap(10);
-        productScrollPane.setVvalue(0);
-        categoryTitle.setText(title);
-        productFlowPane.getChildren().clear();
-        for (ProductCard p : cards) {
-            productFlowPane.getChildren().add(p);
-        }
-    }
-
-    public void productAdded(ProductCard card) {
-        boolean exists = false;
-        for (ProductCard p : cardList) {
-            if (card.getItem().getProduct().getProductId() == p.getItem().getProduct().getProductId()) {
-                exists = true;
-            }
-        }
-        if (!exists) {
-            cardList.add(card);
-            shoppingCart.addItem(card.getItem());
-        }
-    }
-
-    public void productDeleted(ProductCard card) {
-        ProductCard removedCard = null;
-        for (ProductCard p : cardList) {
-            if (card.equals(p))
-                removedCard = p;
-        }
-        if (removedCard != null) {
-            cardList.remove(removedCard);
-            shoppingCart.removeItem(removedCard.getItem());
-        }
-    }
-
-    public void clearShoppingCart() {
-        cardList.clear();
-    }
-
-    public void updateShoppingCart() {
-        shoppingCartFlowPane.getChildren().clear();
-        shoppingCartFlowPane.setVgap(5);
-        for (ProductCard card : cardList) {
-            shoppingCartFlowPane.getChildren().add(new ProductCard(card, this));
-        }
-        updateShoppingCartButton();
-        updatePreviouslyBought();
-    }
-
-    public void updateShoppingCartButton() {
-
-        double goodsSum = 0;
-        double priceSum = 0;
-        for (ProductCard p : cardList) {
-            goodsSum += p.getItem().getAmount();
-            priceSum += p.getItem().getTotal();
-        }
-        numberOfGoods.setText("" + (int) goodsSum + " st");
-        totalPrice.setText("" + Math.round(priceSum * 100D) / 100D + " kr");
-
-        if (goodsSum == 0) {
-            greyoutCheckoutButton();
-        } else
-            showCheckoutButton();
-    }
-
-
-    public void fillListList() {
-        for (int i = 0; i < 8; i++) {
-            listList.add(new ArrayList<ProductCard>());
-        }
-        for (Product p : cController.dryckList) {
-            listList.get(0).add(new ProductCard(p, ProductCard.cardType.category, this));
-        }
-        for (Product p : cController.fruktBärList) {
-            listList.get(1).add(new ProductCard(p, ProductCard.cardType.category, this));
-        }
-        for (Product p : cController.grönsakerList) {
-            listList.get(2).add(new ProductCard(p, ProductCard.cardType.category, this));
-        }
-        for (Product p : cController.köttFiskList) {
-            listList.get(3).add(new ProductCard(p, ProductCard.cardType.category, this));
-        }
-        for (Product p : cController.mejeriList) {
-            listList.get(4).add(new ProductCard(p, ProductCard.cardType.category, this));
-        }
-        for (Product p : cController.potatisRisList) {
-            listList.get(5).add(new ProductCard(p, ProductCard.cardType.category, this));
-        }
-        for (Product p : cController.skafferiList) {
-            listList.get(6).add(new ProductCard(p, ProductCard.cardType.category, this));
-        }
-        for (Product p : cController.sötsakerSnacksList) {
-            listList.get(7).add(new ProductCard(p, ProductCard.cardType.category, this));
-        }
-    }
-
-    public void sortListList() {
-        for (int i = 0; i < 8; i++) {
-            java.util.List<String> nameOrder = new ArrayList<String>();
-            java.util.List<ProductCard> newProductList = new ArrayList<ProductCard>();
-
-            for (ProductCard p : listList.get(i)) {
-                nameOrder.add(p.getItem().getProduct().getName());
-            }
-
-            java.util.Collections.sort(nameOrder);
-
-            for (String s : nameOrder) {
-                for (ProductCard p : listList.get(i)) {
-                    if (s.equals(p.getItem().getProduct().getName())) {
-                        newProductList.add(p);
-                    }
-                }
-
-            }
-            listList.set(i, newProductList);
-        }
-    }
-
-    public void clearFillSortListList() {
-        listList.clear();
-        fillListList();
-        sortListList();
-    }
-
-    public void updatePreviouslyBought() {
-
-        //Remove empty orders - there should be none, but if there are
-        idh.getOrders().removeIf(o -> o.getItems().size() == 0);
-
-        previouslyBoughtFlowPane.getChildren().clear();
-
-        previouslyBoughtFlowPane.setHgap(10);
-        previouslyBoughtFlowPane.setVgap(10);
-
-        //Make a list with the newest order first
-        List<Order> sortedOrderList = historyController.sortListNewestFirst();
-
-        previouslyBoughtLabel.setText("Senast köpta varor");
-
-        if (idh.getOrders().size() != 0) {
-            Order lastOrder = sortedOrderList.get(0);
-
-            for (ShoppingItem sI : lastOrder.getItems()) {
-                previouslyBoughtFlowPane.getChildren().add(new ProductCard(sI, this));
-            }
-        } else
-            previouslyBoughtLabel.setText("När ett köp utförts visas varorna här");
-
-        previouslyBoughtScrollPane.setVvalue(0);
-    }*/
-
-
-    public IMatDataHandler getDataHandler() {
-        return idh;
+    public CategoriesController getCategoriesController() {
+        return categoriesController;
     }
 }

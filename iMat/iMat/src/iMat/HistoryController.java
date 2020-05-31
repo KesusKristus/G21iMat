@@ -38,7 +38,10 @@ public class HistoryController extends AnchorPane {
 
     CategoriesController categoriesController;
 
+    //The ShoppingItems that can be used to make ProductCards
     List<ShoppingItem> currentProductList = new ArrayList<>();
+    //The ShoppingItems that have the old amount
+    List<ShoppingItem> currentOrder = new ArrayList<>();
 
     public HistoryController(MainController mainController, CategoriesController categoriesController) {
 
@@ -60,7 +63,7 @@ public class HistoryController extends AnchorPane {
 
     }
 
-    void populateDateList() {
+    public void populateDateList() {
         dateFlowPane.getChildren().clear();
 
         if (idh.getOrders().size() != 0) {
@@ -96,19 +99,46 @@ public class HistoryController extends AnchorPane {
 
     }
 
+    public void updateProductListHistory(){
+
+        productFlowPane.getChildren().clear();
+
+        for (int i = 0; i < currentProductList.size(); i++) {
+
+            int id = currentOrder.get(i).getProduct().getProductId();
+
+            productFlowPane.getChildren().add(ProductCard.createProductCardHistory(categoriesController.findShoppingItem(id), currentOrder.get(i).getAmount(), categoriesController));
+
+        }
+    }
+
     public void populateProductList(Order o, String dateS) {
 
-        currentProductList = o.getItems();
+
+        List<ShoppingItem> tmpList = new ArrayList<>();
+
+        for (ShoppingItem sI : o.getItems()){
+            tmpList.add(categoriesController.findShoppingItem(sI.getProduct().getProductId()));
+        }
+
+        currentProductList = tmpList;
+
+        currentOrder = o.getItems();
 
         historikLabel.setText("Varor köpta: " + dateS);
 
         productFlowPane.getChildren().clear();
+
         productFlowPane.setVgap(5);
         productFlowPane.setHgap(5);
         productScrollPane.setVvalue(0);
 
-        for (ShoppingItem sI : currentProductList) {
-            productFlowPane.getChildren().add(ProductCard.createProductCardHistory(categoriesController.findShoppingItem(sI.getProduct().getProductId()), sI.getAmount()));
+        for (int i = 0; i < currentProductList.size(); i++) {
+
+            int id = currentOrder.get(i).getProduct().getProductId();
+
+            productFlowPane.getChildren().add(ProductCard.createProductCardHistory(categoriesController.findShoppingItem(id), currentOrder.get(i).getAmount(), categoriesController));
+
         }
 
         buttonPane.toFront();
@@ -116,16 +146,22 @@ public class HistoryController extends AnchorPane {
 
     private void addOrderToCart() {
 
-        for (ShoppingItem sI : currentProductList){
+        for (int i = 0; i < currentProductList.size(); i++) {
+
+            ShoppingItem sI = currentProductList.get(i);
+
             if (!cart.getItems().contains(sI)) {
                 cart.addItem(sI);
             }
 
-            sI.setAmount(sI.getAmount());
+            double amount = currentOrder.get(i).getAmount();
+
+            //Add the correct amount
+            sI.setAmount(amount);
 
             cart.fireShoppingCartChanged(sI, false);
-        }
 
+        }
     }
 
 

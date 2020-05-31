@@ -572,7 +572,7 @@ public class CheckoutController extends AnchorPane {
         List<ShoppingItem> shoppingItems = new ArrayList<ShoppingItem>();
 
         for (ShoppingItem si : idh.getShoppingCart().getItems()) {
-            shoppingItems.add(si);
+            shoppingItems.add(new ShoppingItem(si.getProduct(), si.getAmount()));
         }
 
         newOrder.setItems(shoppingItems);
@@ -612,6 +612,12 @@ public class CheckoutController extends AnchorPane {
 
         //Clear current shoppingCart
         idh.getShoppingCart().clear();
+
+        //RESET ALL AMOUNTS FROM THE SHOPPINGITEMS
+        for (ShoppingItem sI : mainController.getCategoriesController().getAllShoppingItemList()){
+            sI.setAmount(0);
+        }
+
 
         /*mainController.updatePreviouslyBought();
 

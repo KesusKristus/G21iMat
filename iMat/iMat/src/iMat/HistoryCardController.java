@@ -135,7 +135,6 @@ public class HistoryCardController extends AnchorPane {
         }*/
     }
 
-
     @FXML
     void onClick() {
 
